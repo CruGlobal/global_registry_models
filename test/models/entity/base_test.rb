@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# A Test class that we'll use to test the Base class
 module Entity
   class Test < Entity::Base
     has_attributes :id, :name, 'phone'

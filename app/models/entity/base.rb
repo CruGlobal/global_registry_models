@@ -11,19 +11,26 @@ module Entity
       super attributes.with_indifferent_access.slice(*self.class.attribute_names)
     end
 
+    # This method should be called once in the child class to define the attributes that we need on the entity.
+    # It defines a few methods we'll need for working with attributes.
     def self.has_attributes(*attrs)
       raise "#{ self } attributes were already defined!" if respond_to? :attribute_names
 
+      # Require some attributes for all entities.
       attrs = (attrs + REQUIRED_ATTRIBUTES).uniq
 
+      # Define basic reader and writers for the attributes.
       attr_accessor *attrs
 
+      # attribute_names is a class method that returns the attributes on this class.
       define_singleton_method(:attribute_names) { attrs.collect(&:to_sym) }
 
+      # Define attributes instance method that returns a hash with the the attributes and their current values.
       define_method :attributes do
         self.class.attribute_names.each_with_object({}) { |attr, hash| hash[attr] = self.send(attr) }
       end
 
+      # Defines assign_attributes instance method that can assign all the attributes to new values from a hash of attributes.
       define_method :assign_attributes do |new_attribute_values = {}|
         new_attribute_values.each do |attribute_name, attribute_value|
           self.send("#{ attribute_name }=", attribute_value) if self.class.attribute_names.include?(attribute_name.to_sym)
@@ -61,6 +68,7 @@ module Entity
       GlobalRegistry::Entity.delete id
     end
 
+    # The name of the entity class. The entity name is required in the api responses and requests, hence the need for this class method.
     def self.name
       to_s.gsub(/.*::/, '').underscore
     end
