@@ -45,6 +45,8 @@ group :development, :test do
   gem 'spring'
 
   gem 'dotenv-rails', '~> 2.0.2'
+
+  gem 'pry-rails', '~> 0.3.4'
 end
 
 group :test do
