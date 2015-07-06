@@ -1,3 +1,6 @@
+# A base class providing basic ActiveModel-ish CRUD for GlobalRegistry Entities.
+# API doc at https://github.com/CruGlobal/global_registry_docs/wiki/Entities
+
 module Entity
   class Base
     include ActiveModel::Model
@@ -38,12 +41,30 @@ module Entity
       end
     end
 
+    def self.search(filters: {}, page: nil, per_page: nil, order: nil)
+      params = {
+        entity_type: name,
+        page: page,
+        per_page: per_page,
+        order: order
+      }.delete_if { |k, v| v.blank? }
+
+      # We need to generate a hash like this: { 'filters[name]' => 'name query', 'filters[attribute][nested_attribute]' => 'nested_attribute query' }
+      # It just so happens we can use CGI::parse to do it.
+      filter_params_hash = CGI::parse({ filters: filters }.to_query)
+      filter_params_hash.each { |k, v| filter_params_hash[k] = v.first if v.is_a?(Array) } # CGI::parse returns values as arrays, we just want string values
+
+      params.merge! filter_params_hash
+
+      GlobalRegistry::Entity.get(params)['entities'].collect { |entity| new(entity[name]) }
+    end
+
     def self.find(id)
       new GlobalRegistry::Entity.find(id)['entity'][name]
     end
 
     def self.page(page_number = 1)
-      GlobalRegistry::Entity.get(entity_type: name, page: page_number)['entities'].collect { |entity| new(entity[name]) }
+      search page: page_number
     end
 
     def self.create(attributes)

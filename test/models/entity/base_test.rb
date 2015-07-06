@@ -59,6 +59,34 @@ class BaseTest < ActiveSupport::TestCase
     assert_equal 'test', Entity::Test.name
   end
 
+  test '.search blank' do
+    found = Entity::Test.search
+    assert_instance_of Array, found
+    assert_instance_of Entity::Test, found.first
+    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test'
+  end
+
+  test '.search with filters' do
+    found = Entity::Test.search(filters: { name: 'Mr', phone: '1-800-TEST', attribute: { nested: 'test' } })
+    assert_instance_of Array, found
+    assert_instance_of Entity::Test, found.first
+    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&filters%5Battribute%5D%5Bnested%5D=test&filters%5Bname%5D=Mr&filters%5Bphone%5D=1-800-TEST'
+  end
+
+  test '.search with order' do
+    found = Entity::Test.search(order: 'name asc,phone desc')
+    assert_instance_of Array, found
+    assert_instance_of Entity::Test, found.first
+    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&order=name%20asc,phone%20desc'
+  end
+
+  test '.search with pagination' do
+    found = Entity::Test.search(page: 45, per_page: 76)
+    assert_instance_of Array, found
+    assert_instance_of Entity::Test, found.first
+    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&page=45&per_page=76'
+  end
+
   test '.find' do
     found = Entity::Test.find '0000-0000-0000-0001'
     assert_instance_of Entity::Test, found
