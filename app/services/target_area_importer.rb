@@ -5,7 +5,7 @@ class TargetAreaImporter
 
   def spreadsheet_file_path=(path)
     @spreadsheet_file_path = path
-    puts 'Building target areas ...'
+    puts 'Building target areas from spreadsheet ...'
     @target_areas = build_target_areas
   end
 
@@ -67,10 +67,14 @@ class TargetAreaImporter
 
     def find_duplicate_target_area(target_area)
       all_target_areas.detect do |existing_target_area|
-        existing_target_area.name == target_area.name &&
-          existing_target_area.country == target_area.country &&
-          existing_target_area.city == target_area.city
+        duplicate_target_areas?(existing_target_area, target_area)
       end
+    end
+
+    def duplicate_target_areas?(target_area_a, target_area_b)
+      target_area_a.name == target_area_b.name &&
+        target_area_a.country == target_area_b.country &&
+        target_area_a.city == target_area_b.city
     end
 
     def find_and_assign_duplicate_target_area(target_area)
@@ -134,11 +138,16 @@ class TargetAreaImporter
     def build_target_areas
       return nil unless open_spreadsheet
 
-      (2..@spreadsheet.last_row).collect do |i|
+      target_areas = []
+
+      (2..@spreadsheet.last_row).each do |i|
         row = Hash[[header_row, @spreadsheet.row(i)].transpose]
         row.each { |k, v| row[k] = v.strip if v.is_a?(String) }
-        Entity::TargetArea.new(row)
+        built_target_area = Entity::TargetArea.new(row)
+        target_areas << built_target_area unless target_areas.detect { |target_area| duplicate_target_areas?(built_target_area, target_area) }
       end
+
+      target_areas
     end
 
     def open_spreadsheet
