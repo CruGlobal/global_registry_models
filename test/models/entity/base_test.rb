@@ -67,10 +67,10 @@ class BaseTest < ActiveSupport::TestCase
   end
 
   test '.search with filters' do
-    found = Entity::Test.search(filters: { name: 'Mr', phone: '1-800-TEST', attribute: { nested: 'test' } })
+    found = Entity::Test.search(filters: { name: 'Mr', phone: '1-800-TEST', attribute: { nested: 'test' }, 'person:relationship:role:exists' => '' })
     assert_instance_of Array, found
     assert_instance_of Entity::Test, found.first
-    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&filters%5Battribute%5D%5Bnested%5D=test&filters%5Bname%5D=Mr&filters%5Bphone%5D=1-800-TEST'
+    assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&filters%5Battribute%5D%5Bnested%5D=test&filters%5Bname%5D=Mr&filters%5Bperson:relationship:role:exists%5D=&filters%5Bphone%5D=1-800-TEST'
   end
 
   test '.search with order' do

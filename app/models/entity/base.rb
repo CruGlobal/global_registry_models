@@ -38,15 +38,18 @@ module Entity
         new_attribute_values.each do |attribute_name, attribute_value|
           self.send("#{ attribute_name }=", attribute_value) if self.class.attribute_names.include?(attribute_name.to_sym)
         end
+        self
       end
     end
 
-    def self.search(filters: {}, page: nil, per_page: nil, order: nil)
+    def self.search(filters: {}, page: nil, per_page: nil, order: nil, fields: nil, ruleset: nil)
       params = {
         entity_type: name,
         page: page,
         per_page: per_page,
-        order: order
+        order: order,
+        fields: fields,
+        ruleset: ruleset
       }.delete_if { |k, v| v.blank? }
 
       # We need to generate a hash like this: { 'filters[name]' => 'name query', 'filters[attribute][nested_attribute]' => 'nested_attribute query' }
@@ -57,6 +60,21 @@ module Entity
       params.merge! filter_params_hash
 
       GlobalRegistry::Entity.get(params)['entities'].collect { |entity| new(entity[name]) }
+    end
+
+    def self.all!(filters: nil, start_page: 1, per_page: nil, order: nil, fields: nil, ruleset: nil)
+      [].tap do |all_entities|
+        page_num = start_page
+        loop do
+          print '.'
+          page_of_entities = Retryer.only_on([RestClient::InternalServerError]).forever do
+            search(filters: filters, page: page_num, per_page: per_page, order: order, fields: filters, ruleset: ruleset)
+          end
+          break if page_of_entities.blank?
+          all_entities.concat(page_of_entities)
+          page_num += 1
+        end
+      end
     end
 
     def self.find(id)
@@ -105,7 +123,7 @@ module Entity
     def save
       if valid?
         result = id.present? ? self.class.update(id, attributes) : self.class.create(attributes)
-        result ? self.assign_attributes(result.attributes) : false
+        result ? self.id = result.id : false
       else
         false
       end

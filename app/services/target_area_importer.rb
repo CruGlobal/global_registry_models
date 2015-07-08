@@ -1,0 +1,156 @@
+require 'csv'
+require 'securerandom'
+
+class TargetAreaImporter
+
+  def spreadsheet_file_path=(path)
+    @spreadsheet_file_path = path
+    puts 'Building target areas ...'
+    @target_areas = build_target_areas
+  end
+
+  def import
+    print 'Fetching global ministries '
+    global_ministries
+    puts ' done'
+
+    print 'Fetching all target areas '
+    all_target_areas
+    puts ' done'
+
+    time = Time.now.to_i
+    imported_csv = CSV.open(Rails.root.join("tmp/at_#{ time }_imported_target_areas.csv"), 'wb')
+    failed_to_import_csv = CSV.open(Rails.root.join("tmp/at_#{ time }_failed_to_import_target_areas.csv"), 'wb')
+
+    imported_csv << Entity::TargetArea.attribute_names
+    failed_to_import_csv << Entity::TargetArea.attribute_names
+
+    puts 'Importing target areas ...'
+    @target_areas.each do |target_area|
+      begin
+        print %("#{ target_area.name }" ... )
+        import_target_area!(target_area)
+        write_target_area_to_csv(target_area, imported_csv)
+        puts 'success'
+      rescue => exception
+        write_target_area_to_csv(target_area, failed_to_import_csv)
+        puts "failed! #{ exception }"
+      end
+    end
+
+    imported_csv.close
+    failed_to_import_csv.close
+
+    puts 'Finished'
+  end
+
+  private
+
+    def write_target_area_to_csv(target_area, csv)
+      csv << Entity::TargetArea.attribute_names.collect do |attribute|
+        target_area.send(attribute)
+      end
+      csv.flush
+    end
+
+    def new_uuid
+      SecureRandom.uuid
+    end
+
+    def all_target_areas
+      @all_target_areas ||= Entity::TargetArea.all!
+    end
+
+    def global_ministries
+      @global_ministries ||= Entity::Ministry.all!(ruleset: 'global_ministries')
+    end
+
+    def find_duplicate_target_area(target_area)
+      all_target_areas.detect do |existing_target_area|
+        existing_target_area.name == target_area.name &&
+          existing_target_area.country == target_area.country &&
+          existing_target_area.city == target_area.city
+      end
+    end
+
+    def find_and_assign_duplicate_target_area(target_area)
+      return target_area unless dup_target_area = find_duplicate_target_area(target_area)
+
+      target_area.attributes.except(:id).each do |attribute, value|
+        dup_target_area.send("#{ attribute }=", value) if value.present?
+      end
+
+      dup_target_area
+    end
+
+    def import_target_area!(target_area)
+      target_area = find_and_assign_duplicate_target_area(target_area)
+
+      target_area.client_integration_id ||= new_uuid
+
+      raise unless Retryer.only_on([RestClient::InternalServerError]).forever { target_area.save } && target_area.id.present?
+
+      raise unless ministry_id = ministry_for_target_area(target_area).id
+
+      raise unless Retryer.only_on([RestClient::InternalServerError]).forever do
+        GlobalRegistry::Entity.put(ministry_id, {
+          'entity' => {
+            'ministry' => {
+              'client_integration_id' => new_uuid,
+              'activity:relationship' => {
+                'target_area' => target_area.id,
+                'client_integration_id' => new_uuid
+              }
+            }
+          }
+        })
+      end
+
+      target_area
+    end
+
+    def ministry_for_target_area(target_area)
+      case target_area.country
+      when 'USA'
+        global_ministries.detect { |ministry| ministry.min_code == 'US1' }
+      when 'China'
+        min_code = {
+          'ROL' => 'CNA',
+          'BJ' => 'CNB',
+          'ZONE' => 'CNC',
+          'SE' => 'CND',
+          'MCR' => 'CNE',
+          'SW' => 'CNF',
+          'SRR' => 'CNG',
+          'NE' => 'CNH',
+          'HK' => 'HOK'
+        }[target_area.region.upcase]
+        global_ministries.detect { |ministry| ministry.min_code == min_code }
+      else
+        global_ministries.detect { |ministry| ministry.name == target_area.country }
+      end
+    end
+
+    def build_target_areas
+      return nil unless open_spreadsheet
+
+      (2..@spreadsheet.last_row).collect do |i|
+        row = Hash[[header_row, @spreadsheet.row(i)].transpose]
+        row.each { |k, v| row[k] = v.strip if v.is_a?(String) }
+        Entity::TargetArea.new(row)
+      end
+    end
+
+    def open_spreadsheet
+      extension = File.extname(@spreadsheet_file_path)[1..-1]
+      @spreadsheet = Roo::Spreadsheet.open(@spreadsheet_file_path, extension: extension)
+    rescue => e
+      @spreadsheet = nil
+      raise "The file at #{ @spreadsheet_file_path } doesn't appear to be a spreadsheet!"
+    end
+
+    def header_row
+      return nil unless @spreadsheet
+      @header_row ||= @spreadsheet.row(1).collect(&:downcase)
+    end
+end
