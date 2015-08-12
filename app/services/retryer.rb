@@ -31,7 +31,7 @@ class Retryer
 
     def increase_sleepiness
       self.sleepiness = 1 if self.sleepiness <= 0
-      self.sleepiness = [100000, (self.sleepiness * 2)].min
+      self.sleepiness = [1000, (self.sleepiness * 2)].min
     end
 
 end
