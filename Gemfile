@@ -36,6 +36,8 @@ gem 'global_registry', '1.0.7'
 
 gem 'roo', '~> 2.0.1'
 
+gem 'rollbar', '~> 2.1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
