@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: global-registry-interface_development
+  database: global_registry_interface_development
 
 test:
   <<: *default
-  database: global-registry-interface_test
+  database: global_registry_interface_test
 
 production:
   <<: *default
-  database: global-registry-interface_production
-  username: global-registry-interface
-  password: <%= ENV['GLOBAL-REGISTRY-INTERFACE_DATABASE_PASSWORD'] %>
+  database: global_registry_interface_production
+  username: global_registry_interface
+  password: <%= ENV['GLOBAL_REGISTRY_INTERFACE_DATABASE_PASSWORD'] %>
