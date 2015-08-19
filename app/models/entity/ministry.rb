@@ -1,6 +1,12 @@
 module Entity
   class Ministry < Base
-    has_attributes :country, :city, :is_active, :location, :min_code, :name, :ministry_type
+    attribute :country, String
+    attribute :city, String
+    attribute :is_active, String
+    attribute :location, String
+    attribute :min_code, String
+    attribute :name, String
+    attribute :ministry_type, String
   end
 end
 

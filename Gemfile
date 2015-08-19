@@ -38,6 +38,8 @@ gem 'roo', '~> 2.0.1'
 
 gem 'rollbar', '~> 2.1.1'
 
+gem 'virtus', '~> 1.0.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

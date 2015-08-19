@@ -1,18 +1,20 @@
 module Entity
   class TargetArea < Base
-    has_attributes :name, :country, :region, :state, :city, :enrollment, :address1, :address2, :zip, :url, :note, :latitude, :longitude, :is_global_slm_team_target, :type, :target_area_ministry_presence
-
-    def enrollment=(new_enrollment)
-      @enrollment = new_enrollment.to_i if new_enrollment.present?
-    end
-
-    def latitude=(new_latitude)
-      @latitude = new_latitude.to_f if new_latitude.present?
-    end
-
-    def longitude=(new_longitude)
-      @longitude = new_longitude.to_f if new_longitude.present?
-    end
-
+    attribute :name, String
+    attribute :country, String
+    attribute :region, String
+    attribute :state, String
+    attribute :city, String
+    attribute :enrollment, Integer
+    attribute :address1, String
+    attribute :address2, String
+    attribute :zip, String
+    attribute :url, String
+    attribute :note, String
+    attribute :latitude, Float
+    attribute :longitude, Float
+    attribute :is_global_slm_team_target, String
+    attribute :type, String
+    attribute :target_area_ministry_presence, String
   end
 end

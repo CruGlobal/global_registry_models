@@ -3,7 +3,9 @@ require 'test_helper'
 # A Test class that we'll use to test the Base class
 module Entity
   class Test < Entity::Base
-    has_attributes :id, :name, 'phone'
+    attribute :id, String
+    attribute :phone, String
+    attribute :name, String
   end
 end
 
@@ -14,27 +16,8 @@ class BaseTest < ActiveSupport::TestCase
     assert ({ id: nil, client_integration_id: nil, name: 'Mr. Test', phone: nil } == tester.attributes)
   end
 
-  test '.has_attributes defines attr_accessors' do
-    assert_respond_to Entity::Test.new, 'name'
-    assert_respond_to Entity::Test.new, 'name='
-    assert_respond_to Entity::Test.new, 'phone'
-    assert_respond_to Entity::Test.new, 'phone='
-  end
-
-  test '.has_attributes defines .attribute_names' do
-    assert_respond_to Entity::Test, 'attribute_names'
-  end
-
-  test '.has_attributes defines #attributes' do
-    assert_respond_to Entity::Test.new, 'attributes'
-  end
-
-  test '.has_attributes defines #assign_attributes' do
-    assert_respond_to Entity::Test.new, 'assign_attributes'
-  end
-
   test '.attribute_names' do
-    assert ([:id, :name, :phone, :client_integration_id] == Entity::Test.attribute_names)
+    assert_equal [:id, :client_integration_id, :phone, :name], Entity::Test.attribute_names
   end
 
   test '#attributes' do
@@ -44,14 +27,14 @@ class BaseTest < ActiveSupport::TestCase
     assert ({ id: nil, client_integration_id: nil, name: 'Count Test', phone: '1-800-TEST-MEYO' } == tester.attributes)
   end
 
-  test '#assign_attributes' do
+  test '#attributes=' do
     tester = Entity::Test.new name: 'Mr. Test', phone: '1-800-TEST-MEYO'
     assert ({ id: nil, client_integration_id: nil, name: 'Mr. Test', phone: '1-800-TEST-MEYO' } == tester.attributes)
-    tester.assign_attributes name: 'Ms. Test', phone: '123.4567'
+    tester.attributes = { name: 'Ms. Test', phone: '123.4567' }
     assert ({ id: nil, client_integration_id: nil, name: 'Ms. Test', phone: '123.4567' } == tester.attributes)
-    tester.assign_attributes {}
+    tester.attributes = {}
     assert ({ id: nil, client_integration_id: nil, name: 'Ms. Test', phone: '123.4567' } == tester.attributes)
-    tester.assign_attributes name: 'Sir Test'
+    tester.attributes = { name: 'Sir Test' }
     assert ({ id: nil, client_integration_id: nil, name: 'Sir Test', phone: '123.4567' } == tester.attributes)
   end
 
@@ -102,7 +85,7 @@ class BaseTest < ActiveSupport::TestCase
   end
 
   test '.create' do
-    entity = Entity::Test.create name: 'Mr. Test', phone: '1800TEST', client_integration_id: 1
+    entity = Entity::Test.create name: 'Mr. Test', phone: '1800TEST', client_integration_id: '1'
     assert_instance_of Entity::Test, entity
     assert_equal '0000-0000-0000-0001', entity.id
     assert_requested :post, 'https://stage-api.global-registry.org/entities'
@@ -114,7 +97,7 @@ class BaseTest < ActiveSupport::TestCase
   end
 
   test '.update' do
-    entity = Entity::Test.update '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: 1
+    entity = Entity::Test.update '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: '1'
     assert_instance_of Entity::Test, entity
     assert_equal '0000-0000-0000-0001', entity.id
     assert_requested :put, 'https://stage-api.global-registry.org/entities/0000-0000-0000-0001'
@@ -143,18 +126,18 @@ class BaseTest < ActiveSupport::TestCase
   end
 
   test '#save without id' do
-    entity = Entity::Test.new name: 'Mr. Test', phone: '1800TEST', client_integration_id: 1
+    entity = Entity::Test.new name: 'Mr. Test', phone: '1800TEST', client_integration_id: '1'
     assert entity.save
-    assert ({ id: '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: 1 } == entity.attributes)
+    assert ({ id: '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: '1' } == entity.attributes)
     assert_requested :post, 'https://stage-api.global-registry.org/entities'
   end
 
   test '#save with id' do
     entity = Entity::Test.find '0000-0000-0000-0001'
     entity.phone = '1800TEST'
-    entity.client_integration_id = 1
+    entity.client_integration_id = '1'
     assert entity.save
-    assert ({ id: '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: 1 } == entity.attributes)
+    assert ({ id: '0000-0000-0000-0001', name: 'Mr. Test', phone: '1800TEST', client_integration_id: '1' } == entity.attributes)
     assert_requested :put, 'https://stage-api.global-registry.org/entities/0000-0000-0000-0001'
   end
 

@@ -1,6 +1,8 @@
 module Entity
   class Area < Base
-    has_attributes :area_name, :area_code, :is_active
+    attribute :area_name, String
+    attribute :area_code, String
+    attribute :is_active, String
   end
 end
 
