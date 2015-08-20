@@ -1,0 +1,19 @@
+production:
+  rails:
+    server:
+      unique_name: nebo
+      vendor: aws
+      region: us-east-1
+      availability_zone: us-east-1a
+      size: t2.small
+      root_disk_size: 100
+  postgresql:
+    server:
+      same_as: nebo
+  environment_variables:
+    NEWRELIC_KEY: please set this variable
+    AWS_ACCESS_KEY: please set this variable
+    AWS_SECRET_KEY: please set this variable
+    GLOBAL_REGISTRY_ACCESS_TOKEN: please set this variable
+    ROLLBAR_ACCESS_TOKEN: please set this variable
+
