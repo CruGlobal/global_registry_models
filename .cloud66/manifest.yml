@@ -10,7 +10,6 @@ production:
   postgresql:
     server:
       same_as: nebo
-      vendor: aws
   environment_variables:
     NEWRELIC_KEY: please set this variable
     AWS_ACCESS_KEY: please set this variable
