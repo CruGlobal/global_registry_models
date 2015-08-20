@@ -3,6 +3,7 @@ production:
     server:
       unique_name: nebo
       vendor: aws
+      key_name: Amazon AWS Root Access
       region: us-east-1
       availability_zone: us-east-1a
       size: t2.small
@@ -16,4 +17,3 @@ production:
     AWS_SECRET_KEY: please set this variable
     GLOBAL_REGISTRY_ACCESS_TOKEN: please set this variable
     ROLLBAR_ACCESS_TOKEN: please set this variable
-
