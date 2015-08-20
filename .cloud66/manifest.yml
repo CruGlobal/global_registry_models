@@ -12,7 +12,6 @@ production:
     server:
       same_as: nebo
   environment_variables:
-    NEWRELIC_KEY: please set this variable
     AWS_ACCESS_KEY: please set this variable
     AWS_SECRET_KEY: please set this variable
     GLOBAL_REGISTRY_ACCESS_TOKEN: please set this variable
