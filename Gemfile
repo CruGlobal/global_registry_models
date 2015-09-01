@@ -23,22 +23,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'global_registry', '1.0.7'
-
 gem 'roo', '~> 2.0.1'
-
 gem 'rollbar', '~> 2.1.1'
-
 gem 'virtus', '~> 1.0.5'
+gem 'rubycas-client', '~> 2.3.9'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

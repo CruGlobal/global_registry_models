@@ -143,6 +143,8 @@ GEM
     roo (2.0.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
+    rubycas-client (2.3.9)
+      activesupport
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.4.15)
@@ -203,6 +205,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rollbar (~> 2.1.1)
   roo (~> 2.0.1)
+  rubycas-client (~> 2.3.9)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
