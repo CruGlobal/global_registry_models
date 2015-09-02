@@ -1,16 +1,29 @@
 doctype html
-
-html
-
+html lang="en"
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    /! The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    link href="../../favicon.ico" rel="icon" /
 
-    title Global Registry Interface
+    title Nebo
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   body
-    = yield
+    = navbar inverted: true, position: :top do
+      = vertical do
+        = link_to 'Nebo', root_path
+      = horizontal do
+        = nav class: 'navbar-left' do
+          = link_to fa_icon(:dashboard, text: 'Dashboard'), dashboard_index_path
+        = nav class: 'navbar-right' do
+          /* = link_to current_user, dashboard_index_path */
+          p.navbar-text = fa_icon :user, text: "Signed in as #{ current_user }"
 
+    .container
+      = yield
