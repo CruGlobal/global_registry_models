@@ -20,9 +20,8 @@ html lang="en"
         = link_to 'Nebo', root_path
       = horizontal do
         = nav class: 'navbar-left' do
-          = link_to fa_icon(:dashboard, text: 'Dashboard'), dashboard_index_path
+          = link_to fa_icon(:dashboard, text: 'Dashboard'), root_path
         = nav class: 'navbar-right' do
-          /* = link_to current_user, dashboard_index_path */
           p.navbar-text = fa_icon :user, text: "Signed in as #{ current_user }"
 
     .container
