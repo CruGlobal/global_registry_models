@@ -22,5 +22,7 @@ module GlobalRegistryInterface
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.rack_cas.server_url = 'https://thekey.me/cas/'
   end
 end
