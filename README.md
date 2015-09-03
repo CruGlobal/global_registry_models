@@ -13,8 +13,12 @@ This project is also known as *Nebo*.
 
 ## Tests
 
-Your code should be covered with some tests before it's published to Github.
+Your code should be covered with some tests before it's published to GitHub.
 
 Run all tests with `./bin/rake test`
 
 Run a single test file with `./bin/rake test test/path/to/my_test.rb`
+
+## Authentication
+
+Authentication uses TheKey.me SSO service. TheKey.me is an implementation of the CAS protocol, so we use the gem [rack-cas](https://github.com/biola/rack-cas/) to handle this.
