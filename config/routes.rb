@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create]
 
-  resources :users
+  resources :users, except: :show
 
   root 'dashboard#index'
 

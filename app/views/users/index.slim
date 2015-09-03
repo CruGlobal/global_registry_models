@@ -1,0 +1,25 @@
+h1
+  'Users
+  small The following KEY users have access to Nebo.
+
+p = link_to fa_icon('user-plus', text: 'Add User'), new_user_path, class: 'btn btn-default'
+
+.row
+  .col-md-12
+    .table-responsive
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th GUID
+            th Email
+            th Name
+            th
+        tbody
+          - @users.each do |user|
+            tr
+              td = user.guid
+              td = user.email
+              td = user.name
+              td = link_to fa_icon('pencil', text: 'Edit'), edit_user_path(user)
+
+= paginate @users

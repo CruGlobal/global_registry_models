@@ -20,6 +20,8 @@ gem 'slim-rails', '~> 3.0.1'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bh', '~> 1.2'
 gem 'font-awesome-rails', '~> 4.4.0.0'
+gem 'simple_form', '~> 3.1.1'
+gem 'kaminari', '~> 0.16.3'
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
