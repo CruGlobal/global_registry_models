@@ -1,5 +1,4 @@
-- if cas_logged_in?
-  = link_to 'Log out', log_out_path, class: 'btn btn-large btn-block'
-- else
-  = link_to 'Log in', sessions_path, method: :post, class: 'btn btn-large btn-primary btn-block'
-
+.col-md-4.col-md-offset-4
+  h1 Welcome to Nebo
+  .lead Sign in with your KEY account.
+  = link_to fa_icon('sign-in', text: 'SIGN IN'), session_path, method: :post, class: 'btn btn-lg btn-primary btn-block', data: { disable_with: '...' }

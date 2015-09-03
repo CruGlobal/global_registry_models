@@ -15,14 +15,8 @@ html lang="en"
     = csrf_meta_tags
 
   body
-    = navbar inverted: true, position: :top do
-      = vertical do
-        = link_to 'Nebo', root_path
-      = horizontal do
-        = nav class: 'navbar-left' do
-          = link_to fa_icon(:dashboard, text: 'Dashboard'), root_path
-        = nav class: 'navbar-right' do
-          p.navbar-text = fa_icon :user, text: "Signed in as #{ current_user }"
-
+    = render 'layouts/navbar'
     .container
+      - flash.each do |type, message|
+        = alert_box message, context: flash_type_to_bootstrap_class(type), dismissible: true
       = yield

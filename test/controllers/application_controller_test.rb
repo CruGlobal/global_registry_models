@@ -37,6 +37,7 @@ class ApplicationControllerTest < ActionController::TestCase
       assert_response 200
       assert_equal users(:one), assigns['current_user']
       assert_equal 'user-one-guid-5197-11E5-B6A3-3087D5902334', session['cas']['extra_attributes']['theKeyGuid']
+      assert flash[:error].blank?
     end
   end
 
@@ -52,19 +53,15 @@ class ApplicationControllerTest < ActionController::TestCase
     end
   end
 
-  test '#authenticate_user creates a new user after successful sign-in' do
+  test '#authenticate_user does not allow a cas user who is not in the app to authenticate' do
     with_test_routing do
-      new_user = User.new email: 'new@user.com', first_name: 'New', last_name: 'User', guid: 'new-user-guid'
-      sign_in new_user
-      assert_difference 'User.count', 1 do
-        get :test_authenticate_user_action
-      end
-      assert_response 200
-      assert assigns['current_user'].persisted?
-      assert_equal 'new@user.com', assigns['current_user'].email
-      assert_equal 'New', assigns['current_user'].first_name
-      assert_equal 'User', assigns['current_user'].last_name
-      assert_equal 'new-user-guid', assigns['current_user'].guid
+      user = users(:one)
+      User.delete_all
+      sign_in user
+      get :test_authenticate_user_action
+      assert_redirected_to '/session/new'
+      assert_nil assigns[:current_user]
+      assert flash[:error].present?
     end
   end
 

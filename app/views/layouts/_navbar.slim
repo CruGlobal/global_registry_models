@@ -1,0 +1,9 @@
+= navbar inverted: true, position: :top do
+  = vertical do
+    = link_to 'Nebo', root_path
+  = horizontal do
+    - if signed_in?
+      = nav class: 'navbar-left' do
+        = link_to fa_icon(:dashboard, text: 'Dashboard'), root_path
+      = nav class: 'navbar-right' do
+        p.navbar-text = fa_icon :key, text: "Signed in as #{ current_user }"
