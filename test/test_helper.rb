@@ -17,4 +17,14 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def sign_in(user)
+    session['cas'] ||= {}
+    session['cas']['user'] = user.email
+    session['cas']['extra_attributes'] ||= {}
+    session['cas']['extra_attributes']['theKeyGuid'] = user.guid
+    session['cas']['extra_attributes']['firstName'] = user.first_name
+    session['cas']['extra_attributes']['lastName'] = user.last_name
+  end
+
 end

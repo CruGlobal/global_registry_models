@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  guid: MyString
+  guid: user-one-guid-5197-11E5-B6A3-3087D5902334
   email: bob@internet.com
   first_name: Bob
   last_name: User
 
 two:
-  guid: MyString
+  guid: user-two-guid-5197-11E5-961C-7CAA9D6E46F5
   email: bill@test.com
   first_name: Bill
   last_name: Bright

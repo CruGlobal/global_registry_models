@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!
+  before_action :authenticate_user
 
   helper_method :current_user, :logged_in?
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def authenticate_user!
+    def authenticate_user
       if !logged_in?
         render file: 'public/401.html', status: 401 # rack-cas will intercept the 401 response and start the cas login redirect process
         false
@@ -38,9 +38,10 @@ class ApplicationController < ActionController::Base
     end
 
     def update_current_user_from_cas_session
-      current_user.update_attributes(email: session['cas']['user'],
+      current_user.assign_attributes(email: session['cas']['user'],
                                      first_name: session['cas']['extra_attributes']['firstName'],
                                      last_name: session['cas']['extra_attributes']['lastName'])
+      current_user.save if current_user.changed?
     end
 
 end
