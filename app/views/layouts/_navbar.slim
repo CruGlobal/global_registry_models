@@ -7,4 +7,4 @@
         = link_to fa_icon(:dashboard, text: 'Dashboard'), root_path
         = link_to fa_icon(:users, text: 'Users'), users_path
       = nav class: 'navbar-right' do
-        p.navbar-text = fa_icon :key, text: "Signed in as #{ current_user }"
+        = link_to fa_icon(:key, text: current_user), 'https://www.thekey.me', target: '_blank'
