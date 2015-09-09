@@ -37,4 +37,6 @@ h1 = fa_icon 'map-marker', text: 'Target Areas'
           .form-group = filters_text_field_tag name: 'country:like', label: 'Country'
           .form-group = filters_text_field_tag name: 'state:like', label: 'State'
           .form-group = filters_text_field_tag name: 'city:like', label: 'City'
-          = button_tag fa_icon('refresh', text: 'Refresh'), method: 'get', class: 'btn btn-default', data: { disable_with: '...' }
+          .btn-group
+            = button_tag fa_icon('filter', text: 'Filter'), method: 'get', class: 'btn btn-primary', data: { disable_with: '...' }
+            = link_to fa_icon('undo', text: 'Reset'), entities_target_areas_path, class: 'btn btn-default', data: { disable_with: '...' }
