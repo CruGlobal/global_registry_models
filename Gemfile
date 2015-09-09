@@ -2,12 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 
-gem 'pg' # Use postgresql as the database for Active Record
+gem 'pg', '~> 0.18.2' # Use postgresql as the database for Active Record
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
-gem 'jquery-rails' # Use jquery as the JavaScript library
-gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'jquery-rails', '~> 4.0.4' # Use jquery as the JavaScript library
+gem 'turbolinks', '~> 2.5.3' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 
@@ -22,6 +22,7 @@ gem 'bh', '~> 1.2'
 gem 'font-awesome-rails', '~> 4.4.0.0'
 gem 'simple_form', '~> 3.1.1'
 gem 'kaminari', '~> 0.16.3'
+gem 'jquery-turbolinks', '~> 2.1.0'
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console

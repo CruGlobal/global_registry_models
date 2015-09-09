@@ -1,0 +1,39 @@
+h1 = fa_icon 'map-marker', text: 'Target Areas'
+
+.row
+
+  .col-md-9
+    .table-responsive
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th Name
+            th Region
+            th Country
+            th State
+            th City
+            th
+        tbody
+          - @target_areas.each do |target_area|
+            tr
+              td = target_area.name
+              td = target_area.region
+              td = target_area.country
+              td = target_area.state
+              td = target_area.city
+              td
+    .btn-group.form-group
+      = link_to(fa_icon('angle-left', text: 'Previous'), entities_target_areas_path(page: @page - 1), class: 'btn btn-default') if @page > 1
+      = link_to fa_icon('angle-right', text: 'Next', right: true), entities_target_areas_path(page: @page + 1), class: 'btn btn-default'
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading: h3.panel-title = fa_icon 'filter', text: 'Filters'
+      .panel-body
+        = form_tag entities_target_areas_path, method: :get do
+          .form-group = filters_text_field_tag name: 'name:like', label: 'Name'
+          .form-group = filters_text_field_tag name: 'region:like', label: 'Region'
+          .form-group = filters_text_field_tag name: 'country:like', label: 'Country'
+          .form-group = filters_text_field_tag name: 'state:like', label: 'State'
+          .form-group = filters_text_field_tag name: 'city:like', label: 'City'
+          = button_tag fa_icon('refresh', text: 'Refresh'), method: 'get', class: 'btn btn-default', data: { disable_with: '...' }

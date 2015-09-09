@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :users, except: :show
 
+  namespace :entities do
+    resources :target_areas, only: [:index]
+  end
+
   root 'dashboard#index'
 
 end

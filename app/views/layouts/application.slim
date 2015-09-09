@@ -20,3 +20,5 @@ html lang="en"
       - flash.each do |type, message|
         = alert_box message, context: flash_type_to_bootstrap_class(type), dismissible: true
       = yield
+    footer.footer: .container: .row: .col-md-12.text-center.text-muted
+      = ['Nebo', '© 2015 Cru.'].join ' · '
