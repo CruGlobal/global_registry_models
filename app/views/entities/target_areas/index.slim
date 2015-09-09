@@ -22,9 +22,10 @@ h1 = fa_icon 'map-marker', text: 'Target Areas'
               td = target_area.state
               td = target_area.city
               td
-    .btn-group.form-group
-      = link_to(fa_icon('angle-left', text: 'Previous'), entities_target_areas_path(page: @page - 1), class: 'btn btn-default') if @page > 1
-      = link_to fa_icon('angle-right', text: 'Next', right: true), entities_target_areas_path(page: @page + 1), class: 'btn btn-default'
+
+    /* .btn-group.form-group */
+    /*   = link_to(fa_icon('angle-left', text: 'Previous'), entities_target_areas_path(page: @page - 1), class: 'btn btn-default') if @page > 1 */
+    /*   = link_to fa_icon('angle-right', text: 'Next', right: true), entities_target_areas_path(page: @page + 1), class: 'btn btn-default' */
 
   .col-md-3
     .panel.panel-default
