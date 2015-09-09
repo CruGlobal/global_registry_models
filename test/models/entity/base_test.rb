@@ -1,14 +1,5 @@
 require 'test_helper'
 
-# A Test class that we'll use to test the Base class
-module Entity
-  class Test < Entity::Base
-    attribute :id, String
-    attribute :phone, String
-    attribute :name, String
-  end
-end
-
 class BaseTest < ActiveSupport::TestCase
 
   test '.initialize ignores non attribute keys' do
@@ -44,28 +35,28 @@ class BaseTest < ActiveSupport::TestCase
 
   test '.search blank' do
     found = Entity::Test.search
-    assert_instance_of Array, found
+    assert_instance_of Entity::Collection, found
     assert_instance_of Entity::Test, found.first
     assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test'
   end
 
   test '.search with filters' do
     found = Entity::Test.search(filters: { name: 'Mr', phone: '1-800-TEST', attribute: { nested: 'test' }, 'person:relationship:role:exists' => '' })
-    assert_instance_of Array, found
+    assert_instance_of Entity::Collection, found
     assert_instance_of Entity::Test, found.first
     assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&filters%5Battribute%5D%5Bnested%5D=test&filters%5Bname%5D=Mr&filters%5Bphone%5D=1-800-TEST'
   end
 
   test '.search with order' do
     found = Entity::Test.search(order: 'name asc,phone desc')
-    assert_instance_of Array, found
+    assert_instance_of Entity::Collection, found
     assert_instance_of Entity::Test, found.first
     assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&order=name%20asc,phone%20desc'
   end
 
   test '.search with pagination' do
     found = Entity::Test.search(page: 45, per_page: 76)
-    assert_instance_of Array, found
+    assert_instance_of Entity::Collection, found
     assert_instance_of Entity::Test, found.first
     assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&page=45&per_page=76'
   end
@@ -79,7 +70,7 @@ class BaseTest < ActiveSupport::TestCase
 
   test '.page' do
     found = Entity::Test.page 1
-    assert_instance_of Array, found
+    assert_instance_of Entity::Collection, found
     found.all? { |f| assert_instance_of(Entity::Test, f) }
     assert_requested :get, 'https://stage-api.global-registry.org/entities?entity_type=test&page=1'
   end

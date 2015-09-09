@@ -36,7 +36,8 @@ module Entity
         params.merge! filter_params_hash
       end
 
-      GlobalRegistry::Entity.get(params)['entities'].collect { |entity| new(entity[name]) }
+      response = ::GlobalRegistryResponseParser.new GlobalRegistry::Entity.get(params)
+      Entity::Collection.new meta: response.meta, entities: response.entities
     end
 
     def self.all!(filters: nil, start_page: 1, per_page: nil, order: nil, fields: nil, ruleset: nil)
@@ -44,11 +45,11 @@ module Entity
         page_num = start_page
         loop do
           print '.'
-          page_of_entities = Retryer.only_on([RestClient::InternalServerError]).forever do
+          collection_of_entities = Retryer.only_on([RestClient::InternalServerError]).forever do
             search(filters: filters, page: page_num, per_page: per_page, order: order, fields: filters, ruleset: ruleset)
           end
-          break if page_of_entities.blank?
-          all_entities.concat(page_of_entities)
+          break if collection_of_entities.all.blank?
+          all_entities.concat collection_of_entities.all
           page_num += 1
         end
       end

@@ -28,3 +28,12 @@ class ActiveSupport::TestCase
   end
 
 end
+
+# A Test model that we'll use to test entities
+module Entity
+  class Test < Entity::Base
+    attribute :id, String
+    attribute :phone, String
+    attribute :name, String
+  end
+end

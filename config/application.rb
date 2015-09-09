@@ -24,5 +24,7 @@ module GlobalRegistryInterface
     config.active_record.raise_in_transactional_callbacks = true
 
     config.rack_cas.server_url = 'https://thekey.me/cas/'
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
