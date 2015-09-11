@@ -6,4 +6,8 @@ class Entities::TargetAreasController < BaseController
     @target_areas = Entity::TargetArea.search page: @page, per_page: @per, filters: params[:filters]
   end
 
+  def show
+    @target_area = Entity::TargetArea.find(params[:id])
+  end
+
 end

@@ -1,5 +1,8 @@
 h1 = fa_icon 'map-marker', text: 'Target Areas'
 
+.btn-group
+  = link_to fa_icon('plus', text: 'Add Target Area'), '/', class: 'btn btn-default', disabled: 'disabled'
+
 .row
 
   .col-md-9
@@ -21,7 +24,7 @@ h1 = fa_icon 'map-marker', text: 'Target Areas'
               td = target_area.country
               td = target_area.state
               td = target_area.city
-              td
+              td = link_to fa_icon(:eye, text: 'Details'), entities_target_area_path(id: target_area.id), class: 'btn btn-link btn-xs'
 
     .form-group = paginate_entity_collection @target_areas
 

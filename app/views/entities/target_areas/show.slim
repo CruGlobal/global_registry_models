@@ -1,0 +1,17 @@
+
+.panel.panel-default
+  .panel-heading
+    h1.panel-title
+      = fa_icon 'map-marker', text: @target_area.name
+      '
+      small Target Area
+  .panel-body
+    .btn-group
+      = link_to fa_icon('edit', text: 'Edit'), entities_target_area_path(@target_area.id), class: 'btn btn-default', disabled: 'disabled'
+      = link_to fa_icon('trash', text: 'Delete'), entities_target_area_path(@target_area.id), class: 'btn btn-danger', disabled: 'disabled'
+  table.table
+
+    - @target_area.attributes.sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |attribute, value|
+      tr
+        td.text-right: strong = attribute.to_s.titleize
+        td = value

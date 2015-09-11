@@ -2,6 +2,75 @@ module GlobalRegistryStubs
   def before_setup
     super
 
+    # Search target areas
+    stub_request(:get, /https:\/\/stage-api.global-registry.org\/entities\?entity_type=target_area&.*/).
+      with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, headers: {}, body: %({
+        "entities": [
+          {
+            "target_area": {
+              "id": "219A7C20-58B8-11E5-B850-6BAC9D6E46F5",
+              "name": "Institute of Technology",
+              "country": "Philippines",
+              "state": "SOCCSKSARGEN",
+              "is_global_slm_team_target": true,
+              "type": "College",
+              "target_area_ministry_presence": "No Presence",
+              "ministry:relationship": {
+                "ministry": "33FB2B8A-58B8-11E5-98F1-6BAC9D6E46F5",
+                "relationship_entity_id": "384295F2-58B8-11E5-98F1-6BAC9D6E46F5",
+                "client_integration_id": "3C63F00E-58B8-11E5-8402-6BAC9D6E46F5"
+              },
+              "client_integration_id": "400BF486-58B8-11E5-9BB3-6BAC9D6E46F5"
+            }
+          },
+          {
+            "target_area": {
+              "id": "641E71B8-58B9-11E5-910C-65A7C0F9A297",
+              "type": "College",
+              "name": "Helsingin kauppakorkeakoulu",
+              "address1": "PO Box 1234  Runeberginkatu 12-34",
+              "address2": "FIN-12345  Helsinki  Finland",
+              "city": "Helsinki",
+              "country": "FIN",
+              "phone": "+123(4) 56-789",
+              "email": "helsinki@fake.com",
+              "is_no_fice_ok": "T",
+              "client_integration_id": "688B7606-58B9-11E5-88C6-65A7C0F9A297"
+            }
+          }
+        ],
+        "meta": {
+          "page": 1,
+          "next_page": false,
+          "from": 1,
+          "to": 2
+        }
+      }))
+
+    # Get a single target area
+    stub_request(:get, "https://stage-api.global-registry.org/entities/219A7C20-58B8-11E5-B850-6BAC9D6E46F5").
+      with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, headers: {}, body: %({
+        "entity": {
+          "target_area": {
+            "id": "219A7C20-58B8-11E5-B850-6BAC9D6E46F5",
+            "name": "Institute of Technology",
+            "country": "Philippines",
+            "state": "SOCCSKSARGEN",
+            "is_global_slm_team_target": true,
+            "type": "College",
+            "target_area_ministry_presence": "No Presence",
+            "ministry:relationship": {
+              "ministry": "33FB2B8A-58B8-11E5-98F1-6BAC9D6E46F5",
+              "relationship_entity_id": "384295F2-58B8-11E5-98F1-6BAC9D6E46F5",
+              "client_integration_id": "3C63F00E-58B8-11E5-8402-6BAC9D6E46F5"
+            },
+            "client_integration_id": "400BF486-58B8-11E5-9BB3-6BAC9D6E46F5"
+          }
+        }
+      }))
+
     # Blank search for "test" entity
     stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test").
       with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
