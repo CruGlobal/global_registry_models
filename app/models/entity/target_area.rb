@@ -16,5 +16,9 @@ module Entity
     attribute :is_global_slm_team_target, String
     attribute :type, String
     attribute :target_area_ministry_presence, String
+
+    def to_s
+      name
+    end
   end
 end
