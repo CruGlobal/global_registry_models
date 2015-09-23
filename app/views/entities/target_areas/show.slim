@@ -14,5 +14,5 @@
   table.table
     - @target_area.attributes.sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |attribute, value|
       tr
-        td.text-right: strong = attribute.to_s.titleize
+        td.text-right: strong = attribute.to_s.humanize
         td = value

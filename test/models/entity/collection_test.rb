@@ -62,6 +62,14 @@ class CollectionTest < ActiveSupport::TestCase
     assert_equal 2, test_collection_last_page.per
   end
 
+  test '#to_csv' do
+    assert_equal <<-CSV.strip_heredoc, test_collection_first_page.to_csv
+      client_integration_id,id,name,phone
+      1234,0000-0000-0000-0001,Mr. Test,+1234567890
+      2222,0000-0000-0000-0002,Count Testalot,1800TEST
+    CSV
+  end
+
   private
 
     def test_collection_first_page

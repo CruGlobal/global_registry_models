@@ -92,11 +92,11 @@ class TargetAreaImporter
 
       target_area.client_integration_id ||= new_uuid
 
-      raise unless Retryer.only_on([RestClient::InternalServerError]).forever { target_area.save } && target_area.id.present?
+      raise unless Retryer.new(RestClient::InternalServerError, max_attempts: nil).try { target_area.save } && target_area.id.present?
 
       raise unless ministry_id = ministry_for_target_area(target_area).id
 
-      raise unless Retryer.only_on([RestClient::InternalServerError]).forever do
+      raise unless Retryer.new(RestClient::InternalServerError, max_attempts: nil).try do
         GlobalRegistry::Entity.put(ministry_id, {
           'entity' => {
             'ministry' => {

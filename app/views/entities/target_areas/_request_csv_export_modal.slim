@@ -1,0 +1,23 @@
+#requestCsvExportModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close data-dismiss='modal' = fa_icon 'times'
+        h4.modal-title Request CSV
+      = form_tag export_csvs_path(filters: params[:filters]), class: 'form-horizontal' do
+        = hidden_field_tag :entity_type, entity
+        .modal-body
+          - if filters.blank?
+            = alert_box context: :danger do
+              strong = fa_icon 'exclamation-triangle', text: 'Warning'
+              br
+              'You are about to export all results without any filters, this could take an extremely long time and it is discouraged. Please add some filters to limit your result set.
+          .form-group
+            = label_tag :email, 'Email', class: 'col-md-2 control-label'
+            .col-md-10
+              = text_field_tag :email, email, class: 'form-control', placeholder: 'Email'
+              span.help-block You may request a CSV export of the #{ entity.to_s.titleize } results seen on this page. The CSV export will be emailed to this address when it's ready.
+        .modal-footer
+          .btn-group
+            button.btn.btn-default data-dismiss='modal' Cancel
+            = submit_tag 'Request CSV', class: 'btn btn-primary', data: { disable: '...' }

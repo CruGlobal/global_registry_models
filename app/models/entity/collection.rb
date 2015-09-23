@@ -1,6 +1,9 @@
 module Entity
   class Collection
     include Enumerable
+    extend Forwardable
+
+    def_delegators :@entities, :[], :size, :concat, :blank?, :present?
 
     def initialize(meta:, entities:)
       @meta = meta
@@ -46,5 +49,16 @@ module Entity
     def per
       (to - from) + 1
     end
+
+    def to_csv
+      CSV.generate do |csv|
+        attributes = @entities.first.attributes.collect(&:first).sort
+        csv << attributes
+        @entities.each do |entity|
+          csv << attributes.collect { |attribute| entity.attributes[attribute] }
+        end
+      end
+    end
+
   end
 end

@@ -23,6 +23,7 @@ gem 'font-awesome-rails', '~> 4.4.0.0'
 gem 'simple_form', '~> 3.1.1'
 gem 'kaminari', '~> 0.16.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
+gem 'sidekiq', '~> 3.5.0'
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -32,6 +33,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+end
+
+group :development do
+  gem 'letter_opener'
 end
 
 group :test do

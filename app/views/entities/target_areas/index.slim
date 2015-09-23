@@ -1,6 +1,8 @@
 h1 = fa_icon 'map-marker', text: 'Target Areas'
 
-.form-group = link_to fa_icon('plus', text: 'Add Target Area'), '/', class: 'btn btn-default', disabled: 'disabled'
+.form-group.btn-group
+  = link_to fa_icon('plus', text: 'Add Target Area'), '/', class: 'btn btn-default', disabled: 'disabled'
+  = link_to fa_icon('file-text', text: 'Request CSV'), '#', class: 'btn btn-default', data: { toggle: 'modal', target: '#requestCsvExportModal' }
 
 .row
 
@@ -40,3 +42,5 @@ h1 = fa_icon 'map-marker', text: 'Target Areas'
           .btn-group
             = button_tag fa_icon('filter', text: 'Filter'), method: 'get', class: 'btn btn-primary', data: { disable_with: '...' }
             = link_to fa_icon('undo', text: 'Reset'), entities_target_areas_path, class: 'btn btn-default', data: { disable_with: '...' }
+
+= render 'request_csv_export_modal', entity: :target_area, filters: params[:filters], email: current_user.email

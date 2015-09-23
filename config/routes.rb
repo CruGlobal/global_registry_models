@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :export_csvs, only: [:create]
+
   get 'dashboard/index'
 
   resource :session, only: [:new, :create]

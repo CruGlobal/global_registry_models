@@ -25,6 +25,8 @@ module GlobalRegistryInterface
 
     config.rack_cas.server_url = 'https://thekey.me/cas/'
 
-    config.autoload_paths << Rails.root.join('lib')
+    config.active_job.queue_adapter = :sidekiq
+
+    config.action_mailer.default_url_options = { host: ENV['APP_HOST'] }
   end
 end

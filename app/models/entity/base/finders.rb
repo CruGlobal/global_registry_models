@@ -1,18 +1,19 @@
+require 'retryer'
+
 module Entity::Base::Finders
   extend ActiveSupport::Concern
 
   module ClassMethods
 
     def all!(filters: nil, start_page: 1, per_page: nil, order: nil, fields: nil, ruleset: nil)
-      [].tap do |all_entities|
+      Entity::Collection.new(meta: {}, entities: []).tap do |collection|
         page_num = start_page
         loop do
-          print '.'
-          collection_of_entities = Retryer.only_on([RestClient::InternalServerError]).forever do
-            search(filters: filters, page: page_num, per_page: per_page, order: order, fields: filters, ruleset: ruleset)
+          sub_collection = Retryer.new(RestClient::InternalServerError).try do
+            self.search(filters: filters, page: page_num, per_page: per_page, order: order, fields: fields, ruleset: ruleset)
           end
-          break if collection_of_entities.all.blank?
-          all_entities.concat collection_of_entities.all
+          break if sub_collection.blank?
+          collection.concat sub_collection.all
           page_num += 1
         end
       end
