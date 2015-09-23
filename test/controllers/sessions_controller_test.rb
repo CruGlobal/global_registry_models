@@ -18,4 +18,9 @@ class SessionsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'DELETE destroy' do
+    delete :destroy
+    assert_redirected_to '/logout'
+  end
+
 end

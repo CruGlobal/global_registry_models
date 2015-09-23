@@ -9,4 +9,9 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    # rack-cas will intercept the request to '/logout' and perform the CAS logout
+    redirect_to '/logout'
+  end
+
 end

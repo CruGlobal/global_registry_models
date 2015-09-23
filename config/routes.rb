@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
 
-  resource :session, only: [:new, :create]
+  resource :session, only: [:new, :create, :destroy]
 
   resources :users, except: :show
 
