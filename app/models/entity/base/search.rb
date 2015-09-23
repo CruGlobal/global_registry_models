@@ -23,7 +23,7 @@ module Entity::Base::Search
         params.merge! filter_params_hash
       end
 
-      response = ::GlobalRegistryResponseParser.new GlobalRegistry::Entity.get(params)
+      response = ::GlobalRegistryResponseParser.new Retryer.new(RestClient::InternalServerError).try { GlobalRegistry::Entity.get(params) }
       Entity::Collection.new meta: response.meta, entities: response.entities
     end
 
