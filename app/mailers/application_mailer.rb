@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@#{ ENV['APP_HOST'] }"
+  default from: 'noreply@cru.digital'
   layout false
 end
