@@ -1,10 +1,10 @@
-# global-registry-interface
+# global-registry-dataview
 
 This project is also known as *Nebo*.
 
 ## Local Development Setup
 
-1. `git clone git@github.com:CruGlobal/global-registry-interface.git && cd global-registry-interface`
+1. `git clone git@github.com:CruGlobal/global-registry-dataview.git && cd global-registry-dataview`
 2. Setup a Ruby environment corresponding to `.ruby-version`, using a tool like rvm or rbenv.
 3. `bundle install`
 4. Setup environment variables: `cp .env.sample .env && vim .env` You can generate a secret key base with `./bin/rake secret`. You will need a token for access to the Global Registry api.
