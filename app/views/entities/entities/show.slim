@@ -6,11 +6,6 @@
       '
       small = @entity.class.title
 
-  .panel-body
-    .btn-group
-      /* = link_to fa_icon('edit', text: 'Edit'), entities_path(@entity.id), class: 'btn btn-default', disabled: 'disabled' */
-      /* = link_to fa_icon('trash', text: 'Delete'), entities_path(@entity.id), class: 'btn btn-danger', disabled: 'disabled' */
-
   table.table
     - @entity.attributes.sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |attribute, value|
       tr
