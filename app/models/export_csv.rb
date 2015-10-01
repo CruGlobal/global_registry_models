@@ -18,7 +18,7 @@ class ExportCsv
   private
 
     def file_name
-      @file_name ||= 'nebo_export.csv'
+      @file_name ||= "nebo_#{ entity_class.name.downcase.pluralize }_export.csv"
     end
 
 end

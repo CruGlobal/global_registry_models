@@ -33,4 +33,4 @@ h1 = @entity_class.title.pluralize
             = button_tag fa_icon('filter', text: 'Filter'), method: 'get', class: 'btn btn-primary', data: { disable_with: '...' }
             = link_to fa_icon('undo', text: 'Reset'), entities_path(entity_class: @entity_class.name.pluralize), class: 'btn btn-default', data: { disable_with: '...' }
 
-= render 'request_csv_export_modal', entity: :target_area, filters: params[:filters], email: current_user.email
+= render 'request_csv_export_modal', entity_class_name: @entity_class.name, filters: params[:filters], email: current_user.email
