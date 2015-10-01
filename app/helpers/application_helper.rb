@@ -13,4 +13,8 @@ module ApplicationHelper
     end
   end
 
+  def entities
+    [Entity::Area, Entity::GlobalMcc, Entity::IsoCountry, Entity::Ministry, Entity::TargetArea]
+  end
+
 end

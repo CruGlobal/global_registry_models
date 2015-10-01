@@ -14,5 +14,5 @@
   table.table
     - @entity.attributes.sort { |a, b| a[0].to_s <=> b[0].to_s }.each do |attribute, value|
       tr
-        td.text-right: strong = attribute.to_s.humanize
+        td.text-right: strong = attribute.to_s.titleize
         td = value

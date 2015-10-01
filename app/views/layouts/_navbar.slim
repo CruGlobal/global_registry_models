@@ -7,14 +7,14 @@
         = link_to fa_icon('dashboard', text: 'Dashboard'), root_path
         li.dropdown
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            'Entities
+            = fa_icon 'binoculars', text: 'Entities'
             span.caret
           ul.dropdown-menu
-            - [Entity::Ministry, Entity::TargetArea].each do |entity_class|
+            - entities.each do |entity_class|
               li = link_to entity_class.title.pluralize, entities_path(entity_class: entity_class.name.pluralize)
         li.dropdown
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            'Admin
+            = fa_icon 'gear', text: 'Admin'
             span.caret
           ul.dropdown-menu
             li = link_to fa_icon('users', text: 'Users'), users_path

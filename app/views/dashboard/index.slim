@@ -1,3 +1,8 @@
 .jumbotron: .container
   h1 Nebo
-  p = fa_icon 'binoculars', text: "Survey the #{ link_to 'Global Registry', 'http://www.global-registry.org/' }.".html_safe
+  p = fa_icon 'binoculars', text: "Survey the #{ link_to 'Global Registry', 'http://www.global-registry.org/' }:".html_safe
+
+  .list-group
+    - entities.each do |entity|
+      = link_to entities_path(entity_class: entity.name.pluralize), class: 'list-group-item' do
+        = entity.title.pluralize
