@@ -15,7 +15,7 @@ class Entities::EntitiesController < BaseController
   private
 
     def load_entity_class
-      @entity_class = "Entity::#{ params[:entity_class].singularize.classify }".safe_constantize
+      @entity_class = "Entity::#{ params[:entity_class_name].singularize.classify }".safe_constantize
       redirect_to root_path if @entity_class.blank?
     end
 

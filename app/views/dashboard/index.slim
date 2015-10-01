@@ -4,5 +4,5 @@
 
   .list-group
     - entities.each do |entity|
-      = link_to entities_path(entity_class: entity.name.pluralize), class: 'list-group-item' do
+      = link_to entities_path(entity_class_name: entity.name.pluralize), class: 'list-group-item' do
         = entity.title.pluralize
