@@ -9,14 +9,27 @@ module Entity
 
     include Entity::Base::Finders
     include Entity::Base::Search
+    include Entity::Base::Delete
 
     attribute :id, String
     attribute :client_integration_id, String
 
     validates_presence_of :client_integration_id
 
+    def self.title
+      name.titleize
+    end
+
     def self.attribute_names
       attribute_set.collect(&:name)
+    end
+
+    def self.filterable_attributes
+      attribute_names
+    end
+
+    def self.identifying_attributes
+      [:id]
     end
 
     def self.create(attributes)
@@ -37,21 +50,9 @@ module Entity
       end
     end
 
-    def self.delete(id)
-      GlobalRegistry::Entity.delete id
-    end
-
     # The name of the entity class. The entity name is required in the api responses and requests, hence the need for this class method.
     def self.name
       to_s.gsub(/.*::/, '').underscore
-    end
-
-    def delete
-      if id.present?
-        self.class.delete id
-      else
-        false
-      end
     end
 
     def save

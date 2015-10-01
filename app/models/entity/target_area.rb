@@ -17,6 +17,10 @@ module Entity
     attribute :type, String
     attribute :target_area_ministry_presence, String
 
+    def self.identifying_attributes
+      [:name, :country, :state, :state]
+    end
+
     def to_s
       name
     end

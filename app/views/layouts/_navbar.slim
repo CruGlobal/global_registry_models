@@ -5,7 +5,13 @@
     - if signed_in?
       = nav class: 'navbar-left' do
         = link_to fa_icon('dashboard', text: 'Dashboard'), root_path
-        = link_to fa_icon('map-marker', text: 'Target Areas'), entities_target_areas_path
+        li.dropdown
+          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+            'Entities
+            span.caret
+          ul.dropdown-menu
+            - [Entity::Ministry, Entity::TargetArea].each do |entity_class|
+              li = link_to entity_class.title.pluralize, entities_path(entity_class: entity_class.name.pluralize)
         li.dropdown
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
             'Admin

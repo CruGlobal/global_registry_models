@@ -1,0 +1,36 @@
+h1 = @entity_class.title.pluralize
+
+.form-group.btn-group
+  = link_to fa_icon('file-text', text: 'Request CSV'), '#', class: 'btn btn-default', data: { toggle: 'modal', target: '#requestCsvExportModal' }
+
+.row
+
+  .col-md-9
+    .table-responsive
+      table.table.table-striped.table-hover.table-condensed
+        thead
+          tr
+            - @entity_class.identifying_attributes.each do |attribute|
+              th = attribute.to_s.titleize
+            th
+        tbody
+          - @entities.each do |entity|
+            tr
+              - @entity_class.identifying_attributes.each do |attribute|
+                td = truncate entity.send(attribute)
+              td = link_to fa_icon(:eye, text: 'Details'), entities_show_path(entity_class: @entity_class.name.pluralize, id: entity.id), class: 'btn btn-link btn-xs'
+
+    .form-group = paginate_entity_collection @entities
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading: h3.panel-title = fa_icon 'filter', text: 'Filters'
+      .panel-body
+        = form_tag entities_path, method: :get do
+          - @entity_class.filterable_attributes.each do |attribute|
+            .form-group = filters_text_field_tag name: "#{ attribute.to_s }:like", label: attribute.to_s.titleize
+          .btn-group
+            = button_tag fa_icon('filter', text: 'Filter'), method: 'get', class: 'btn btn-primary', data: { disable_with: '...' }
+            = link_to fa_icon('undo', text: 'Reset'), entities_path(entity_class: @entity_class.name.pluralize), class: 'btn btn-default', data: { disable_with: '...' }
+
+= render 'request_csv_export_modal', entity: :target_area, filters: params[:filters], email: current_user.email
