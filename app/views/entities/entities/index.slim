@@ -5,7 +5,7 @@ h1 = @entity_class.title.pluralize
 
 .row
 
-  .col-md-9
+  .col-md-8
     .table-responsive
       table.table.table-striped.table-hover.table-condensed
         thead
@@ -22,13 +22,13 @@ h1 = @entity_class.title.pluralize
 
     .form-group = paginate_entity_collection @entities
 
-  .col-md-3
+  .col-md-4
     .panel.panel-default
       .panel-heading: h3.panel-title = fa_icon 'filter', text: 'Filters'
       .panel-body
-        = form_tag entities_path, method: :get do
+        = form_tag entities_path, class: 'form-horizontal', method: :get do
           - @entity_class.filterable_attributes.each do |attribute|
-            .form-group = filters_text_field_tag name: "#{ attribute.to_s }:like", label: attribute.to_s.titleize
+            .form-group.form-group-sm = filters_text_field_tag name: "#{ attribute.to_s }:like", label: attribute.to_s.titleize
           .btn-group
             = button_tag fa_icon('filter', text: 'Filter'), method: 'get', class: 'btn btn-primary', data: { disable_with: '...' }
             = link_to fa_icon('undo', text: 'Reset'), entities_path(entity_class_name: @entity_class.name.pluralize), class: 'btn btn-default', data: { disable_with: '...' }
