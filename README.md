@@ -2,6 +2,16 @@
 
 This project is also known as *Nebo*.
 
+## Production [ ![Codeship Status for CruGlobal/global-registry-dataview](https://codeship.com/projects/c43536d0-331b-0133-d98c-22535d26ab7f/status?branch=master)](https://codeship.com/projects/100132)
+
+[nebo.cru.digital](http://nebo.cru.digital/)
+
+Hosted on AWS, via Cloud66.
+
+### Deployment
+
+You may deploy updates by pushing code to the `master` branch, if the tests pass then Codeship will initiate the deploy.
+
 ## Local Development Setup
 
 1. `git clone git@github.com:CruGlobal/global-registry-dataview.git && cd global-registry-dataview`
