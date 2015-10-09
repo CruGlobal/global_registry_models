@@ -14,7 +14,13 @@ module ApplicationHelper
   end
 
   def entities
-    [Entity::Area, Entity::GlobalMcc, Entity::IsoCountry, Entity::Ministry, Entity::TargetArea]
+    [
+      GlobalRegistryModels::Entity::Area,
+      GlobalRegistryModels::Entity::GlobalMcc,
+      GlobalRegistryModels::Entity::IsoCountry,
+      GlobalRegistryModels::Entity::Ministry,
+      GlobalRegistryModels::Entity::TargetArea
+    ]
   end
 
 end

@@ -30,10 +30,12 @@ class ActiveSupport::TestCase
 end
 
 # A Test model that we'll use to test entities
-module Entity
-  class Test < Entity::Base
-    attribute :id, String
-    attribute :phone, String
-    attribute :name, String
+module GlobalRegistryModels
+  module Entity
+    class Test < GlobalRegistryModels::Entity::Base
+      attribute :id, String
+      attribute :phone, String
+      attribute :name, String
+    end
   end
 end

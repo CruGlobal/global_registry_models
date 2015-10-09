@@ -3,7 +3,7 @@ require 'test_helper'
 class ExportCsvTest < ActiveSupport::TestCase
 
   test '#export!' do
-    export_csv = ExportCsv.new entity_class: Entity::Test, filters: {}
+    export_csv = ExportCsv.new entity_class: GlobalRegistryModels::Entity::Test, filters: {}
     export_csv.export! do |file_name, file|
       assert_equal 'nebo_tests_export.csv', file_name
       assert_instance_of Tempfile, file
