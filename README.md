@@ -32,3 +32,7 @@ Run a single test file with `./bin/rake test test/path/to/my_test.rb`
 ## Authentication
 
 Authentication uses TheKey.me SSO service. TheKey.me is an implementation of the CAS protocol, so we use the gem [rack-cas](https://github.com/biola/rack-cas/) to handle this.
+
+## Global Registry API Access
+
+This app integrates with the [Global Registry](http://www.global-registry.org/) API. Accessing the Global Registry API requires an API key and also requires that your IP be whitelisted. The API key is stored in an ENV variable, and you will need to request that your IP be whitelisted for API access (both on the server and for your local development).
