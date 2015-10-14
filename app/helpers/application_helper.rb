@@ -23,4 +23,8 @@ module ApplicationHelper
     ]
   end
 
+  def titleize_attribute(attribute_name)
+    attribute_name.to_s.tr('_', ' ').titleize # Preserves 'id' for attributes ending with '_id'
+  end
+
 end
