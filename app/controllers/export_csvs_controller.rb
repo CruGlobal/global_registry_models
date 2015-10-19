@@ -1,4 +1,4 @@
-class ExportCsvsController < ApplicationController
+class ExportCsvsController < BaseController
 
   def create
     if params[:entity_class_name].present? && params[:email].present?
