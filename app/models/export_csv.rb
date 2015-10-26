@@ -5,7 +5,7 @@ class ExportCsv
   attribute :filters, Hash
 
   def export!
-    entity_collection = entity_class.all! filters: filters
+    entity_collection = entity_class.all! filters: filters, max_attempts: 10
 
     Tempfile.open file_name do |f|
       f.print entity_collection.to_csv

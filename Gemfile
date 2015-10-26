@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.
 gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
 
 gem 'global_registry', '1.0.7'
-gem 'global_registry_models', github: 'sheldond/global_registry_models', ref: '88ec037140811e24519b4d850304128ec60dd40c'
+gem 'global_registry_models', github: 'sheldond/global_registry_models', ref: '0227f8f494455c9b5171f8d53523db2e3fe83f6c'
 gem 'roo', '~> 2.0.1'
 gem 'rollbar', '~> 2.1.1'
 gem 'virtus', '~> 1.0.5'

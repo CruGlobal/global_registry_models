@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/sheldond/global_registry_models.git
-  revision: 88ec037140811e24519b4d850304128ec60dd40c
-  ref: 88ec037140811e24519b4d850304128ec60dd40c
+  revision: 0227f8f494455c9b5171f8d53523db2e3fe83f6c
+  ref: 0227f8f494455c9b5171f8d53523db2e3fe83f6c
   specs:
-    global_registry_models (0.2.5)
+    global_registry_models (0.3.0)
       activemodel (~> 4.2)
       global_registry (~> 1.0)
       virtus (~> 1.0)
