@@ -16,3 +16,4 @@ production:
   database: global_registry_interface_production
   username: global_registry_interface
   password: <%= ENV['GLOBAL_REGISTRY_INTERFACE_DATABASE_PASSWORD'] %>
+  host: <%= ENV['GLOBAL_REGISTRY_INTERFACE_DATABASE_HOST'] %>
