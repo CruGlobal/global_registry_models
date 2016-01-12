@@ -6,6 +6,7 @@ class Entities::EntitiesController < BaseController
     @per = 25
     @page = params[:page].try(:to_i).presence || 1
     @entities = @entity_class.search page: @page, per_page: @per, filters: params[:filters]
+    puts @entities.to_json
   end
 
   def show

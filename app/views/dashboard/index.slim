@@ -7,5 +7,11 @@
       = link_to entities_path(entity_class_name: entity.name.pluralize), class: 'list-group-item' do
         = entity.title.pluralize
   br
+  .list-group
+    = link_to entity_types_path, class: 'list-group-item' do
+        = entity.title.pluralize
+
   a = link_to 'Need the documentation?', 'https://github.com/CruGlobal/global_registry_docs/wiki', target:'_blank'
+
+
 
