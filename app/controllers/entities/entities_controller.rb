@@ -6,8 +6,6 @@ class Entities::EntitiesController < BaseController
     @per = 25
     @page = params[:page].try(:to_i).presence || 1
     @entities = @entity_class.search page: @page, per_page: @per, filters: params[:filters]
-    puts @entities.to_json
-    render '/entities/entity_types' if entity_type?
   end
 
   def show
@@ -17,13 +15,9 @@ class Entities::EntitiesController < BaseController
   private
 
     def load_entity_class
-      @entity_class = "GlobalRegistryModels::Entity::#{ params[:entity_class_name].singularize.classify }".safe_constantize
+      @entity_class = "GlobalRegistryModels::Entity::#{ params[:entity_class_name].classify }".safe_constantize
       puts @entity_class
       redirect_to root_path if @entity_class.blank?
-    end
-
-    def entity_type?
-      params[:page]=='EntityTypes'
     end
 
 end
