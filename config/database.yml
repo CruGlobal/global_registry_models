@@ -6,10 +6,12 @@ default: &default
 development:
   <<: *default
   database: global_registry_interface_development
+  host: localhost
 
 test:
   <<: *default
   database: global_registry_interface_test
+  host: localhost
 
 production:
   <<: *default
