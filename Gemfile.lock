@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/dafuga/global_registry_models.git
-  revision: 07e2268d28349a11ce207fdbefe99e810cdf45e1
-  ref: 07e2268d28349a11ce207fdbefe99e810cdf45e1
+  revision: 5aac36420f8fa32c6f8a8d635f0e1f7902f25b57
+  ref: 5aac36420f8fa32c6f8a8d635f0e1f7902f25b57
   specs:
     global_registry_models (0.6.0)
       activemodel (~> 4.2)

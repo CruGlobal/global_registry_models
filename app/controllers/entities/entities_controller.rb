@@ -3,7 +3,7 @@ class Entities::EntitiesController < BaseController
   before_action :load_entity_class
 
   def index
-    @per = 10
+    @per = 25
     @page = params[:page].try(:to_i).presence || 1
     @entities = @entity_class.search page: @page, per_page: @per, filters: params[:filters]
   end
