@@ -1,4 +1,4 @@
-h1 = @entity_class.title.pluralize
+h1 Entity Types
 
 .row
 
@@ -7,16 +7,16 @@ h1 = @entity_class.title.pluralize
       table.table.table-striped.table-hover.table-condensed
         thead
           tr
-            - ['Entity Id','Entity Name'].each do |attribute|
+            - ['Entity Type Id','Entity Type Name'].each do |attribute|
               th = titleize_attribute attribute
             th
         tbody
-          - @entitiy_types.each do |entity|
+          - @entity_types.each do |entity|
             tr
               - [:id, :name].each do |attribute|
                 td = truncate entity.send(attribute)
 
-    .form-group = paginate_entity_collection @entities
+    .form-group = paginate_entity_collection @entity_types
 
   .col-md-4
     .panel.panel-default

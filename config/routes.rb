@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :entity_types
 
+
+
   root 'dashboard#index'
 
 end
