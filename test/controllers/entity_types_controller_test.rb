@@ -11,6 +11,8 @@ class EntityTypesControllerTest < ActionController::TestCase
     assert_response :success
     assert assigns[:entity_types].all.size > 1
     assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_types].first
+    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first
+    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first.fields.first
     assert_equal 1, assigns[:page]
   end
 

@@ -142,79 +142,6 @@ module GlobalRegistryStubs
           "is_editable":false,
           "unique_value":false
           },
-          {"id":"0ffb3164-2044-11e5-a05f-12c37bb2d521",
-          "name":"target_area_ministry_presence",
-          "description":"Root level target_area_ministry_presence entity type to store enum values",
-          "data_visibility":"public",
-          "enum_values":["Unknown","No Presence","Ministry","Movement","Partner"]
-          ,"field_type":"enum_values",
-          "is_editable":false,
-          "unique_value":false
-          },{
-          "id":"a5499c9a-d556-11e3-af5a-12725f8f377c",
-          "name":"ministry",
-          "description":"Entity object to hold information about a ministry",
-          "data_visibility":"public",
-          "fields":[
-              {"id":"97d1e40e-d557-11e3-8ea8-12725f8f377c",
-              "name":"is_active",
-              "data_visibility":"public",
-              "field_type":"boolean",
-              "is_editable":false,
-              "unique_value":false,
-              "fields":[
-                  {"id":"97d1e40e-d557-11e3-8ea8-12725f8f377c",
-                  "name":"is_active",
-                  "data_visibility":"public",
-                  "field_type":"boolean",
-                  "is_editable":false,
-                  "unique_value":false
-                  },{
-                  "id":"addb95ba-d557-11e3-8422-12725f8f377c",
-                  "name":"sp_phone",
-                  "data_visibility":"public",
-                  "field_type":"string",
-                  "is_editable":false,
-                  "unique_value":false
-                  }]
-              },{
-              "id":"adbf4b30-d557-11e3-bbc8-12725f8f377c",
-              "name":"note",
-              "data_visibility":"public",
-              "field_type":"string",
-              "is_editable":false,
-              "unique_value":false
-              },{
-              "id":"addb95ba-d557-11e3-8422-12725f8f377c",
-              "name":"sp_phone",
-              "data_visibility":"public",
-              "field_type":"string",
-              "is_editable":false,
-              "unique_value":false
-              }]
-          }
-        ],
-        "meta": {
-          "page": 1,
-          "next_page": false,
-          "from": 1,
-          "to": 2
-        }
-      }))
-
-  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=25").
-      with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
-      to_return(status: 200, headers: {}, body: %({
-        "entity_types":[{
-          "id":"e9b8aaf0-1994-11e5-a76d-12c37bb2d521",
-          "name":"position_role",
-          "description":"Root level position_role entity type to store enum values",
-          "data_visibility":"public",
-          "enum_values":["Team Member","Team Leader","Not Applicable"],
-          "field_type":"enum_values",
-          "is_editable":false,
-          "unique_value":false
-          },
           {
           "id":"a5499c9a-d556-11e3-af5a-12725f8f377c",
           "name":"ministry",
@@ -242,14 +169,39 @@ module GlobalRegistryStubs
                   "is_editable":false,
                   "unique_value":false
                   }]
-              },{
-              "id":"adbf4b30-d557-11e3-bbc8-12725f8f377c",
-              "name":"note",
-              "data_visibility":"public",
-              "field_type":"string",
-              "is_editable":false,
-              "unique_value":false
               }]
+          }
+        ],
+        "meta": {
+          "page": 1,
+          "next_page": false,
+          "from": 1,
+          "to": 2
+        }
+      }))
+
+  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=25").
+      with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, headers: {}, body: %({
+        "entity_types":[{
+          "id":"e9b8aaf0-1994-11e5-a76d-12c37bb2d521",
+          "name":"position_role",
+          "description":"Root level position_role entity type to store enum values",
+          "data_visibility":"public",
+          "enum_values":["Team Member","Team Leader","Not Applicable"],
+          "field_type":"enum_values",
+          "is_editable":false,
+          "unique_value":false
+          },
+          {
+          "id":"e9b8aaf0-1994-11e5-a76d-12c37bb2d521",
+          "name":"position_role",
+          "description":"Root level position_role entity type to store enum values",
+          "data_visibility":"public",
+          "enum_values":["Team Member","Team Leader","Not Applicable"],
+          "field_type":"enum_values",
+          "is_editable":false,
+          "unique_value":false
           }
         ],
         "meta": {
