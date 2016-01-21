@@ -14,4 +14,24 @@ ul, ol {
   margin-right: 5px;
 }
 
+a:visited, a:hover, a:active, a:link {
+    text-decoration: none;
+}
+
+.panel-default {
+  min-height: 300px;
+  padding: 20px;
+  h4 {
+    margin-top:23%;
+  }
+  h3 {
+    margin-top: 0;
+  }
+  p {
+    display: block;
+  }
+}
+
+
+
 

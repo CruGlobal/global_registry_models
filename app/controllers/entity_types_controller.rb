@@ -3,7 +3,8 @@ class EntityTypesController < BaseController
   def index
     @per = 25
     @page = params[:page].try(:to_i).presence || 1
-    @entity_types = GlobalRegistryModels::EntityType::EntityType.search page: @page, per_page: @per
+    @entity_type_class = GlobalRegistryModels::EntityType::EntityType
+    @entity_types = @entity_type_class.search page: @page, per_page: @per
   end
 
   def show
