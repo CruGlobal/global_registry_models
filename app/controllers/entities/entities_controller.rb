@@ -16,7 +16,6 @@ class Entities::EntitiesController < BaseController
 
     def load_entity_class
       @entity_class = "GlobalRegistryModels::Entity::#{ params[:entity_class_name].classify }".safe_constantize
-      puts @entity_class
       redirect_to root_path if @entity_class.blank?
     end
 
