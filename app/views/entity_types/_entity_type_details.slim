@@ -3,3 +3,5 @@
   - @entity_type_class.identifying_attributes.each do |attribute|
     b = "#{titleize_attribute attribute} : "
     p = entity_type.send attribute
+  h3 Relationship Types
+  = display_relationships(entity_type)
