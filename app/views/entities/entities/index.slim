@@ -20,7 +20,7 @@ h1 = @entity_class.title.pluralize
                 td = truncate entity.send(attribute)
               td = link_to fa_icon(:eye, text: 'Details'), entities_show_path(entity_class_name: @entity_class.name.pluralize, id: entity.id), class: 'btn btn-link btn-xs'
 
-    .form-group = paginate_entity_collection @entities
+    .form-group = paginate_collection @entities
 
   .col-md-4
     .panel.panel-default

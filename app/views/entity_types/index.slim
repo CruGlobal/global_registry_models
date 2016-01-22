@@ -1,0 +1,24 @@
+h1 Entity Types
+
+.row
+
+  .col-md-6
+    .table-responsive
+      table.table.table-striped.table-hover.table-condensed
+        thead
+          tr
+            th Entity Type Name
+        tbody
+          - @entity_types.each do |entity_type|
+            = render("entity_types/entity_type", entity_type: entity_type)
+
+    .form-group = paginate_collection @entity_types
+
+  .col-md-6
+    .panel.panel-default
+      .description_panel.text-center
+        h4 Click on an Entity Type to view its description
+      - @entity_types.each do |entity_type|
+        = render 'entity_types/entity_type_details', entity_type: entity_type
+      
+

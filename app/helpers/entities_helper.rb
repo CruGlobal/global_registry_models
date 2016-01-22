@@ -7,11 +7,11 @@ module EntitiesHelper
     ]
   end
 
-  def paginate_entity_collection(entity_collection)
+  def paginate_collection(collection)
     content_tag :ul, class: 'pagination' do
       list = []
-      list << content_tag(:li, link_to(t('views.pagination.previous').html_safe, params.tap { |p| p[:page] = entity_collection.prev_page })) unless entity_collection.first_page?
-      list << content_tag(:li, link_to(t('views.pagination.next').html_safe, params.tap { |p| p[:page] = entity_collection.next_page })) unless entity_collection.last_page?
+      list << content_tag(:li, link_to(t('views.pagination.previous').html_safe, params.tap { |p| p[:page] = collection.prev_page })) unless collection.first_page?
+      list << content_tag(:li, link_to(t('views.pagination.next').html_safe, params.tap { |p| p[:page] = collection.next_page })) unless collection.last_page?
       safe_join list
     end
   end

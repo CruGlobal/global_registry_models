@@ -1,0 +1,8 @@
+tr.panel
+  td
+    =link_to entity_type.name, class:"entity_type_name", href: "#", id: "-#{entity_type.id}"
+    - if entity_type.fields.present?
+      =link_to "+", href: "##{entity_type.id}", class:"accordion_button", data: { toggle: 'collapse', parent: '#accordion1' } 
+    ul.collapse id=entity_type.id
+      - entity_type.fields && entity_type.fields.each do |field|
+        li = render 'entity_types/field', field: field
