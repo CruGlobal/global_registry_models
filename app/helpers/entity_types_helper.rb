@@ -18,4 +18,13 @@ module EntityTypesHelper
     GlobalRegistryModels::EntityType::Field
   end
 
+  def field_descriptions(object)
+    description=""
+    object.fields && object.fields.each do |field|
+      description+=render 'entity_types/field_details', field: field
+      description+=field_descriptions field
+    end
+    description.html_safe
+  end
+
 end
