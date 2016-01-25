@@ -24,7 +24,7 @@ jQuery ->
         success: (data) ->
           measurement_types = ''
           $.each data, (index,result) ->
-            measurement_types += '<h4>'+result.name+'</h4>'
+            measurement_types += '<h5>'+result.name+'</h5>'
           $(measurement_container_path).html(measurement_types)
 
 

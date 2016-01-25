@@ -26,4 +26,11 @@ class EntityTypesControllerTest < ActionController::TestCase
     assert_equal 2, assigns[:page]
   end
 
+  test 'GET measurement_types' do
+    get :measurement_types, id: 'a0xxs00a-sx033'
+    assert_response :success
+    assert assigns[:measurement_types].all.size > 1
+    assert_instance_of GlobalRegistryModels::MeasurementType::MeasurementType, assigns[:measurement_types].first
+  end
+
 end
