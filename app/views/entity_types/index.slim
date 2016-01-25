@@ -20,5 +20,7 @@ h1 Entity Types
         h4 Click on an Entity Type to view its description
       - @entity_types.each do |entity_type|
         = render 'entity_types/entity_type_details', entity_type: entity_type
+        - entity_type.fields && entity_type.fields.each do |field|
+          = render 'entity_types/field_details', field: field
       
 

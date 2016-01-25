@@ -152,12 +152,14 @@ module GlobalRegistryStubs
               "name":"is_active",
               "data_visibility":"public",
               "field_type":"boolean",
+              "description": "Your official given name.",
               "is_editable":false,
               "unique_value":false,
               "fields":[
                   {"id":"97d1e40e-d557-11e3-8ea8-12725f8f377c",
                   "name":"is_active",
                   "data_visibility":"public",
+                  "description": "Your official given name.",
                   "field_type":"boolean",
                   "is_editable":false,
                   "unique_value":false
@@ -165,6 +167,7 @@ module GlobalRegistryStubs
                   "id":"addb95ba-d557-11e3-8422-12725f8f377c",
                   "name":"sp_phone",
                   "data_visibility":"public",
+                  "description": "Your official given name.",
                   "field_type":"string",
                   "is_editable":false,
                   "unique_value":false

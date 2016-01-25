@@ -10,4 +10,12 @@ module EntityTypesHelper
     relationships_html.html_safe if relationships_html != ""
   end
 
+  def entity_type_class
+    GlobalRegistryModels::EntityType::EntityType
+  end
+
+  def field_class
+    GlobalRegistryModels::EntityType::Field
+  end
+
 end
