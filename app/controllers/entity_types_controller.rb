@@ -11,8 +11,8 @@ class EntityTypesController < BaseController
   end
 
   def measurement_types
-    @measurement_types= GlobalRegistryModels::MeasurementTypes::MeasurementTypes
-    render @measurement_types.to_json
+    @measurement_types= GlobalRegistryModels::MeasurementType::MeasurementType.search filters:{ related_entity_id: params[:id] }
+    render :json => @measurement_types.to_json(:only => [:name])
   end
 
 end

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :entity_types do
     member do
-      :measurement_types
+      get :measurement_types
     end
   end
 
