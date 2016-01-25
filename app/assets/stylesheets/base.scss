@@ -23,14 +23,29 @@ a:visited, a:hover, a:active, a:link {
 .panel-default {
   min-height: 300px;
   padding: 20px;
+
   h4 {
     margin-top:23%;
   }
+
   h3 {
     margin-top: 0;
   }
+
   p {
     display: block;
+  }
+
+  .relationship_types_container {
+    padding: 4px;
+  }
+
+  .measurment_type_container {
+    min-height:60px;
+
+    h4{
+      margin:20px;      
+    }
   }
 }
 

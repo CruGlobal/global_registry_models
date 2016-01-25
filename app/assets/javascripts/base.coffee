@@ -11,3 +11,21 @@ jQuery ->
     $('.entity_type_name').click ->
       $('.description_panel').hide()
       $('#description'+$(this).attr('id')).show()
+      measurement_container_path = '#description'+$(this).attr('id')+' .measurment_type_container'
+      if ($(measurement_container_path+' h4').length)
+        pull_measurement_type($(this).attr('id').substring(1))
+
+    pull_measurement_type = (entity_type_id,measurement_container_path) ->
+      $.ajax
+        url: "/entity_types/"+entity_type_id+"/measurement_types"
+        dataType: "json"
+        error: (jqXHR, textStatus, errorThrown) ->
+          console.log "AJAX Error: #{textStatus}"
+        success: (data, textStatus) ->
+          measurement_types = ''
+          $.each data.results, (result) ->
+            measurement_types += '<h2>'+result+'</h2>'
+          $(measurement_container_path).html(measurement_types)
+
+
+            

@@ -10,5 +10,10 @@ class EntityTypesController < BaseController
     #@entity_type = GlobalRegistryModels::EntityType::EntityType.find(params[:id])
   end
 
+  def measurement_types
+    @measurement_types= GlobalRegistryModels::MeasurementTypes::MeasurementTypes
+    render @measurement_types.to_json
+  end
+
 end
 

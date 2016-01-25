@@ -13,9 +13,11 @@ Rails.application.routes.draw do
     get ':entity_class_name/show/:id' => 'entities#show', as: :show
   end
 
-  resources :entity_types
-
-
+  resources :entity_types do
+    member do
+      :measurement_types
+    end
+  end
 
   root 'dashboard#index'
 

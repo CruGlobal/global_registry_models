@@ -4,4 +4,8 @@
     b = "#{titleize_attribute attribute} : "
     p = entity_type.send attribute
   h3 Relationship Types
-  = display_relationships(entity_type)
+  .relationship_types_container
+    = display_relationships(entity_type)
+  h3 Measurement Types
+  .measurment_type_container
+    h4 Loading..
