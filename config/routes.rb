@@ -14,10 +14,13 @@ Rails.application.routes.draw do
   end
 
   resources :entity_types do
+    post '/:id', on: :collection, action: 'update'
     member do
       get :measurement_types
     end
   end
+
+  
 
   root 'dashboard#index'
 

@@ -22,10 +22,13 @@ a:visited, a:hover, a:active, a:link {
 
 .panel-default {
   min-height: 300px;
-  padding: 20px;
+
+  button#create_new {
+    margin-top:15px;
+  }
 
   h4 {
-    margin-top:23%;
+    margin-top:70px;
   }
 
   h3 {
