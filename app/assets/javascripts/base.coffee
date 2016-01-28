@@ -42,9 +42,9 @@ jQuery ->
     $("form").attr("action", "entity_types#{editing_id}")
     if is_edit(mode)
       $("##{parent_id} p").each (index, elem) ->
-        $("form .form-group:nth-of-type(#{index+1}) input").val( elem.innerHTML.trim())
+        $("form#edit_entity_type .form-group:nth-of-type(#{index+1}) input").val( elem.innerHTML.trim())
     else
-      $("form .form-group input[type='text']").val("")
+      $("form#edit_entity_type .form-group input[type='text']").val("")
 
   is_edit = (mode) ->
     mode == "Edit"
