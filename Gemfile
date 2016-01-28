@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the A
 gem 'global_registry', '1.0.7'
 gem 'global_registry_models', github: 'dafuga/global_registry_models', ref: '88cb085a18001c36a64b1a92c08e9a98a34b4cf0'
 
+
 gem 'roo', '~> 2.0.1'
 gem 'rollbar', '~> 2.1.1'
 gem 'virtus', '~> 1.0.5'
