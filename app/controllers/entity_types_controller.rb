@@ -18,6 +18,8 @@ class EntityTypesController < BaseController
   end
 
   def update
+    params[:entity_type][:enum_values] = params[:entity_type][:enum_values].split(",")
+    puts params
     begin
       @entity_type=entity_type_class.update(params[:id], entity_type_params)
     rescue RuntimeError
@@ -43,7 +45,7 @@ private
   end
 
   def entity_type_params
-    params.require(:entity_type).permit(:client_integration_id, :name, :description, :field_type, :is_editable, :data_visibility).reject{|_, v| v.blank?}
+    params.require(:entity_type).permit(:client_integration_id, :name, :description, :field_type, :is_editable, :data_visibility, enum_values: ).reject{|_, v| v.blank?}
   end
 
 end

@@ -43,6 +43,7 @@ jQuery ->
     if is_edit(mode)
       $("##{parent_id} p").each (index, elem) ->
         $("form#edit_entity_type .form-group:nth-of-type(#{index+1}) input").val( elem.innerHTML.trim())
+      $('#enum_values_field').tokenfield()
     else
       $("form#edit_entity_type .form-group input[type='text']").val("")
 
