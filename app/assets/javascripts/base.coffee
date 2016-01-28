@@ -38,7 +38,7 @@ jQuery ->
     $("h4.modal-title").html("#{mode} Entity Type")
     parent_id = thisObj.parent().attr('id') if is_edit(mode)
     editing_id = (if is_edit(mode) then  "/#{parent_id.replace('description-','')}" else "")
-    $("form").attr("action", "/entity_types#{editing_id}")
+    $("form").attr("action", "entity_types#{editing_id}")
     if is_edit(mode)
       $("##{parent_id} p").each (index, elem) ->
         $("form .form-group:nth-of-type(#{index+1}) input").val( elem.innerHTML.trim())

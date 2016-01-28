@@ -262,7 +262,7 @@ module GlobalRegistryStubs
         }
     }))
 
-stub_request(:get, "https://stage-api.global-registry.org/measurement_types?filters%5Brelated_entity_id%5D=a0xxs00a-sx033").
+stub_request(:get, "https://stage-api.global-registry.org/measurement_types?filters%5Brelated_entity_type_id%5D=a0xxs00a-sx033").
   with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :headers => {}, body: %({
     "measurement_types": [
@@ -301,6 +301,20 @@ stub_request(:get, "https://stage-api.global-registry.org/measurement_types?filt
             "total_pages": 10
         }
     }))
+
+## Create entity types
+
+stub_request(:post, "https://stage-api.global-registry.org/entity_types").
+  with(:body => "{\"entity_type\":{\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"name\":\"name_one\",\"description\":\"a good description\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'138', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
+
+## Update entity types
+
+stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-sx033").
+  with(:body => "{\"entity_type\":{\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"name\":\"name_one\",\"description\":\"a good description\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'138', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
     
   end

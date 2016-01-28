@@ -33,4 +33,16 @@ class EntityTypesControllerTest < ActionController::TestCase
     assert_instance_of GlobalRegistryModels::MeasurementType::MeasurementType, assigns[:measurement_types].first
   end
 
+  test 'POST entity_types' do
+    post :create, entity_type: {name: 'name_one', description: 'a good description'}
+    assert_redirected_to entity_types_path
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_type]
+  end
+
+  test 'PUT entity_types' do
+    get :update, id: 'a0xxs00a-sx033', entity_type: {name: 'name_one', description: 'a good description'}
+    assert_redirected_to entity_types_path
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_type]
+  end
+
 end

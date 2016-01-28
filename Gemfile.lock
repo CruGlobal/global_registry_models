@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/dafuga/global_registry_models.git
+  revision: 88cb085a18001c36a64b1a92c08e9a98a34b4cf0
+  ref: 88cb085a18001c36a64b1a92c08e9a98a34b4cf0
+  specs:
+    global_registry_models (0.6.0)
+      activemodel (~> 4.2)
+      global_registry (~> 1.0)
+      virtus (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,10 +113,6 @@ GEM
       oj (~> 2.1.0)
       rest-client (~> 1.6.7)
       retryable-rb (~> 1.1.0)
-    global_registry_models (0.7.0)
-      activemodel (~> 4.2)
-      global_registry (~> 1.0)
-      virtus (~> 1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
@@ -277,7 +283,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.0.2)
   font-awesome-rails (~> 4.4.0.0)
   global_registry (= 1.0.7)
-  global_registry_models (= 0.7.0)
+  global_registry_models!
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.4)
   jquery-turbolinks (~> 2.1.0)
