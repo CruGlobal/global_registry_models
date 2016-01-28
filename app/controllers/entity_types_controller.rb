@@ -8,22 +8,16 @@ class EntityTypesController < BaseController
   end
 
   def create  
-    begin
-      @entity_type=entity_type_class.create(entity_type_params)
-    rescue RestClient::BadRequest
-    end
+    (@entity_type=entity_type_class.create(entity_type_params)) rescue RestClient::BadRequest
     flash[:success]="Your entity type has been successfully created!" if @entity_type
     flash[:error]="An error has occured." unless @entity_type
     redirect_to entity_types_path
   end
 
   def update
-    params[:entity_type][:enum_values] = params[:entity_type][:enum_values].split(",")
-    puts params
-    begin
-      @entity_type=entity_type_class.update(params[:id], entity_type_params)
-    rescue RuntimeError
-    end
+    params[:entity_type][:enum_values] = params[:entity_type][:enum_values].split(", ")
+    puts entity_type_params
+    (@entity_type=entity_type_class.update(params[:id], entity_type_params)) rescue RuntimeError
     flash[:success]="The entity type has been successfully updated!" if @entity_type
     flash[:error]="An error has occured." unless @entity_type
     redirect_to entity_types_path
@@ -45,7 +39,7 @@ private
   end
 
   def entity_type_params
-    params.require(:entity_type).permit(:client_integration_id, :name, :description, :field_type, :is_editable, :data_visibility, enum_values: ).reject{|_, v| v.blank?}
+    params.require(:entity_type).permit(:client_integration_id, :name, :description, :field_type, :is_editable, :data_visibility, enum_values: [] ).reject{|_, v| v.blank?}
   end
 
 end

@@ -40,12 +40,19 @@ jQuery ->
     parent_id = thisObj.parent().attr('id') if is_edit(mode)
     editing_id = (if is_edit(mode) then  "/#{parent_id.replace('description-','')}" else "")
     $("form").attr("action", "entity_types#{editing_id}")
+    form_location = "form#edit_entity_type .form-group"
+    enum_value_location = "#{form_location}:nth-of-type(6)"
     if is_edit(mode)
       $("##{parent_id} p").each (index, elem) ->
-        $("form#edit_entity_type .form-group:nth-of-type(#{index+1}) input").val( elem.innerHTML.trim())
-      $('#enum_values_field').tokenfield()
+        $("#{form_location}:nth-of-type(#{index+1}) input").val(elem.innerHTML.trim())
     else
-      $("form#edit_entity_type .form-group input[type='text']").val("")
+      $("#{form_location} input[type='text']").val("")
+
+    if $("#{form_location}:nth-of-type(4) input").val() == "enum_values"
+      $(enum_value_location).show()
+      $("#{enum_value_location} input").tokenfield()
+    else
+      $(enum_value_location).hide()
 
   is_edit = (mode) ->
     mode == "Edit"

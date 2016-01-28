@@ -5,6 +5,9 @@
     - entity_type_class.identifying_attributes.each do |attribute|
       b = "#{titleize_attribute attribute} : "
       p = entity_type.send attribute
+    - if entity_type.enum_values.present?
+      b Enum Values:
+      p = entity_type.enum_values.join(", ")
   h3 Relationship Types
   .relationship_types_container
     = display_relationships(entity_type)
