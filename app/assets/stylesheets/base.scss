@@ -36,6 +36,10 @@ a:visited, a:hover, a:active, a:link {
     text-decoration: underline;
   }
 
+  h5 {
+    margin: 30px;
+  }
+
   p {
     display: block;
   }
@@ -44,11 +48,11 @@ a:visited, a:hover, a:active, a:link {
     padding: 4px;
   }
 
-  .measurment_type_container {
+  .measurment_types_container {
     min-height:60px;
 
-    h4{
-      margin:20px;      
+    h4 {
+      margin:20px;
     }
   }
 }

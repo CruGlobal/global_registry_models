@@ -11,7 +11,7 @@ jQuery ->
     $('.entity_type_name').click ->
       $('.panel-body').hide()
       $('#description'+$(this).attr('id')).show()
-      measurement_container_path = "#description#{$(this).attr('id')} .measurment_type_container"
+      measurement_container_path = "#description#{$(this).attr('id')} .measurment_types_container"
       if $("#{measurement_container_path} h4").length
         pull_measurement_type($(this).attr('id').substring(1), measurement_container_path)
 
@@ -32,6 +32,7 @@ jQuery ->
         $.each data, (index, result) ->
           measurement_types += "<h5>#{result.name}</h5>"
         $(measurement_container_path).html(measurement_types)
+        $(measurement_container_path).html("<h5>This entity type has no measurement types.</h5>") if measurement_types == ""
 
   set_edit_modal = (mode, thisObj) ->
     $('#editModal').modal('show')
