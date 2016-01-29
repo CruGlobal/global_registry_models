@@ -1,5 +1,7 @@
 .panel-body style="display:none;" id="description-#{field.id}"
   h3 Field Details
+  b Id: 
+  h6 = field.id
   - field_class.identifying_attributes.each do |attribute|
     b = "#{titleize_attribute attribute} : "
     p = field.send attribute

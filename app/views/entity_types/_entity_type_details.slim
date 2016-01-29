@@ -1,12 +1,14 @@
 .panel-body style="display:none;" id="description-#{entity_type.id}"
   a.pull-right href="#" Edit
   h3 Entity Type Details 
-  .details_container
+  .details_container 
+    b Id: 
+    h6 = entity_type.id
     - entity_type_class.identifying_attributes.each do |attribute|
       b = "#{titleize_attribute attribute} : "
       p = entity_type.send attribute
-    - if entity_type.enum_values.present?
-      b Enum Values:
+    - if entity_type.field_type == "enum_values"
+      b = "Enum Values:" if entity_type.enum_values.present?
       p = entity_type.enum_values.join(", ")
   h3 Relationship Types
   .relationship_types_container

@@ -6,3 +6,4 @@ tr.panel
     ul.collapse id=entity_type.id
       - entity_type.fields && entity_type.fields.each do |field|
         li = render 'entity_types/field', field: field
+      li = link_to 'Add a field', '#', class:'new_field_link', id: entity_type.id
