@@ -25,20 +25,18 @@ jQuery ->
       new FormBuilder({entity_type_id: $(this).attr("id")}).build()
 
     $('.relationship_types_container h5 a').click ->
-      new FormBuilder({mode: 'Edit', modal_location: '#relationshipTypeModal', ressource: 'Relationship Type', click_context: $(this)}).build()
+      new FormBuilder({mode: 'Edit', ressource: 'Relationship Type', click_context: $(this)}).build()
 
     $('.panel-body a.add_relationship_type').click ->
-      new FormBuilder({modal_location: '#relationshipTypeModal', ressource: 'Relationship Type', click_context: $(this)}).build()
-
-
-
+      new FormBuilder({ressource: 'Relationship Type', click_context: $(this)}).build()
 
 
   class FormBuilder
     constructor: (params = {}) ->
       @mode     = params.mode or 'Create new'
       @ressource     = params.ressource or 'Entity Type'
-      @modal_location = params.modal_location or '#entityTypeModal'
+      @modal_location = "##{@ressource.replace(" ","")}Modal"
+      @url = "#{@ressource.replace(" ","_")}s".toLowerCase()
       @parent_id = params.click_context.parent().attr("id") if params.click_context
       @entity_type_id = params.entity_type_id
       @form_groups = "#{@modal_location} form .form-group"
@@ -51,7 +49,7 @@ jQuery ->
     open_and_customize: ->
       $("#{@modal_location}").modal('show')
       $("#{@modal_location} h4.modal-title").html("#{@mode} #{@ressource}")
-      $("#{@modal_location} form").attr("action", "entity_types#{@editing_id}")
+      $("#{@modal_location} form").attr("action", "#{@url}#{@editing_id}")
 
     add_values: ->
       if @is_edit()
