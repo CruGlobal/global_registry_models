@@ -7,17 +7,19 @@
       </div>
       <div class="modal-body">
         <%=form_for 'relationship_type', url:'/relationship_types' do |f| %>
-          <h3> Entity Type # 1 </h3>
-          <div class="form-group">
-            <%= f.label :entity_type, 'Select an entity type' %>
-            <%= f.collection_select(:entity_type, @entity_types,
-                :id, :name,
-               {:prompt => 'Please select an entity_type'}, class:"form-control") %>
-          </div>
-          <div class="form-group">
-            <%= f.label :relationship_name, 'Role in relationship' %>
-            <%= f.text_field :relationship_name, class:"form-control"  %>
-          </div>
+          <% 2.times do |index| %>
+            <h3> Entity Type # <%=index+1%> </h3>
+            <div class="form-group">
+              <%= f.label "entity_type#{index+1}_id", 'Select an entity type' %>
+              <%= f.collection_select("entity_type#{index+1}_id", @entity_types,
+                  :id, :name,
+                 {:prompt => 'Please select an entity_type'}, class:"form-control") %>
+            </div>
+            <div class="form-group">
+              <%= f.label "relationship#{index+1}", 'Role in relationship' %>
+              <%= f.text_field "relationship#{index+1}", class:"form-control"  %>
+            </div>
+          <% end %>
           <%=f.submit 'Save', class:'btn btn-primary form-control' %>
         <% end %>
       </div>

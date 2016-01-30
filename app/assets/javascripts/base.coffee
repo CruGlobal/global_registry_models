@@ -44,7 +44,6 @@ jQuery ->
       @form_groups = "#{@modal_location} form .form-group"
       @enum_values_field_location = "#{@form_groups}:last"
       @editing_id = @parent_id.replace('description-','/') if @is_edit()
-      alert(@modal_location)
 
     is_edit: ->
       @mode == "Edit" 
