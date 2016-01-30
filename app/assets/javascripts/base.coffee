@@ -15,7 +15,7 @@ jQuery ->
       if $("#{measurement_container_path} h4").length
         pull_measurement_type($(this).attr('id').substring(1), measurement_container_path)
 
-    $('.panel-body a').click ->
+    $('.panel-body a.edit_details').click ->
       new FormBuilder({mode: "Edit", click_context: $(this)}).build()
 
     $('button#create_new').click ->
@@ -24,18 +24,12 @@ jQuery ->
     $('a.new_field_link').click ->
       new FormBuilder({entity_type_id: $(this).attr("id")}).build()
 
-  pull_measurement_type = (entity_type_id, measurement_container_path) ->
-    $.ajax
-      url: "/entity_types/#{entity_type_id} /measurement_types"
-      dataType: "json"
-      error: (jqXHR, textStatus, errorThrown) ->
-        console.log "AJAX Error: #{errorThrown}"
-      success: (data) ->
-        measurement_types = ""
-        $.each data, (index, result) ->
-          measurement_types += "<h5>#{result.name}</h5>"
-        $(measurement_container_path).html(measurement_types)
-        $(measurement_container_path).html("<h5>This entity type has no measurement types.</h5>") if measurement_types == ""
+    $('.relationship_types_container h5 a').click ->
+      new FormBuilder({mode: 'Edit', modal_location: '#relationshipTypeModal', ressource: 'Relationship Type', click_context: $(this)}).build()
+
+    $('.panel-body a.add_relationship_type').click ->
+      new FormBuilder({modal_location: '#relationshipTypeModal', ressource: 'Relationship Type', click_context: $(this)}).build()
+
 
 
 
@@ -44,14 +38,13 @@ jQuery ->
     constructor: (params = {}) ->
       @mode     = params.mode or 'Create new'
       @ressource     = params.ressource or 'Entity Type'
-      @modal_location = params.modal_location or '#editEntityTypeModal'
+      @modal_location = params.modal_location or '#entityTypeModal'
       @parent_id = params.click_context.parent().attr("id") if params.click_context
       @entity_type_id = params.entity_type_id
       @form_groups = "#{@modal_location} form .form-group"
       @enum_values_field_location = "#{@form_groups}:last"
-
-    editing_id: ->
-      if @is_edit() then @parent_id.replace('description-','') else ""
+      @editing_id = @parent_id.replace('description-','/') if @is_edit()
+      alert(@modal_location)
 
     is_edit: ->
       @mode == "Edit" 
@@ -87,6 +80,19 @@ jQuery ->
       @add_parent_id() if @entity_type_id
 
 
+
+  pull_measurement_type = (entity_type_id, measurement_container_path) ->
+    $.ajax
+      url: "/entity_types/#{entity_type_id} /measurement_types"
+      dataType: "json"
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log "AJAX Error: #{errorThrown}"
+      success: (data) ->
+        measurement_types = ""
+        $.each data, (index, result) ->
+          measurement_types += "<h5>#{result.name}</h5>"
+        $(measurement_container_path).html(measurement_types)
+        $(measurement_container_path).html("<h5>This entity type has no measurement types.</h5>") if measurement_types == ""
 
 
 

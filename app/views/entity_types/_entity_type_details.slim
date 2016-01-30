@@ -1,5 +1,5 @@
 .panel-body style="display:none;" id="description-#{entity_type.id}"
-  a.pull-right href="#" Edit
+  a.edit_details.pull-right href="#" Edit
   h3 Entity Type Details 
   .details_container 
     b Id: 
@@ -10,6 +10,7 @@
     - if entity_type.field_type == "enum_values"
       b = "Enum Values:" if entity_type.enum_values.present?
       p = entity_type.enum_values.join(", ")
+  a.pull-right.add_relationship_type href="#" Create New
   h3 Relationship Types
   .relationship_types_container
     = display_relationships(entity_type)

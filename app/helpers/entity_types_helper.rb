@@ -5,7 +5,7 @@ module EntityTypesHelper
     entity_type.relationships && entity_type.relationships.each do |relationship_type|
       f_i=relationship_type.involved_types.first
       s_i=relationship_type.involved_types.second
-      relationships_html += "<h5> #{f_i.entity_type} <--- ( #{f_i.relationship_name} / #{s_i.relationship_name} ) ---> #{s_i.entity_type}</h5>"
+      relationships_html += "<h5 id='#{relationship_type.id}'> <p>#{f_i.entity_type}</p> <--- ( <p>#{f_i.relationship_name}</p> / <p>#{s_i.relationship_name}</p> ) ---> <p>#{s_i.entity_type}</p><a href='#'>Edit</a></h5>"
     end
     relationships_html != "" ? relationships_html.html_safe : "<h5>This entity type has no relationship types.</h5>".html_safe
   end

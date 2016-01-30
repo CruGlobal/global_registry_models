@@ -46,6 +46,16 @@ a:visited, a:hover, a:active, a:link {
 
   .relationship_types_container {
     padding: 4px;
+
+    a, p {
+      display:inline;
+    }
+
+    a {
+      margin-left:5px;
+    }
+
+    
   }
 
   .measurment_types_container {
