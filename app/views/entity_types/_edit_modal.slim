@@ -1,11 +1,11 @@
-#editModal.modal.fade role="dialog"
+#editEntityTypeModal.modal.fade role="dialog"
   .modal-dialog
     .modal-content
       .modal-header
         button type="button" class="close" data-dismiss="modal" &times;
         h4.modal-title Edit Entity Type
       .modal-body
-        =form_for 'entity_type', url:'/entity_types', html:{id: "edit_entity_type"} do |f|
+        =form_for 'entity_type', url:'/entity_types' do |f|
           - entity_type_class.identifying_attributes.each do |attribute|
             .form-group
               = f.label attribute.to_sym
