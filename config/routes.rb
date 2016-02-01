@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :relationship_types, only: [:update, :create] do
+    post '/:id', on: :collection, action: 'update'
+  end
+
   
 
   root 'dashboard#index'
