@@ -15,7 +15,8 @@ class EntityTypesControllerTest < ActionController::TestCase
     assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first.fields.first
     assert_instance_of GlobalRegistryModels::RelationshipType::RelationshipType, assigns[:entity_types].last.relationships.first
     assert_instance_of GlobalRegistryModels::RelationshipType::InvolvedType, assigns[:entity_types].last.relationships.first.involved_types.first
-    assert_match "person <--- ( person / ministry ) ---> ministry", response.body
+    assert_match "<p>ministry</p> ) --->", response.body
+    assert_match "<--- ( <p>person</p> /", response.body                            
     assert_equal 1, assigns[:page]
   end
 
@@ -40,7 +41,7 @@ class EntityTypesControllerTest < ActionController::TestCase
   end
 
   test 'PUT entity_types' do
-    get :update, id: 'a0xxs00a-sx033', entity_type: {name: 'name_one', description: 'a good description'}
+    post :update, id: 'a0xxs00a-sx033', entity_type: {name: 'name_one', description: 'a good description'}
     assert_redirected_to entity_types_path
     assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_type]
   end

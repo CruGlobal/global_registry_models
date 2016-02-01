@@ -9,7 +9,7 @@ class window.FormSetter
     @entity_type_id = params.entity_type_id
     @form_groups = "#{@modal_location} form .form-group"
     @enum_values_field_location = "#{@form_groups}:last"
-    @editing_id = @parent_id.replace('description-','/') if @is_edit()
+    @editing_id = (if @is_edit() then @parent_id.replace('description-','/') else '')
 
   is_edit: ->
     @mode == "Edit" 
@@ -27,6 +27,9 @@ class window.FormSetter
         $("#{form_group} input, #{form_group} select").val(elem.innerHTML.trim())
     else
       $("#{@form_groups} input[type='text']").val("")
+      if @ressource == 'Relationship Type' && @mode == 'Create new'
+        alert(@parent_id)
+        $("#{@form_groups}:first select").val(@parent_id.replace('description-',''))
 
   fix_enum_values: ->
     if $("#{@form_groups}:nth-of-type(4) input").val() == "enum_values" 

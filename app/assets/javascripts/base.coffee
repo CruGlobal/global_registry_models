@@ -28,6 +28,7 @@ $(document).on "ready page:load", ->
 
   $('.panel-body a.add_relationship_type').click ->
     new FormSetter({ressource: 'Relationship Type', click_context: $(this)}).build()
+    $(this).parent().attr("id").replace('description-','')
 
 pull_measurement_type = (entity_type_id, measurement_container_path) ->
   $.ajax
