@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-tokenfield
-//= require_tree .
+//= require FormSetter
+//= require base
