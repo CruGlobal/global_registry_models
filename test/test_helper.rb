@@ -44,3 +44,13 @@ module GlobalRegistryModels
     end
   end
 end
+
+module EntityTypeServices
+  class Uuid
+
+    def to_s
+      "5197-11E5-B6A3-3087D5902334"
+    end
+
+  end
+end

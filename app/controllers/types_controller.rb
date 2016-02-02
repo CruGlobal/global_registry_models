@@ -2,7 +2,7 @@ class TypesController < ApplicationController
   before_action :add_client_integration_id, only: [:create, :update]
 
   def create  
-    puts (@object_type=type_class.create(type_params)) rescue RestClient::BadRequest
+    (@object_type=type_class.create(type_params)) rescue RestClient::BadRequest
     flash[:success]="Your #{ressource} has been successfully added!" if @object_type
     flash[:error]="An error has occured." unless @object_type
     redirect_to entity_types_path
