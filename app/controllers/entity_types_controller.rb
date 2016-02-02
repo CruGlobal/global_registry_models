@@ -2,7 +2,7 @@ class EntityTypesController < BaseController
   before_action :add_client_integration_id, only: [:create, :update]
 
   def index
-    @per = 25
+    @per = 60
     @page = params[:page].try(:to_i).presence || 1
     @entity_types = entity_type_class.search page: @page, per_page: @per 
   end

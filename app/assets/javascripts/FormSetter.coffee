@@ -28,7 +28,6 @@ class window.FormSetter
     else
       $("#{@form_groups} input[type='text']").val("")
       if @ressource == 'Relationship Type' && @mode == 'Create new'
-        alert(@parent_id)
         $("#{@form_groups}:first select").val(@parent_id.replace('description-',''))
 
   fix_enum_values: ->

@@ -129,7 +129,7 @@ module GlobalRegistryStubs
 
 
     # Get test entity types
-    stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=1&per_page=25").
+    stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=1&per_page=60").
       with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, headers: {}, body: %({
         "entity_types":[{
@@ -190,7 +190,7 @@ module GlobalRegistryStubs
         }
       }))
 
-  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=25").
+  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=60").
       with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, headers: {}, body: %({
         "entity_types":[{
@@ -316,7 +316,20 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
        :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'138', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
-    
+## Create relationship types
+
+  stub_request(:put, "https://stage-api.global-registry.org/relationship_types/a0xxs00a-sx033").
+  with(:body => "{\"relationship_type\":{\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'200', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "{\"relationship_type\":{\"id\":\"0000-0000-0000-0001\",\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}", :headers => {})
+
+## Update relationship types
+
+  stub_request(:post, "https://stage-api.global-registry.org/relationship_types").
+    with(:body => "{\"relationship_type\":{\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
+         :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'200', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "{\"relationship_type\":{\"id\":\"0000-0000-0000-0001\",\"client_integration_id\":\"user-one-guid-5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}", :headers => {})
+
   end
 end
 
