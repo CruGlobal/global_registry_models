@@ -58,12 +58,20 @@ a:visited, a:hover, a:active, a:link {
     
   }
 
-  .measurment_types_container {
+  .measurement_types_container {
     min-height:60px;
 
     h4, h5 {
       margin:35px;
+      a {
+        margin-left: 5px;
+      }
+      p{
+        display:none;
+      }
     }
+
+   
   }
 }
 

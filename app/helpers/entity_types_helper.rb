@@ -29,6 +29,10 @@ module EntityTypesHelper
     GlobalRegistryModels::EntityType::Field
   end
 
+  def measurement_type_class
+    GlobalRegistryModels::MeasurementType::MeasurementType
+  end
+
   def field_descriptions(object)
     description=""
     object.fields && object.fields.each do |field|

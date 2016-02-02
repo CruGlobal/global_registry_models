@@ -10,7 +10,7 @@ $(document).on "ready page:load", ->
   $('.entity_type_name').click ->
     $('.panel-body').hide()
     $('#description'+$(this).attr('id')).show()
-    measurement_container_path = "#description#{$(this).attr('id')} .measurment_types_container"
+    measurement_container_path = "#description#{$(this).attr('id')} .measurement_types_container"
     if $("#{measurement_container_path} h4").length
       pull_measurement_type($(this).attr('id').substring(1), measurement_container_path)
 
@@ -28,7 +28,9 @@ $(document).on "ready page:load", ->
 
   $('.panel-body a.add_relationship_type').click ->
     new FormSetter({ressource: 'Relationship Type', click_context: $(this)}).build()
-    $(this).parent().attr("id").replace('description-','')
+
+  $('.panel-body a.add_measurement_type').click ->
+    new FormSetter({ressource: 'Measurement Type', click_context: $(this)}).build()
 
 pull_measurement_type = (entity_type_id, measurement_container_path) ->
   $.ajax
@@ -39,9 +41,15 @@ pull_measurement_type = (entity_type_id, measurement_container_path) ->
     success: (data) ->
       measurement_types = ""
       $.each data, (index, result) ->
-        measurement_types += "<h5>#{result.name}</h5>"
+        measurement_types += "<h5 id='description-#{result.id}'>#{result.name}<a href='#'>Edit</a>"
+        $.each result, (i, col) ->
+          measurement_types += "<p>#{col}</p>"
+        measurement_types+="</h5>"
       $(measurement_container_path).html(measurement_types)
       $(measurement_container_path).html("<h5>This entity type has no measurement types.</h5>") if measurement_types == ""
+      $("#{measurement_container_path} h5 a").click ->
+        new FormSetter({mode: 'Edit', ressource: 'Measurement Type', click_context: $(this)}).build()
+
 
 
 

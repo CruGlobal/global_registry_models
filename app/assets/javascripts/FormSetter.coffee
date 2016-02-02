@@ -27,8 +27,8 @@ class window.FormSetter
         $("#{form_group} input, #{form_group} select").val(elem.innerHTML.trim())
     else
       $("#{@form_groups} input[type='text']").val("")
-      if @ressource == 'Relationship Type' && @mode == 'Create new'
-        $("#{@form_groups}:first select").val(@parent_id.replace('description-',''))
+      if @ressource == 'Relationship Type' || @ressource == 'Measurement Type'
+        $("#{@form_groups}:first select, #{@form_groups}:first input").val(@parent_id.replace('description-',''))
 
   fix_enum_values: ->
     if $("#{@form_groups}:nth-of-type(4) input").val() == "enum_values" 
