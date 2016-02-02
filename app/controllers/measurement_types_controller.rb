@@ -1,9 +1,9 @@
-class RelationshipTypesController < TypesController
+class MeasurementTypesController < TypesController
 
   private
 
   def ressource
-    "Relationship Type"
+    "Measurement Type"
   end
 
   def type_params

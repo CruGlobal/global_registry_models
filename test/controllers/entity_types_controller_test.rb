@@ -37,13 +37,13 @@ class EntityTypesControllerTest < ActionController::TestCase
   test 'POST entity_types' do
     post :create, entity_type: {name: 'name_one', description: 'a good description'}
     assert_redirected_to entity_types_path
-    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_type]
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
   end
 
   test 'PUT entity_types' do
     post :update, id: 'a0xxs00a-sx033', entity_type: {name: 'name_one', description: 'a good description'}
     assert_redirected_to entity_types_path
-    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_type]
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
   end
 
 end
