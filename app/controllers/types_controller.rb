@@ -1,4 +1,4 @@
-class TypesController < BaseController
+class TypesController < ApplicationController
   before_action :add_client_integration_id, only: [:create, :update]
 
   def create  

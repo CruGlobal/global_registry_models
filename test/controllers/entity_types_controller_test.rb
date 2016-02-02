@@ -10,7 +10,7 @@ class EntityTypesControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert assigns[:entity_types].all.size > 1
-    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:entity_types].first
+    assert_instance_of class_name, assigns[:entity_types].first
     assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first
     assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first.fields.first
     assert_instance_of GlobalRegistryModels::RelationshipType::RelationshipType, assigns[:entity_types].last.relationships.first
@@ -35,15 +35,23 @@ class EntityTypesControllerTest < ActionController::TestCase
   end
 
   test 'POST entity_types' do
-    post :create, entity_type: {name: 'name_one', description: 'a good description'}
-    assert_redirected_to entity_types_path
-    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
+    post :create, entity_type: entity_type_params
+    assert_request_type
   end
 
   test 'PUT entity_types' do
-    post :update, id: 'a0xxs00a-sx033', entity_type: {name: 'name_one', description: 'a good description'}
-    assert_redirected_to entity_types_path
-    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
+    post :update, id: 'a0xxs00a-sx033', entity_type: entity_type_params
+    assert_request_type
+  end
+
+  private
+
+  def entity_type_params
+    {"name": 'Entity Type 1', "description": 'a great entity type', "field_type": 'string', "client_integration_id": '1'}
+  end
+
+  def class_name
+    GlobalRegistryModels::EntityType::EntityType
   end
 
 end

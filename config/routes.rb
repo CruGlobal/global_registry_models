@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     post '/:id', on: :collection, action: 'update'
   end
 
+  resources :measurement_types, only: [:update, :create] do
+    post '/:id', on: :collection, action: 'update'
+  end
+
   
 
   root 'dashboard#index'

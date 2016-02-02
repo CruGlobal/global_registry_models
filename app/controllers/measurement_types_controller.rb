@@ -7,6 +7,6 @@ class MeasurementTypesController < TypesController
   end
 
   def type_params
-    params.require(:relationship_type).permit(:client_integration_id, :entity_type1_id, :relationship1, :entity_type2_id, :relationship2)
+    params.require(:measurement_type).permit(:name, :description, :perm_link, :client_integration_id)
   end
 end
