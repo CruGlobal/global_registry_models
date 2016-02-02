@@ -7,14 +7,6 @@
       </div>
       <div class="modal-body">
         <%=form_for 'measurement_type', url:'/measurement_types' do |f| %>
-          <div class="form-group">
-            <%= f.label :related_entity_type_id %>
-            <%= f.text_field :related_entity_type_id, class:'form-control' %>  
-          </div>
-          <div class="form-group">
-            <%= f.label :id %>
-            <%= f.text_field :id, class:'form-control' %>  
-          </div>
           <% measurement_type_class.identifying_attributes.each do |attribute| %>
             <div class="form-group">
               <%= f.label attribute.to_sym %>

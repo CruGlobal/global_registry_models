@@ -7,8 +7,8 @@ class EntityTypesController < TypesController
   end
 
   def measurement_types
-    @measurement_types= GlobalRegistryModels::MeasurementType::MeasurementType.search filters:{ "related_entity_type_id" => params[:id].strip }
-    render :json => @measurement_types.to_json(:only => [:id, :related_entity_type_id, :name, :description, :frequency, :perm_link, :unit])
+    @measurement_types = GlobalRegistryModels::MeasurementType::MeasurementType.search filters:{ "related_entity_type_id" => params[:id].strip }
+    render :json => @measurement_types.to_json(:only => [:related_entity_type_id, :name, :description, :frequency, :perm_link, :unit, :id])
   end
 
   private
