@@ -1,8 +1,10 @@
 = link_to class:"entity_type_name", href: "#", id: "-#{field.id}" do
   = field.name
 span.field_type = field.field_type && field.field_type.capitalize
--field.fields.present?
-  =link_to "+", href: "##{field.id}", class:"accordion-button", data: { toggle: 'collapse', parent: '#accordion1' } 
+- if field.fields.present?
+  = link_to "+", href: "##{field.id}", class:"accordion-button", data: { toggle: 'collapse', parent: '#accordion1' } 
 ul.collapse id=field.id
   - field.fields && field.fields.each do |child_field|
     li = render 'entity_types/field', field: child_field
+  li = link_to 'Add a field', '#', class:'new_field_link', id: field.id
+

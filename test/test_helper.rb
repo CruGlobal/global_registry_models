@@ -27,6 +27,11 @@ class ActiveSupport::TestCase
     session['cas']['extra_attributes']['lastName'] = user.last_name
   end
 
+  def assert_request_type
+    assert_redirected_to entity_types_path
+    assert_instance_of class_name, assigns[:object_type]
+  end
+
 end
 
 # A Test model that we'll use to test entities
@@ -37,5 +42,15 @@ module GlobalRegistryModels
       attribute :phone, String
       attribute :name, String
     end
+  end
+end
+
+module EntityTypeServices
+  class Uuid
+
+    def to_s
+      "5197-11E5-B6A3-3087D5902334"
+    end
+
   end
 end

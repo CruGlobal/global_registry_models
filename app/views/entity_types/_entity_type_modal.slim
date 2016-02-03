@@ -1,0 +1,19 @@
+#EntityTypeModal.modal.fade role="dialog"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" &times;
+        h4.modal-title Edit Entity Type
+      .modal-body
+        =form_for 'entity_type', url:'/entity_types' do |f|
+          - entity_type_class.identifying_attributes.each do |attribute|
+            .form-group
+              = f.label attribute.to_sym
+              = f.text_field attribute.to_sym, class:'form-control'
+          .form-group
+            = f.label :enum_values
+            = f.text_field :enum_values, class:'form-control'
+          =f.submit 'Save', class:'btn btn-primary form-control'
+
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal" Close

@@ -1,15 +1,24 @@
-class EntityTypesController < BaseController
+class EntityTypesController < TypesController
 
   def index
-    @per = 25
+    @per = 60
     @page = params[:page].try(:to_i).presence || 1
-    @entity_types = GlobalRegistryModels::EntityType::EntityType.search page: @page, per_page: @per
-    @relationship_type_class = GlobalRegistryModels::RelationshipType::RelationshipType
-    @relationship_types = @relationship_type_class.search
+    @entity_types = type_class.search page: @page, per_page: @per 
   end
 
-  def show
-    #@entity_type = GlobalRegistryModels::EntityType::EntityType.find(params[:id])
+  def measurement_types
+    @measurement_types = GlobalRegistryModels::MeasurementType::MeasurementType.search filters:{ "related_entity_type_id" => params[:id].strip }
+    render :json => @measurement_types.to_json(:only => [:related_entity_type_id, :name, :description, :frequency, :perm_link, :unit, :id])
+  end
+
+  private
+
+  def ressource
+    "Entity Type"
+  end
+
+  def type_params
+    params.require(:entity_type).permit(:client_integration_id, :name, :description, :field_type, :is_editable, :data_visibility, :parent_id, enum_values: []).reject{|_, v| v.blank?}
   end
 
 end

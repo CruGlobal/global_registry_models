@@ -22,15 +22,56 @@ a:visited, a:hover, a:active, a:link {
 
 .panel-default {
   min-height: 300px;
-  padding: 20px;
-  h4 {
-    margin-top:23%;
+
+  button#create_new {
+    margin-top:15px;
   }
+
+  h4 {
+    margin-top:70px;
+  }
+
   h3 {
     margin-top: 0;
+    text-decoration: underline;
   }
+
+  h5 {
+    margin: 30px;
+  }
+
   p {
     display: block;
+  }
+
+  .relationship_types_container {
+    padding: 4px;
+
+    a, p {
+      display:inline;
+    }
+
+    a {
+      margin-left:5px;
+    }
+
+    
+  }
+
+  .measurement_types_container {
+    min-height:60px;
+
+    h4, h5 {
+      margin:35px;
+      a {
+        margin-left: 5px;
+      }
+      p{
+        display:none;
+      }
+    }
+
+   
   }
 }
 

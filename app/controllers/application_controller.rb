@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
+  layout proc{|c| c.request.xhr? ? false : "application" }
+
   def signed_in?
     cas_signed_in? && current_user.present?
   end

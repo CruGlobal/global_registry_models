@@ -1,7 +1,6 @@
 h1 Entity Types
 
 .row
-
   .col-md-6
     .table-responsive
       table.table.table-striped.table-hover.table-condensed
@@ -16,11 +15,17 @@ h1 Entity Types
 
   .col-md-6
     .panel.panel-default
-      .description_panel.text-center
+      .panel-header.text-center
+        button#create_new.btn.btn-info Create new entity type
+        hr
+      .panel-body.text-center
         h4 Click on an Entity Type to view its description
       - @entity_types.each do |entity_type|
         = render 'entity_types/entity_type_details', entity_type: entity_type
-        - entity_type.fields && entity_type.fields.each do |field|
-          = render 'entity_types/field_details', field: field
+        = field_descriptions entity_type
+
+  = render 'entity_type_modal'
+  = render 'relationship_type_modal'
+  = render 'measurement_type_modal'
       
 

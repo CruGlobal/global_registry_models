@@ -1,7 +1,20 @@
-.description_panel style="display:none;" id="description-#{entity_type.id}"
-  h3 Entity Type Details
-  - entity_type_class.identifying_attributes.each do |attribute|
-    b = "#{titleize_attribute attribute} : "
-    p = entity_type.send attribute
+.panel-body style="display:none;" id="description-#{entity_type.id}"
+  a.edit_details.pull-right href="#" Edit
+  h3 Entity Type Details 
+  .details_container 
+    b Id: 
+    h6 = entity_type.id
+    - entity_type_class.identifying_attributes.each do |attribute|
+      b = "#{titleize_attribute attribute} : "
+      p = entity_type.send attribute
+    - if entity_type.field_type == "enum_values"
+      b = "Enum Values:" if entity_type.enum_values.present?
+      p = entity_type.enum_values.join(", ")
+  a.pull-right.add_relationship_type href="#" Create New
   h3 Relationship Types
-  = display_relationships(entity_type)
+  .relationship_types_container
+    = display_relationships(entity_type)
+  a.pull-right.add_measurement_type href="#" Create New
+  h3 Measurement Types
+  .measurement_types_container
+    h4 Loading..

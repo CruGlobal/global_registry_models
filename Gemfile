@@ -10,9 +10,11 @@ gem 'jquery-rails', '~> 4.0.4' # Use jquery as the JavaScript library
 gem 'turbolinks', '~> 2.5.3' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the API under doc/api.
+gem 'bootstrap_tokenfield_rails', '~> 0.12.1' # For tokenfields
 
 gem 'global_registry', '1.0.7'
-gem 'global_registry_models', '0.7.1'
+gem 'global_registry_models', github: 'dafuga/global_registry_models', ref: 'bb633e167f3cdf9a9345a3e4559939df19873818'
+
 
 gem 'roo', '~> 2.0.1'
 gem 'rollbar', '~> 2.1.1'

@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/dafuga/global_registry_models.git
+  revision: bb633e167f3cdf9a9345a3e4559939df19873818
+  ref: bb633e167f3cdf9a9345a3e4559939df19873818
+  specs:
+    global_registry_models (0.6.0)
+      activemodel (~> 4.2)
+      global_registry (~> 1.0)
+      virtus (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,6 +63,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap_tokenfield_rails (0.12.1)
     builder (3.2.2)
     byebug (8.2.1)
     celluloid (0.17.2)
@@ -103,10 +114,6 @@ GEM
       oj (~> 2.1.0)
       rest-client (~> 1.6.7)
       retryable-rb (~> 1.1.0)
-    global_registry_models (0.7.1)
-      activemodel (~> 4.2)
-      global_registry (~> 1.0)
-      virtus (~> 1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
@@ -272,12 +279,13 @@ PLATFORMS
 DEPENDENCIES
   bh (~> 1.2)
   bootstrap-sass (~> 3.3.5)
+  bootstrap_tokenfield_rails (~> 0.12.1)
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails (~> 2.0.2)
   font-awesome-rails (~> 4.4.0.0)
   global_registry (= 1.0.7)
-  global_registry_models (= 0.7.1)
+  global_registry_models!
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.4)
   jquery-turbolinks (~> 2.1.0)
