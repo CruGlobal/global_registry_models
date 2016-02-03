@@ -129,7 +129,7 @@ module GlobalRegistryStubs
 
 
     # Get test entity types
-    stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=1&per_page=60").
+    stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=1&per_page=100").
       with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, headers: {}, body: %({
         "entity_types":[{
@@ -190,7 +190,7 @@ module GlobalRegistryStubs
         }
       }))
 
-  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=60").
+  stub_request(:get,  "https://stage-api.global-registry.org/entity_types?field_type=entity&page=2&per_page=100").
       with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, headers: {}, body: %({
         "entity_types":[{

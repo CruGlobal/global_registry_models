@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :subscriptions, only: [:index, :create, :new, :destroy]
   resources :export_csvs, only: [:create]
 
   get 'dashboard/index'
@@ -20,15 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :relationship_types, only: [:update, :create] do
+  resources :relationship_types, only: :create do
     post '/:id', on: :collection, action: 'update'
   end
 
-  resources :measurement_types, only: [:update, :create] do
+  resources :measurement_types, only: :create do
     post '/:id', on: :collection, action: 'update'
   end
-
-  
 
   root 'dashboard#index'
 

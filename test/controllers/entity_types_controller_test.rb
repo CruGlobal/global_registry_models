@@ -11,10 +11,10 @@ class EntityTypesControllerTest < ActionController::TestCase
     assert_response :success
     assert assigns[:entity_types].all.size > 1
     assert_instance_of class_name, assigns[:entity_types].first
-    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first
-    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].last.fields.first.fields.first
-    assert_instance_of GlobalRegistryModels::RelationshipType::RelationshipType, assigns[:entity_types].last.relationships.first
-    assert_instance_of GlobalRegistryModels::RelationshipType::InvolvedType, assigns[:entity_types].last.relationships.first.involved_types.first
+    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].first.fields.first
+    assert_instance_of GlobalRegistryModels::EntityType::Field, assigns[:entity_types].first.fields.first.fields.first
+    assert_instance_of GlobalRegistryModels::RelationshipType::RelationshipType, assigns[:entity_types].first.relationships.first
+    assert_instance_of GlobalRegistryModels::RelationshipType::InvolvedType, assigns[:entity_types].first.relationships.first.involved_types.first
     assert_match "<p>ministry</p> ) --->", response.body
     assert_match "<--- ( <p>person</p> /", response.body                            
     assert_equal 1, assigns[:page]
