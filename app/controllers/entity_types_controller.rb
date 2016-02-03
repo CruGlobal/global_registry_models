@@ -2,7 +2,7 @@ class EntityTypesController < TypesController
 
   def index
     @page = params[:page].try(:to_i).presence || 1
-    @entity_types = type_class.search(page: @page, per_page: 100).order(:name)
+    @entity_types = type_class.search( page: @page, per_page: 100).order(:name)
   end
 
   def measurement_types

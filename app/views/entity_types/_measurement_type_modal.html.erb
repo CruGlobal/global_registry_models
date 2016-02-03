@@ -10,7 +10,7 @@
           <% measurement_type_class.identifying_attributes.each do |attribute| %>
             <div class="form-group">
               <%= f.label attribute.to_sym %>
-              <%= f.text_field attribute.to_sym, class:'form-control' %>  
+              <%= f.text_field attribute.to_sym, class:'form-control', required: true %>  
             </div>
           <% end %>
           <%=f.submit 'Save', class:'btn btn-primary form-control' %>

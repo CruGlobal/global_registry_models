@@ -22,7 +22,7 @@ class SubscriptionsControllerTest < ActionController::TestCase
     assert_difference('Subscription.count') do
       post :create, subscription: { entity_type_id: @subscription.entity_type_id }
     end
-    assert_redirected_to subscription_path(assigns(:subscription))
+    assert_redirected_to subscriptions_path
   end
 
   test "should destroy subscription" do

@@ -1,4 +1,4 @@
-.panel-body style="display:none;" id="description-#{field.id}"
+.panel-body style="display:none;" id="description-#{field.id unless already_there?(field.id)}"
   a.edit_details.pull-right href="#" Edit
   h3 Field Details
   b Id: 

@@ -36,10 +36,14 @@ module EntityTypesHelper
   def field_descriptions(object)
     description=""
     object.fields && object.fields.each do |field|
-      description+=render 'entity_types/field_details', field: field
+      description+=render 'entity_types/field_details', field: field 
       description+=field_descriptions field
     end
     description.html_safe
+  end
+
+  def already_there?(field_id)
+    @entity_types.any?{ |entity_type| entity_type.id == field_id }
   end
 
 end
