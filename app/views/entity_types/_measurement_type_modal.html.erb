@@ -7,10 +7,10 @@
       </div>
       <div class="modal-body">
         <%=form_for 'measurement_type', url:'/measurement_types' do |f| %>
-          <% measurement_type_class.identifying_attributes.each do |attribute| %>
+          <% measurement_type_class.identifying_attributes.each_with_index do |attribute, i| %>
             <div class="form-group">
               <%= f.label attribute.to_sym %>
-              <%= f.text_field attribute.to_sym, class:'form-control', required: true %>  
+              <%= f.text_field attribute.to_sym, class:'form-control', required: (true unless i == 2) %>  
             </div>
           <% end %>
           <%=f.submit 'Save', class:'btn btn-primary form-control' %>
