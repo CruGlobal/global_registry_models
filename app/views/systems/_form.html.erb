@@ -1,33 +1,11 @@
-<%= form_for(@system) do |f| %>
-  <% if @system.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@system.errors.count, "error") %> prohibited this system from being saved:</h2>
+<%= form_for('system', url:'/systems') do |f| %>
 
-      <ul>
-      <% @system.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% system_class.identifying_attributes.each_with_index do |attribute, i| %>
+    <div class="form-group">
+      <%= f.label attribute.to_sym %>
+      <%= f.text_field attribute.to_sym, class:'form-control', required: (true if i == 1) %>  
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_name %><br>
-    <%= f.text_field :contact_name %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_email %><br>
-    <%= f.text_field :contact_email %>
-  </div>
-  <div class="field">
-    <%= f.label :permalink %><br>
-    <%= f.text_field :permalink %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%=f.submit 'Save', class:'btn btn-primary form-control' %>
+  <%= link_to 'Back', systems_path, class: "btn btn-info form-control" %>
 <% end %>

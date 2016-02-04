@@ -1,5 +1,4 @@
 class TypesController < ApplicationController
-  before_action :add_client_integration_id, only: [:create, :update]
 
   def create  
     (@object_type=type_class.create(type_params)) rescue RestClient::BadRequest
@@ -24,10 +23,6 @@ private
 
   def stripped_ressource 
     ressource.gsub(/\s+/, '')
-  end
-
-  def add_client_integration_id
-    params[stripped_ressource.underscore.to_sym][:client_integration_id] = EntityTypeServices::Uuid.new.to_s
   end
 
   def with_enum_values?

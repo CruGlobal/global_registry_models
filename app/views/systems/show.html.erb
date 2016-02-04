@@ -1,24 +1,10 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @system.name %>
-</p>
+<% system_class.identifying_attributes.each_with_index do |attribute, i| %>
+    <p>
+      <strong><%= attribute.to_s %></strong>
+      <%= @system.send attribute %>  
+    </p>
+<% end %>
 
-<p>
-  <strong>Contact name:</strong>
-  <%= @system.contact_name %>
-</p>
-
-<p>
-  <strong>Contact email:</strong>
-  <%= @system.contact_email %>
-</p>
-
-<p>
-  <strong>Permalink:</strong>
-  <%= @system.permalink %>
-</p>
-
-<%= link_to 'Edit', edit_system_path(@system) %> |
-<%= link_to 'Back', systems_path %>
+<%= link_to 'Edit', edit_system_path(@system.id), class: "btn btn-success" %> |
+<%= link_to 'Back', systems_path, class: "btn btn-info" %>

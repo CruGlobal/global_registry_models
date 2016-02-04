@@ -1,13 +1,11 @@
 require 'test_helper'
 
 class SystemsControllerTest < ActionController::TestCase
-  setup do
-    @system = systems(:one)
-  end
 
   test "should get index" do
     get :index
     assert_response :success
+    assert_requested :get, "https://stage-api.global-registry.org/systems"
     assert_not_nil assigns(:systems)
   end
 
@@ -17,33 +15,26 @@ class SystemsControllerTest < ActionController::TestCase
   end
 
   test "should create system" do
-    assert_difference('System.count') do
-      post :create, system: { contact_email: @system.contact_email, contact_name: @system.contact_name, name: @system.name, permalink: @system.permalink }
-    end
-
-    assert_redirected_to system_path(assigns(:system))
+    post :create, system: { contact_email: "test@email.com", contact_name: "Mr test", name: "test system", permalink: "test.com" }
+    assert_requested :post, "https://stage-api.global-registry.org/systems", body: '{"system":{"name":"test system","contact_name":"Mr test","contact_email":"test@email.com","permalink":"test.com"}}'
+    assert_redirected_to systems_path
   end
 
   test "should show system" do
-    get :show, id: @system
+    get :show, id: "0000-0000-0000-0001"
     assert_response :success
+    assert_requested :get, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001"
   end
 
   test "should get edit" do
-    get :edit, id: @system
+    get :edit, id: "0000-0000-0000-0001"
     assert_response :success
+    assert_requested :get, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001"
   end
 
   test "should update system" do
-    patch :update, id: @system, system: { contact_email: @system.contact_email, contact_name: @system.contact_name, name: @system.name, permalink: @system.permalink }
-    assert_redirected_to system_path(assigns(:system))
-  end
-
-  test "should destroy system" do
-    assert_difference('System.count', -1) do
-      delete :destroy, id: @system
-    end
-
+    patch :update, id: "0000-0000-0000-0001", system: { contact_email: "test@email.com", contact_name: "Mr test", name: "test system", permalink: "test.com" }
     assert_redirected_to systems_path
   end
+
 end

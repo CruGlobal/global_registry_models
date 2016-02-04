@@ -305,50 +305,50 @@ stub_request(:get, "https://stage-api.global-registry.org/measurement_types?filt
 ## Create entity types
 
   stub_request(:post, "https://stage-api.global-registry.org/entity_types").
-  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'152', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"entity_type\":{\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'98', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
 ## Update entity types
 
 stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-sx033").
-  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'152', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"entity_type\":{\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'98', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
 ## Create relationship types
 
   stub_request(:post, "https://stage-api.global-registry.org/relationship_types").
-  with(:body => "{\"relationship_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'186', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"relationship_type\":{\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'132', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"relationship_type\":{\"id\":\"0000-0000-0000-0001\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}", :headers => {})
 
 ## Update relationship types
 
   stub_request(:put, "https://stage-api.global-registry.org/relationship_types/a0xxs00a-sx033").
-  with(:body => "{\"relationship_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'186', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"relationship_type\":{\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'132', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"relationship_type\":{\"id\":\"0000-0000-0000-0001\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"entity_type1_id\":\"ss5sasxxs5\",\"relationship1\":\"father\",\"entity_type2_id\":\"ss5sasxxs5\",\"relationship2\":\"son\"}}", :headers => {})
 
 ## Create measurement types
 
  stub_request(:post, "https://stage-api.global-registry.org/measurement_types").
-  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'213', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'159', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"measurement_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}", :headers => {})
 
 ## Update measurement types
 
   stub_request(:put, "https://stage-api.global-registry.org/measurement_types/ss0066sx").
-  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'213', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'159', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"measurement_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}", :headers => {})
   
 ## Create Subscriptions
 
   stub_request(:post, "https://stage-api.global-registry.org/subscriptions").
-  with(:body => "{\"subscription\":{\"entity_type_id\":\"0000-00023-00\",\"endpoint\":\"http://test.host\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'135', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"subscription\":{\"entity_type_id\":\"0000-00023-00\",\"endpoint\":\"http://test.host\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'81', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "", :headers => {})
 
 ## Delete Subscriptions
@@ -376,6 +376,96 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
             "total_pages": 1
         }
     }))
+
+  ## Get all systems
+
+  stub_request(:get, "https://stage-api.global-registry.org/systems").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => %({
+    "systems": [
+        {
+            "id": "4686168e-3f37-11e4-a741-12c37bb2d521",
+            "name": "mark knutsen",
+            "created_at": "2014-09-18T13:25:36.678Z",
+            "updated_at": "2015-04-09T18:59:07.680Z",
+            "contact_name": "Mark Knutsen",
+            "contact_email": "mark.knutsen@cru.org",
+            "permalink": "mark_knutsen"
+        },
+        {
+            "id": "14e696a6-e443-11e4-8e77-12c37bb2d521",
+            "name": "mark test",
+            "created_at": "2015-04-16T14:15:49.256Z",
+            "updated_at": "2015-04-16T14:16:21.523Z",
+            "contact_name": "Mark Knutsen",
+            "contact_email": "mark.knutsen@cru.org",
+            "permalink": "mark_test"
+        }
+      ]
+    }))
+
+  stub_request(:get, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => %({
+    "system": {
+        "id": "0000-0000-0000-0001",
+        "name": "mark test",
+        "created_at": "2015-04-16T14:15:49.256Z",
+        "updated_at": "2015-04-16T14:16:21.523Z",
+        "contact_name": "Mark Knutsen",
+        "contact_email": "mark.knutsen@cru.org",
+        "permalink": "mark_test",
+        "root": false,
+        "is_trusted": false,
+        "access_token": "your_access_token",
+        "trusted_ips": [
+            "208.31.255.33"
+        ]
+      }
+    }))
+
+  stub_request(:put, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001").
+  with(:body => "{\"system\":{\"name\":\"test system\",\"contact_name\":\"Mr test\",\"contact_email\":\"test@email.com\",\"permalink\":\"test.com\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'114', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => %({
+    "system": {
+        "id": "0000-0000-0000-0001",
+        "name": "test system",
+        "created_at": "2015-04-16T14:15:49.256Z",
+        "updated_at": "2015-04-16T14:16:21.523Z",
+        "contact_name": "Mr test",
+        "contact_email": "test@email.com",
+        "permalink": "test.com",
+        "root": false,
+        "is_trusted": false,
+        "access_token": "your_access_token",
+        "trusted_ips": [
+            "208.31.255.33"
+        ]
+      }
+    }))
+
+  stub_request(:post, "https://stage-api.global-registry.org/systems").
+  with(:body => "{\"system\":{\"name\":\"test system\",\"contact_name\":\"Mr test\",\"contact_email\":\"test@email.com\",\"permalink\":\"test.com\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'114', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => %({
+    "system": {
+        "id": "0000-0000-0000-0001",
+        "name": "test system",
+        "created_at": "2015-04-16T14:15:49.256Z",
+        "updated_at": "2015-04-16T14:16:21.523Z",
+        "contact_name": "Mr test",
+        "contact_email": "test@email.com",
+        "permalink": "test.com",
+        "root": false,
+        "is_trusted": false,
+        "access_token": "your_access_token",
+        "trusted_ips": [
+            "208.31.255.33"
+        ]
+      }
+    }))
+
   end
 end
 

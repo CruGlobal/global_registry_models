@@ -1,74 +1,50 @@
 class SystemsController < ApplicationController
-  before_action :set_system, only: [:show, :edit, :update, :destroy]
+  before_action :set_system, only: [:show, :edit]
 
-  # GET /systems
-  # GET /systems.json
   def index
-    @systems = System.all
+    @systems = GlobalRegistryModels::System::System.search
   end
 
-  # GET /systems/1
-  # GET /systems/1.json
   def show
   end
 
-  # GET /systems/new
   def new
-    @system = System.new
   end
 
-  # GET /systems/1/edit
   def edit
   end
 
-  # POST /systems
-  # POST /systems.json
   def create
-    @system = System.new(system_params)
-
-    respond_to do |format|
-      if @system.save
-        format.html { redirect_to @system, notice: 'System was successfully created.' }
-        format.json { render :show, status: :created, location: @system }
-      else
-        format.html { render :new }
-        format.json { render json: @system.errors, status: :unprocessable_entity }
-      end
-    end
+    save_system
   end
 
-  # PATCH/PUT /systems/1
-  # PATCH/PUT /systems/1.json
   def update
-    respond_to do |format|
-      if @system.update(system_params)
-        format.html { redirect_to @system, notice: 'System was successfully updated.' }
-        format.json { render :show, status: :ok, location: @system }
-      else
-        format.html { render :edit }
-        format.json { render json: @system.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /systems/1
-  # DELETE /systems/1.json
-  def destroy
-    @system.destroy
-    respond_to do |format|
-      format.html { redirect_to systems_url, notice: 'System was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    save_system
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_system
-      @system = System.find(params[:id])
+
+    def save_system
+      begin
+        system_class.update(params[:id], systems_params) if params[:id]
+        system_class.create(systems_params) unless params[:id]
+      rescue RestClient::BadRequest
+        flash[:error] = 'An error has occured'
+      else
+        flash[:success] = 'System was successfully updated.'
+      end
+      redirect_to systems_url
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def system_params
+    def system_class
+      GlobalRegistryModels::System::System
+    end
+
+    def set_system
+      @system = GlobalRegistryModels::System::System.find params[:id]
+    end
+
+    def systems_params
       params.require(:system).permit(:name, :contact_name, :contact_email, :permalink)
     end
 end
