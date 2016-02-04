@@ -10,9 +10,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    params[:subscription][:endpoint] = root_url
     params[:subscription][:client_integration_id] = EntityTypeServices::Uuid.new.to_s
-    puts subscription_params
     begin
       GlobalRegistryModels::Subscription::Subscription.create(subscription_params)
     rescue RestClient::BadRequest

@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th> Entity type </th>
-      <th> </th>
+      <th> Endpoint </th>
       <th> </th>
       <th> </th>
     </tr>
@@ -13,6 +13,7 @@
     <% @subscriptions.each do |subscription| %>
       <tr>
         <td><%= entity_type_name(subscription.entity_type_id) %></td>
+        <td><%= subscription.endpoint %></td>
         <td><%= link_to 'Unsubscribe', "subscriptions/#{subscription.id}", data: {:confirm => 'Are you sure?'}, :method => :delete %></td>
       </tr>
     <% end %>

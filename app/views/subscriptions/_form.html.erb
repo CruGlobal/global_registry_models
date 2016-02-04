@@ -7,6 +7,10 @@
   </div>
 
   <div class="form-group">
+    <%= f.text_field :endpoint, class: "form-control", placeholder: "The url endpoint starting with http://..", :required => true  %>
+  </div>
+
+  <div class="form-group">
     <%= f.submit "Subscribe", class:"form-control btn btn-primary" %>
   </div>
   
