@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :systems
   resources :subscriptions, only: [:index, :create, :new, :destroy]
   resources :export_csvs, only: :create
 
