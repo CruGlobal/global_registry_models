@@ -16,8 +16,8 @@ class SubscriptionsControllerTest < ActionController::TestCase
   end
 
   test "should create subscription" do
-    post :create, subscription: { entity_type_id: "0000-00023-00" }
-    assert_requested :post, "https://stage-api.global-registry.org/subscriptions", body: '{"subscription":{"entity_type_id":"0000-00023-00","endpoint":"http://test.host/","client_integration_id":"5197-11E5-B6A3-3087D5902334"}}'
+    post :create, subscription: { entity_type_id: "0000-00023-00", endpoint: "http://test.host" }
+    assert_requested :post, "https://stage-api.global-registry.org/subscriptions", body: '{"subscription":{"entity_type_id":"0000-00023-00","endpoint":"http://test.host","client_integration_id":"5197-11E5-B6A3-3087D5902334"}}'
     assert_redirected_to subscriptions_path
   end
 

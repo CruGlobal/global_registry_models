@@ -347,8 +347,8 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
 ## Create Subscriptions
 
   stub_request(:post, "https://stage-api.global-registry.org/subscriptions").
-  with(:body => "{\"subscription\":{\"entity_type_id\":\"0000-00023-00\",\"endpoint\":\"http://test.host/\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'136', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"subscription\":{\"entity_type_id\":\"0000-00023-00\",\"endpoint\":\"http://test.host\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'135', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "", :headers => {})
 
 ## Delete Subscriptions
