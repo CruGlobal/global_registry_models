@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
+  
   resources :subscriptions, only: [:index, :create, :new, :destroy]
-  resources :export_csvs, only: [:create]
+  resources :export_csvs, only: :create
 
   get 'dashboard/index'
 

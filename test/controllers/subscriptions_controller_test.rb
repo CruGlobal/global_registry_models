@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class SubscriptionsControllerTest < ActionController::TestCase
-  setup do
-    @subscription = subscriptions(:one)
-  end
 
   test "should get index" do
     get :index
@@ -19,16 +16,14 @@ class SubscriptionsControllerTest < ActionController::TestCase
   end
 
   test "should create subscription" do
-    assert_difference('Subscription.count') do
-      post :create, subscription: { entity_type_id: @subscription.entity_type_id }
-    end
+    post :create, subscription: { entity_type_id: "0000-00023-00" }
+    assert_requested :post, "https://stage-api.global-registry.org/subscriptions", body: '{"subscription":{"entity_type_id":"0000-00023-00","endpoint":"http://test.host/","client_integration_id":"5197-11E5-B6A3-3087D5902334"}}'
     assert_redirected_to subscriptions_path
   end
 
   test "should destroy subscription" do
-    assert_difference('Subscription.count', -1) do
-      delete :destroy, id: @subscription
-    end
+    delete :destroy, id: "0000-0000-0001"
+    assert_requested :delete, "https://stage-api.global-registry.org/subscriptions/0000-0000-0001"
     assert_redirected_to subscriptions_path
   end
 end

@@ -37,6 +37,11 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Setting default host
+  config.after_initialize do
+    Rails.application.routes.default_url_options[:host] = 'test.host.com'
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

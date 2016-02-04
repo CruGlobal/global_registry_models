@@ -305,14 +305,14 @@ stub_request(:get, "https://stage-api.global-registry.org/measurement_types?filt
 ## Create entity types
 
   stub_request(:post, "https://stage-api.global-registry.org/entity_types").
-  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"Entity Type 1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
+  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
        :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'152', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
 ## Update entity types
 
 stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-sx033").
-  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"Entity Type 1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
+  with(:body => "{\"entity_type\":{\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"name\":\"entity_type_1\",\"description\":\"a great entity type\",\"field_type\":\"string\"}}",
        :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'152', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"entity_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"name_one\",\"description\":\"a good description\",\"field_type\":\"string\",\"client_integration_id\":\"1\"}}", :headers => {})
 
@@ -333,17 +333,49 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
 ## Create measurement types
 
  stub_request(:post, "https://stage-api.global-registry.org/measurement_types").
-  with(:body => "{\"measurement_type\":{\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'143', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'213', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"measurement_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}", :headers => {})
 
 ## Update measurement types
 
   stub_request(:put, "https://stage-api.global-registry.org/measurement_types/ss0066sx").
-  with(:body => "{\"measurement_type\":{\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
-       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'143', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  with(:body => "{\"measurement_type\":{\"name\":\"new_staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\",\"frequency\":\"1\",\"unit\":\"people\",\"related_entity_type_id\":\"12sdasda12\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'213', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "{\"measurement_type\":{\"id\":\"0000-0000-0000-0001\",\"name\":\"New Staff\",\"description\":\"A description\",\"perm_link\":\"LMI\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}", :headers => {})
   
+## Create Subscriptions
+
+  stub_request(:post, "https://stage-api.global-registry.org/subscriptions").
+  with(:body => "{\"subscription\":{\"entity_type_id\":\"0000-00023-00\",\"endpoint\":\"http://test.host/\",\"client_integration_id\":\"5197-11E5-B6A3-3087D5902334\"}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'136', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "", :headers => {})
+
+## Delete Subscriptions
+
+  stub_request(:delete, "https://stage-api.global-registry.org/subscriptions/0000-0000-0001").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "", :headers => {})
+
+## Search subscriptions
+
+  stub_request(:get, "https://stage-api.global-registry.org/subscriptions").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => %({
+    "subscriptions": [
+            {
+                "id": "2c82ceda-346a-11e4-a7c1-2344fd6feb74",
+                "entity_type_id": "2c8244ec-346a-11e4-a7c0-e3d3f75d53d0",
+                "endpoint": "test.com"
+            }
+        ],
+        "meta": {
+            "from": 1,
+            "page": 1,
+            "to": 1,
+            "total_pages": 1
+        }
+    }))
   end
 end
 

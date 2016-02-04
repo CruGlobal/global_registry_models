@@ -19,7 +19,7 @@ class MeasurementTypesControllerTest < ActionController::TestCase
   private
 
   def measurement_type_params
-    {name: "New Staff", perm_link: "LMI", description: "A description"}
+    { name: "New Staff", perm_link: "LMI", description: "A description", frequency: "1", unit: "people", related_entity_type_id: "12sdasda12" }
   end
 
   def class_name
