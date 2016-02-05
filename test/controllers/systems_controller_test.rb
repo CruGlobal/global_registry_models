@@ -7,11 +7,13 @@ class SystemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_requested :get, "https://stage-api.global-registry.org/systems"
     assert_not_nil assigns(:systems)
+    assert_not_nil assigns(:current_system)
   end
 
   test "should get new" do
     get :new
     assert_response :success
+    assert_not_nil assigns(:current_system)
   end
 
   test "should create system" do
@@ -23,12 +25,14 @@ class SystemsControllerTest < ActionController::TestCase
   test "should show system" do
     get :show, id: "0000-0000-0000-0001"
     assert_response :success
+    assert_not_nil assigns(:current_system)
     assert_requested :get, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001"
   end
 
   test "should get edit" do
     get :edit, id: "0000-0000-0000-0001"
     assert_response :success
+    assert_not_nil assigns(:current_system)
     assert_requested :get, "https://stage-api.global-registry.org/systems/0000-0000-0000-0001"
   end
 
