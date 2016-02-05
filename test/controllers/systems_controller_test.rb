@@ -43,7 +43,7 @@ class SystemsControllerTest < ActionController::TestCase
   end
 
    test "should reset access_token" do
-    patch :reset_token, system_id: "0000-0000-0000-0001"
+    post :reset_token, reset_token: { system_id: "0000-0000-0000-0001" }
     assert_requested :post, "https://stage-api.global-registry.org/systems/reset_access_token?id=0000-0000-0000-0001"
     assert_redirected_to edit_system_path("0000-0000-0000-0001")
   end

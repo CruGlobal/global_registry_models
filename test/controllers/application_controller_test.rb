@@ -80,4 +80,15 @@ class ApplicationControllerTest < ActionController::TestCase
       assert_equal users(:one).last_name, 'Newlastname'
     end
   end
+
+  test 'access_token is changed after cookie is changed when signed-in' do
+    with_test_routing do
+      cookies[:access_token] = "A00AA100321.A00AA100321"
+      sign_in users(:one)
+      get :test_authenticate_user_action
+      assert_equal "A00AA100321.A00AA100321", GlobalRegistry.access_token
+      cookies.delete :access_token
+    end
+  end
+
 end

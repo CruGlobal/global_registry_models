@@ -1,3 +1,4 @@
+
 GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token]
 raise 'No Global Registry access token specified!' unless GlobalRegistry.access_token.present?
 

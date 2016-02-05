@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
   resources :systems, except: :delete do 
-    post :reset_token
+    post '/reset_token', on: :collection, action: 'reset_token'
+  end
+  namespace :access_tokens do
+    get '/edit', action: 'edit'
+    post '/', action: 'update'
   end
   resources :subscriptions, only: [:index, :create, :new, :destroy]
   resources :export_csvs, only: :create

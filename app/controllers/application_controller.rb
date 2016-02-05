@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  before_action :assign_access_token
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -45,6 +45,14 @@ class ApplicationController < ActionController::Base
                                      first_name: session['cas']['extra_attributes']['firstName'],
                                      last_name: session['cas']['extra_attributes']['lastName'])
       current_user.save if current_user.changed?
+    end
+
+    def assign_access_token
+      if cookies[:access_token].present?
+        GlobalRegistry.access_token = cookies[:access_token] 
+      else
+        GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token] 
+      end
     end
 
 end

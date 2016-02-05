@@ -24,7 +24,7 @@ class SystemsController < ApplicationController
   end
 
   def reset_token
-    system = GlobalRegistryModels::System::System.new id: params[:system_id]
+    system = GlobalRegistryModels::System::System.new id: params[:reset_token][:system_id]
     begin
       updated_system = system.reset_access_token
     rescue RestClient::BadRequest
@@ -32,7 +32,7 @@ class SystemsController < ApplicationController
     else
       flash[:success] = "The access token has been resetted to #{updated_system.access_token}."
     end
-    redirect_to edit_system_path(params[:system_id])
+    redirect_to edit_system_path(params[:reset_token][:system_id])
   end
 
   private
