@@ -1,16 +1,18 @@
 <div class="row">
-  <%= form_for('system', url:'/systems', html: { class: "col-sm-6 col-sm-offset-3" } ) do |f| %>
-
-    <% relevant_attributes.each do |attribute| %>
-      <div class="form-group">
-        <%= f.label attribute.to_sym %>
-        <%= f.text_field attribute.to_sym, 
-          class:'form-control', 
-          required: (true if attribute == :name), 
-          id: ('tokenfield' if attribute == :trusted_ips) %>  
-      </div>
+  <div class = "col-sm-6 col-sm-offset-3">
+    <%= form_for('system', url:'/systems') do |f| %>
+      <% relevant_attributes.each do |attribute| %>
+        <div class="form-group">
+          <%= f.label attribute.to_sym %>
+          <%= f.text_field attribute.to_sym, 
+            class:'form-control', 
+            required: (true if attribute == :name), 
+            id: ('tokenfield' if attribute == :trusted_ips) %>  
+        </div>
+      <% end %>
+      <div class="form-group"><%=f.submit 'Save', class:'btn btn-primary form-control' %></div>
     <% end %>
-    <div class="form-group"><%=f.submit 'Save', class:'btn btn-primary form-control' %></div>
+    <%= render 'reset_token_form' %>
     <div class="form-group"><%= link_to 'Back', systems_path, class: "btn btn-info form-control" %></div>
-  <% end %>
+  </div>
 </div>

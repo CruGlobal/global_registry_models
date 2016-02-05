@@ -1,0 +1,6 @@
+<% if can_reset? %>
+  <%= form_for 'reset_token', url: 'reset_token' do |f| %>
+    <%= f.hidden_field :system_id, @system.id %>
+    <%= f.submit "Reset Access Token" %>
+  <% end %>
+<% end %>

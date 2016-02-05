@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :systems
+  resources :systems, except: :delete do 
+    post :reset_token
+  end
   resources :subscriptions, only: [:index, :create, :new, :destroy]
   resources :export_csvs, only: :create
 

@@ -23,6 +23,18 @@ class SystemsController < ApplicationController
     save_system
   end
 
+  def reset_token
+    system = GlobalRegistryModels::System::System.new id: params[:system_id]
+    begin
+      updated_system = system.reset_access_token
+    rescue RestClient::BadRequest
+      flash[:error] = "An error has occured."
+    else
+      flash[:success] = "The access token has been resetted to #{updated_system.access_token}."
+    end
+    redirect_to edit_system_path(params[:system_id])
+  end
+
   private
 
     def save_system
@@ -33,7 +45,7 @@ class SystemsController < ApplicationController
       rescue RestClient::BadRequest
         flash[:error] = 'An error has occured'
       else
-        flash[:success] = 'System was successfully updated.'
+        flash[:success] = 'The system was successfully updated.'
       end
       redirect_to systems_url
     end
@@ -47,7 +59,7 @@ class SystemsController < ApplicationController
     end
 
     def set_current_system
-      @current_system = GlobalRegistryModels::System::System.find "deadbeef-dead-beef-dead-beefdeadbeef"
+      @system_of_user = GlobalRegistryModels::System::System.find "deadbeef-dead-beef-dead-beefdeadbeef"
     end
 
     def systems_params
