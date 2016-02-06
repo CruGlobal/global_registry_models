@@ -54,6 +54,7 @@ class ApplicationController < ActionController::Base
         GlobalRegistry.access_token = cookies[:access_token] 
       else
         GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token] 
+        raise 'No Global Registry access token specified!' unless GlobalRegistry.access_token.present?
       end
     end
 
