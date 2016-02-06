@@ -1,6 +1,13 @@
 = simple_form_for user do |f|
-  = f.input :guid, hint: "Other user attributes will be read from the KEY based on the user's GUID."
+  h5 Use either the guid or email:
+  hr
+  = f.input :guid
+  hr
+  = f.input :email
+  hr
   .form-group = f.button :submit, class: 'btn-primary'
+  h5 = "*Other user attributes will be read from the KEY based on the user's GUID or email."
+
 
 - if user.persisted?
   .form-group = button_to 'Delete User', user_path(user), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to delete #{ user }?", disable_with: '...' }

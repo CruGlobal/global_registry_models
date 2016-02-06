@@ -17,9 +17,16 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'POST :create' do
+  test 'POST :create with guid' do
     assert_difference 'User.count', 1 do
       post :create, user: { guid: 'g-u-i-d' }
+    end
+    assert_redirected_to users_path
+  end
+
+  test 'POST :create with email' do
+    assert_difference 'User.count', 1 do
+      post :create, user: { email: 'example@email.com' }
     end
     assert_redirected_to users_path
   end

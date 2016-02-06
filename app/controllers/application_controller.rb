@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.where(guid: request.session['cas']['extra_attributes']['theKeyGuid']).first if cas_signed_in?
+    cas_request = request.session['cas']
+    @current_user ||= User.where("users.email = '#{cas_request['user']}' OR users.guid = '#{cas_request['extra_attributes']['theKeyGuid']}'").first if cas_signed_in?
   end
 
   private
@@ -32,8 +33,8 @@ class ApplicationController < ActionController::Base
 
     def cas_signed_in?
       # thekey.me returns an extra guid attribute, this guid is the unique identifier (not the email)
-      # we will only be signed into cas if we can get this guid
-      request.session.try(:[], 'cas').try(:[], 'extra_attributes').try(:[], 'theKeyGuid').present?
+      # we will only [be signed into cas if we can get this guid
+            request.session.try(:[], 'cas').try(:[], 'extra_attributes').try(:[], 'theKeyGuid').present?
     end
 
     def after_successful_authentication
@@ -43,7 +44,8 @@ class ApplicationController < ActionController::Base
     def update_current_user_from_cas_session
       current_user.assign_attributes(email: session['cas']['user'],
                                      first_name: session['cas']['extra_attributes']['firstName'],
-                                     last_name: session['cas']['extra_attributes']['lastName'])
+                                     last_name: session['cas']['extra_attributes']['lastName'],
+                                     guid: session['cas']['extra_attributes']['theKeyGuid'])
       current_user.save if current_user.changed?
     end
 
