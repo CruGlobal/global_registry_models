@@ -42,7 +42,7 @@ class SystemsController < ApplicationController
       begin
         system_class.update(params[:id], systems_params) if params[:id]
         system_class.create(systems_params) unless params[:id]
-      rescue RestClient::BadRequest
+      rescue RestClient::BadRequest, RuntimeError
         flash[:error] = 'An error has occured'
       else
         flash[:success] = 'The system was successfully updated.'
