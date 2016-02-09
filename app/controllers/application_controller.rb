@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     cas_request = request.session['cas']
-    @current_user ||= User.where("users.email = '#{cas_request['user']}' OR users.guid = '#{cas_request['extra_attributes']['theKeyGuid']}'").first if cas_signed_in?
+    @current_user ||= User.where("users.email = ? OR users.guid = ?", cas_request['user'], cas_request['extra_attributes']['theKeyGuid']).first if cas_signed_in?
   end
 
   private
