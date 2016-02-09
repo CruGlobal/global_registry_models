@@ -36,11 +36,13 @@ module ApplicationHelper
         label_tag(attribute) + case attribute
         when :is_editable, :root
           select name, val, [false, true], {}, {class: 'form-control'}
+        when :data_visibility
+          select name, val, ["public", "private"], {}, {class: 'form-control'}
         when :description
           text_area_tag name, val, class: 'form-control'
         when :trusted_ips
           text_field_tag name, val, id: 'tokenfield', class: 'form-control'
-        when :name
+        when :name, :related_entity_type, :frequency, :perm_link, :unit
           text_field_tag name, val, class: 'form-control', required: true
         else
           text_field_tag name, val, class: 'form-control'

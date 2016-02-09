@@ -24,7 +24,7 @@ class window.FormSetter
       form_groups = @form_groups
       $("##{@parent_id} p").each (index, elem) ->
         form_group= "#{form_groups}:nth-of-type(#{index+1})"
-        $("#{form_group} input, #{form_group} select").val(elem.innerHTML.trim())
+        $("#{form_group} input, #{form_group} select, #{form_group} textarea").val(elem.innerHTML.trim())
     else
       $("#{@form_groups} input[type='text']").val("")
       if @ressource == 'Relationship Type' || @ressource == 'Measurement Type'

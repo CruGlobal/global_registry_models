@@ -7,13 +7,11 @@
       .modal-body
         =form_for 'entity_type', url:'/entity_types' do |f|
           - entity_type_class.identifying_attributes.each_with_index do |attribute, i|
-            .form-group
-              = f.label attribute.to_sym
-              = f.text_field attribute.to_sym, class:'form-control', required: (true if i == 0)
+            = form_attribute_to_field('entity_type', attribute, nil)
           .form-group
             = f.label :enum_values
             = f.text_field :enum_values, class:'form-control'
-          =f.submit 'Save', class:'btn btn-primary form-control'
+          = f.submit 'Save', class:'btn btn-primary form-control'
 
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal" Close

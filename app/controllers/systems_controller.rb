@@ -10,9 +10,12 @@ class SystemsController < ApplicationController
   end
 
   def new
+    @url = "/systems"
   end
 
   def edit
+    @url = "/systems/#{@system.id}"
+    @method = :patch
   end
 
   def create
@@ -63,6 +66,6 @@ class SystemsController < ApplicationController
     end
 
     def systems_params
-      params.require(:system).permit(:name, :contact_name, :contact_email, :permalink)
+      params.require(:system).permit(:name, :contact_name, :contact_email, :permalink, :trusted_ips, :root)
     end
 end
