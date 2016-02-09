@@ -2,13 +2,7 @@
   <div class = "col-sm-6 col-sm-offset-3">
     <%= form_for('system', url:'/systems') do |f| %>
       <% relevant_attributes.each do |attribute| %>
-        <div class="form-group">
-          <%= f.label attribute.to_sym %>
-          <%= f.text_field attribute.to_sym, 
-            class:'form-control', 
-            required: (true if attribute == :name), 
-            id: ('tokenfield' if attribute == :trusted_ips) %>  
-        </div>
+        <%= form_attribute_to_field('system', attribute, @system)%>  
       <% end %>
       <div class="form-group"><%=f.submit 'Save', class:'btn btn-primary form-control' %></div>
     <% end %>

@@ -27,4 +27,26 @@ module ApplicationHelper
     attribute_name.to_s.tr('_', ' ').titleize # Preserves 'id' for attributes ending with '_id'
   end
 
+  def form_attribute_to_field(form_name, attribute, object)
+    unless attribute == :id || attribute == :access_token
+      name = "#{form_name}[#{attribute}]"
+      val = object.send(attribute) if object
+      val = val.join(", ") if val.kind_of?(Array)
+      content_tag(:div, class: 'form-group') do
+        label_tag(attribute) + case attribute
+        when :is_editable, :root
+          select name, val, [false, true], {}, {class: 'form-control'}
+        when :description
+          text_area_tag name, val, class: 'form-control'
+        when :trusted_ips
+          text_field_tag name, val, id: 'tokenfield', class: 'form-control'
+        when :name
+          text_field_tag name, val, class: 'form-control', required: true
+        else
+          text_field_tag name, val, class: 'form-control'
+        end
+      end
+    end
+  end
+
 end

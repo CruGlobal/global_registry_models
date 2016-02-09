@@ -6,7 +6,7 @@ module SystemsHelper
 
   def formatted_value(attribute)
     f_value = @system.send attribute 
-    f_value = f_value.join(",") if f_value.kind_of?(Array)
+    f_value = f_value.join(", ") if f_value.kind_of?(Array)
     f_value
   end
 

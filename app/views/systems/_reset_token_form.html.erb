@@ -1,6 +1,10 @@
 <% if can_reset? %>
-  <%= form_for 'reset_token', url: 'reset_token' do |f| %>
-    <%= f.hidden_field :system_id, @system.id %>
-    <%= f.submit "Reset Access Token" %>
+  <hr>
+  <%= form_for 'reset_token', url: '/systems/reset_token' do |f| %>
+    <%= f.hidden_field :system_id, value: @system.id %>
+    <div class="form-group">
+      <%= f.submit "Reset Access Token", class: "btn btn-warning form-control" %>
+    </div>
   <% end %>
+  <hr>
 <% end %>
