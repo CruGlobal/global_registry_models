@@ -21,14 +21,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_system_of_user
-    begin
-      @system_of_user = GlobalRegistryModels::System::System.find 'deadbeef-dead-beef-dead-beefdeadbeef'
-    rescue RestClient::BadRequest, RuntimeError
-      flash.delete(:success)
-      flash[:error] = "Your access token appears to be invalid."
-      redirect_to access_tokens_edit_path
-      return false
-    end
+    @system_of_user = GlobalRegistryModels::System::System.find 'deadbeef-dead-beef-dead-beefdeadbeef'
+  rescue RestClient::BadRequest, RuntimeError
+    flash.delete(:success)
+    flash[:error] = 'Your access token appears to be invalid.'
+    redirect_to access_tokens_edit_path
+    return false
   end
 
   private
