@@ -1,6 +1,6 @@
 ## Types Controller that relationship types, measurement types and
 # entity types inherit from.
-class TypesController < ApplicationController
+class TypesController < BaseController
   before_action :format_enum_values, only: :update
 
   def create

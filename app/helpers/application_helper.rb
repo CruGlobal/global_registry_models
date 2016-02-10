@@ -34,7 +34,7 @@ module ApplicationHelper
       val = object.send(attribute) if object
       val = val.join(', ') if val.is_a?(Array)
       content_tag(:div, class: 'form-group') do
-        "#{label_tag(attribute)} #{correct_form(attribute, name, val)}"
+        "#{label_tag(attribute)} #{correct_form(attribute, name, val)}".html_safe
       end
     end
   end

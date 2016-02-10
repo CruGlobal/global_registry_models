@@ -1,6 +1,16 @@
 require 'test_helper'
 
 class SubscriptionsControllerTest < ActionController::TestCase
+  def setup
+    sign_in users(:one)
+  end
+
+  test "should not get index when not signed in" do
+    sign_out
+    get :index
+    assert_response 401
+    assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
+  end
 
   test "should get index" do
     get :index

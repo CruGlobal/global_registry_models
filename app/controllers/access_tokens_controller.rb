@@ -1,5 +1,5 @@
 ## AccessTokens Controller
-class AccessTokensController < ApplicationController
+class AccessTokensController < BaseController
   def edit
   end
 

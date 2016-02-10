@@ -18,7 +18,7 @@
         <td><%= link_to system.name, system_path(system.id) %></td>
         <td><%= system.contact_name %></td>
         <td><%= system.contact_email %></td>
-        <td><%= link_to 'Edit', edit_system_path(system.id) %></td>
+        <td><%= if can_edit?(system) then link_to('Edit', edit_system_path(system.id)) end %></td>
       </tr>
     <% end %>
   </tbody>

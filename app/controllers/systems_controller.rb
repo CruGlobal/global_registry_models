@@ -1,5 +1,5 @@
 ## Systems Controller
-class SystemsController < ApplicationController
+class SystemsController < BaseController
   before_action :set_system, only: [:show, :edit]
   before_action :set_system_of_user, only: [:index, :show, :new, :edit]
   before_action :update_params, only: [:update, :create]

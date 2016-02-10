@@ -1,5 +1,5 @@
 ## Subscriptions Controller
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < BaseController
   before_action :fetch_entity_types, only: [:index, :new]
 
   def index

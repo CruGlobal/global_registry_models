@@ -24,7 +24,7 @@ module SystemsHelper
     @system_of_user == @system
   end
 
-  def can_reset?
-    action_name == 'edit' && (root_user? || system_owner?)
+  def can_edit?(system)
+    root_user? || @system_of_user == system
   end
 end
