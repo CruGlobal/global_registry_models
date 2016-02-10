@@ -1,3 +1,4 @@
+## Subscriptions Controller
 class SubscriptionsController < ApplicationController
   before_action :get_entity_types, only: [:index, :new]
   
@@ -28,11 +29,14 @@ class SubscriptionsController < ApplicationController
 
   private
 
-    def get_entity_types
-      @entity_types = GlobalRegistryModels::EntityType::EntityType.search(page: 1, per_page: 100).order(:name)
-    end
+  def get_entity_types
+    @entity_types =
+    GlobalRegistryModels::EntityType::EntityType.search(page: 1, per_page: 100)
+                                                .order(:name)
+  end
 
-    def subscription_params
-      params.require(:subscription).permit(:entity_type_id, :endpoint, :client_integration_id)
-    end
+  def subscription_params
+    params.require(:subscription).permit(:entity_type_id,
+                                         :endpoint, :client_integration_id)
+  end
 end
