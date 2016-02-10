@@ -36,6 +36,5 @@ module GlobalRegistryInterface
       g.template_engine :erb
       g.test_framework  :test_unit, fixture: true
     end
-    
   end
 end

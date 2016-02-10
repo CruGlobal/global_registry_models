@@ -8,8 +8,13 @@ AllCops:
     - script/**/*
     - vendor/**/*
     - bin/**/*
+    - test/**/*
 
-  RunRailsCops: true
+  Rails:
+    Enabled: true
+
+  TargetRubyVersion:
+    2.2
 
 Documentation:
   Enabled: false
@@ -29,4 +34,4 @@ GuardClause:
 
 Style/Lambda:
   Exclude:
-      - config/**/*
+    - config/**/*

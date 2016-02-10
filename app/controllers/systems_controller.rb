@@ -29,8 +29,7 @@ class SystemsController < ApplicationController
   end
 
   def reset_token
-    system = GlobalRegistryModels::System::System
-             .new id: params[:reset_token][:system_id]
+    system = GlobalRegistryModels::System::System.new id: params[:reset_token][:system_id]
     begin
       updated_system = system.reset_access_token
     rescue RestClient::BadRequest
@@ -45,15 +44,17 @@ class SystemsController < ApplicationController
   private
 
   def save_system
-    begin
-      system_class.update(params[:id], systems_params) if params[:id]
-      system_class.create(systems_params) unless params[:id]
-    rescue RestClient::BadRequest, RuntimeError
-      flash[:error] = 'An error has occured'
-    else
-      flash[:success] = 'The system was successfully updated.'
-    end
+    try_saving
     redirect_to systems_url
+  end
+
+  def try_saving
+    system_class.update(params[:id], systems_params) if params[:id]
+    system_class.create(systems_params) unless params[:id]
+  rescue RestClient::BadRequest, RuntimeError
+    flash[:error] = 'An error has occured'
+  else
+    flash[:success] = 'The system was successfully updated.'
   end
 
   def system_class

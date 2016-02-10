@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
 
   def after_successful_authentication
     update_current_user_from_cas_session
+    current_user.save if current_user.changed?
   end
 
   def update_current_user_from_cas_session
@@ -60,7 +61,6 @@ class ApplicationController < ActionController::Base
                                    first_name: extra_attributes['firstName'],
                                    last_name: extra_attributes['lastName'],
                                    guid: extra_attributes['theKeyGuid'])
-    current_user.save if current_user.changed?
   end
 
   def assign_access_token

@@ -1,12 +1,12 @@
+## Systems Helper
 module SystemsHelper
-
   def system_class
     GlobalRegistryModels::System::System
   end
 
   def formatted_value(attribute)
-    f_value = @system.send attribute 
-    f_value = f_value.join(", ") if f_value.kind_of?(Array)
+    f_value = @system.send attribute
+    f_value = f_value.join(', ') if f_value.is_a?(Array)
     f_value
   end
 
@@ -25,7 +25,6 @@ module SystemsHelper
   end
 
   def can_reset?
-    action_name == "edit" && (root_user? || system_owner?)
+    action_name == 'edit' && (root_user? || system_owner?)
   end
-
 end

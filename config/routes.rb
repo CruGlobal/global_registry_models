@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  resources :systems, except: :delete do 
+  resources :systems, except: :delete do
     post '/reset_token', on: :collection, action: 'reset_token'
   end
   namespace :access_tokens do
@@ -37,5 +36,4 @@ Rails.application.routes.draw do
   end
 
   root 'dashboard#index'
-
 end

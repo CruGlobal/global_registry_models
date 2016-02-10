@@ -4,10 +4,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, unless: -> (user) { user.guid.present? }
 
   def to_s
-    case true
-    when name.present?
+    if name.present?
       name
-    when email.present?
+    elsif email.present?
       email
     else
       guid
