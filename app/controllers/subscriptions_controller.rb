@@ -1,18 +1,18 @@
 ## Subscriptions Controller
 class SubscriptionsController < ApplicationController
-  before_action :get_entity_types, only: [:index, :new]
-  
+  before_action :fetch_entity_types, only: [:index, :new]
+
   def index
     @subscriptions = GlobalRegistryModels::Subscription::Subscription.search
   end
 
   def new
-
   end
 
   def create
     begin
-      GlobalRegistryModels::Subscription::Subscription.create(subscription_params)
+      GlobalRegistryModels::Subscription::Subscription
+        .create(subscription_params)
     rescue RestClient::BadRequest
       flash[:error] = 'An error has occured'
     else
@@ -29,10 +29,11 @@ class SubscriptionsController < ApplicationController
 
   private
 
-  def get_entity_types
+  def fetch_entity_types
     @entity_types =
-    GlobalRegistryModels::EntityType::EntityType.search(page: 1, per_page: 100)
-                                                .order(:name)
+      GlobalRegistryModels::EntityType::EntityType
+      .search(page: 1, per_page: 100)
+      .order(:name)
   end
 
   def subscription_params

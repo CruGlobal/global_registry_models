@@ -1,6 +1,8 @@
+## Types Controller that relationship types, measurement types and
+# entity types inherit from.
 class TypesController < ApplicationController
 
-  def create  
+  def create
     (@object_type=type_class.create(type_params)) rescue RestClient::BadRequest
     flash[:success]="Your #{ressource} has been successfully added!" if @object_type
     flash[:error]="An error has occured." unless @object_type
@@ -15,7 +17,7 @@ class TypesController < ApplicationController
     redirect_to entity_types_path
   end
 
-private
+  private
 
   def type_class
     "GlobalRegistryModels::#{stripped_ressource}::#{stripped_ressource}".constantize
