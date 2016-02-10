@@ -1,6 +1,6 @@
 class SystemsController < ApplicationController
   before_action :set_system, only: [:show, :edit]
-  before_action :set_current_system, only: [:index, :show, :new, :edit]
+  before_action :set_system_of_user, only: [:index, :show, :new, :edit]
 
   def index
     @systems = GlobalRegistryModels::System::System.search
@@ -61,7 +61,7 @@ class SystemsController < ApplicationController
       @system = GlobalRegistryModels::System::System.find params[:id]
     end
 
-    def set_current_system
+    def set_system_of_user
       @system_of_user = GlobalRegistryModels::System::System.find "deadbeef-dead-beef-dead-beefdeadbeef"
     end
 

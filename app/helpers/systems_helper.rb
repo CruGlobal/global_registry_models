@@ -21,7 +21,7 @@ module SystemsHelper
   end
 
   def system_owner?
-    @current_system == @system
+    @system_of_user == @system
   end
 
   def can_reset?
