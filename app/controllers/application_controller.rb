@@ -20,6 +20,17 @@ class ApplicationController < ActionController::Base
                                  guid).first if cas_signed_in?
   end
 
+  def set_system_of_user
+    begin
+      @system_of_user = GlobalRegistryModels::System::System.find 'deadbeef-dead-beef-dead-beefdeadbeef'
+    rescue RestClient::BadRequest, RuntimeError
+      flash.delete(:success)
+      flash[:error] = "Your access token appears to be invalid."
+      redirect_to access_tokens_edit_path
+      return false
+    end
+  end
+
   private
 
   def authenticate_user

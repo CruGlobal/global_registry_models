@@ -71,11 +71,6 @@ class SystemsController < ApplicationController
     @system = GlobalRegistryModels::System::System.find params[:id]
   end
 
-  def set_system_of_user
-    @system_of_user = GlobalRegistryModels::System::System
-                      .find 'deadbeef-dead-beef-dead-beefdeadbeef'
-  end
-
   def systems_params
     params.require(:system)
           .permit(:name, :contact_name, :contact_email,
