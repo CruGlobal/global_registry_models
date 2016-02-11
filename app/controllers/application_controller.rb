@@ -1,3 +1,4 @@
+require 'global_registry_models/system'
 ## Application Controller
 class ApplicationController < ActionController::Base
   before_action :assign_access_token
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_system_of_user
-    @system_of_user = GlobalRegistryModels::System::System.find 'deadbeef-dead-beef-dead-beefdeadbeef'
+    @system_of_user = GlobalRegistryModels::System::System.find_current_system
   rescue RestClient::BadRequest, RuntimeError
     flash.delete(:success)
     flash[:error] = 'Your access token appears to be invalid.'

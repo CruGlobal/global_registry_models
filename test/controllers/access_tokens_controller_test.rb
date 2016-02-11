@@ -6,6 +6,13 @@ class AccessTokensControllerTest < ActionController::TestCase
     sign_in users(:one)
   end
 
+  test "should not get edit when not signed in" do
+    sign_out
+    get :edit
+    assert_response 401
+    assert_not_requested :get, "https://stage-api.global-registry.org/access_tokens/edit"
+  end
+
   test "should get edit" do
     get :edit, id: 1
     assert_response :success
