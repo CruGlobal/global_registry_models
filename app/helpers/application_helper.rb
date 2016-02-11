@@ -1,8 +1,6 @@
 ## Application helper
 module ApplicationHelper
-  # rubocop:disable ClassVars
-  @@field_types = %w(boolean date datetime decimal email enum_values float integer string text uuid)
-  # rubocop:enable ClassVars
+  FIELD_TYPES = %w(boolean date datetime decimal email enum_values float integer string text uuid).freeze
 
   def flash_type_to_bootstrap_class(type)
     case type.to_s
@@ -44,7 +42,6 @@ module ApplicationHelper
   end
 
   # rubocop:disable MethodLength, CyclomaticComplexity
-
   def correct_field(attribute, name, val)
     case attribute
     when :is_editable, :root
@@ -52,7 +49,7 @@ module ApplicationHelper
     when :data_visibility
       select_tag name, options_for_select(%w(public private)), selected: val, class: 'form-control'
     when :field_type
-      select_tag name, options_for_select(@@field_types), selected: val, class: 'form-control'
+      select_tag name, options_for_select(FIELD_TYPES), selected: val, class: 'form-control'
     when :description
       text_area_tag name, val, class: 'form-control'
     when :trusted_ips
