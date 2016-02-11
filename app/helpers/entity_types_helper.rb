@@ -45,12 +45,12 @@ module EntityTypesHelper
 
   def build_string(rel_type, f_i, s_i)
     "<h5 id='description-#{rel_type.id}'>
-      #{f_i.entity_type}
-      <p style='display:none;'>#{find_id(f_i.entity_type)}</p>
-      <--- ( <p>#{f_i.relationship_name}</p> /
-      <p style='display:none;'>#{find_id(s_i.entity_type)}</p>
-      <p>#{s_i.relationship_name}</p> ) --->
-      #{s_i.entity_type}
-      <a href='#'>Edit</a></h5>"
+    #{f_i.entity_type}
+    <p style='display:none;'>#{find_id(f_i.entity_type)}</p>
+    <--- ( <p>#{f_i.relationship_name}</p> /
+    <p style='display:none;'>#{find_id(s_i.entity_type)}</p>
+    <p>#{s_i.relationship_name}</p> ) --->
+    #{s_i.entity_type}
+    <a href='#'>Edit</a></h5>"
   end
 end

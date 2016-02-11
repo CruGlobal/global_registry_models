@@ -29,14 +29,12 @@ class TypesController < BaseController
 
   def format_enum_values
     if with_enum_values?
-      params[:entity_type][:enum_values] =
-        params[:entity_type][:enum_values].split(', ')
+      params[:entity_type][:enum_values] = params[:entity_type][:enum_values].split(', ')
     end
   end
 
   def type_class
-    "GlobalRegistryModels::#{stripped_ressource}::#{stripped_ressource}"
-      .constantize
+    "GlobalRegistryModels::#{stripped_ressource}::#{stripped_ressource}".constantize
   end
 
   def stripped_ressource

@@ -3,7 +3,7 @@ require 'test_helper'
 class ExportCsvTest < ActiveSupport::TestCase
 
   test '#export!' do
-    GlobalRegistry.access_token ||= Rails.application.secrets[:global_registry_access_token]
+    GlobalRegistry.access_token ||= 'test'
     export_csv = ExportCsv.new entity_class: GlobalRegistryModels::Entity::Test, filters: {}
     export_csv.export! do |file_name, file|
       assert_equal 'nebo_tests_export.csv', file_name

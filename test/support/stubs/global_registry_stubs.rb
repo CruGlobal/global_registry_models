@@ -529,6 +529,7 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
         ]
       }
     }))
+
   end
 end
 

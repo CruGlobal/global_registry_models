@@ -10,9 +10,6 @@ AllCops:
     - bin/**/*
     - test/**/*
 
-  Rails:
-    Enabled: true
-
   TargetRubyVersion:
     2.2
 
