@@ -3,7 +3,7 @@ module GlobalRegistryModels
   module System
     class System < Base
       def self.find_current_system
-        self.find 'deadbeef-dead-beef-dead-beefdeadbeef'
+        find 'deadbeef-dead-beef-dead-beefdeadbeef'
       end
     end
   end

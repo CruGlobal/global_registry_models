@@ -45,11 +45,11 @@ module ApplicationHelper
   def correct_field(attribute, name, val)
     case attribute
     when :is_editable, :root
-      select_tag name, options_for_select([true, false]), selected: val, class: 'form-control'
+      select_tag name, options_for_select([true, false], val), class: 'form-control'
     when :data_visibility
-      select_tag name, options_for_select(%w(public private)), selected: val, class: 'form-control'
+      select_tag name, options_for_select(%w(public private), val), class: 'form-control'
     when :field_type
-      select_tag name, options_for_select(FIELD_TYPES), selected: val, class: 'form-control'
+      select_tag name, options_for_select(FIELD_TYPES, val), class: 'form-control'
     when :description
       text_area_tag name, val, class: 'form-control'
     when :trusted_ips
