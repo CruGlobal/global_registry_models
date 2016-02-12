@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   resources :systems, except: :delete do
     post '/reset_token', on: :collection, action: 'reset_token'
@@ -36,4 +37,6 @@ Rails.application.routes.draw do
   end
 
   root 'dashboard#index'
+
+  mount Sidekiq::Web => '/sidekiq'
 end

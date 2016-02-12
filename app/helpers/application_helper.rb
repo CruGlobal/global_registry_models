@@ -1,6 +1,6 @@
 ## Application helper
 module ApplicationHelper
-  FIELD_TYPES = %w(boolean date datetime decimal email enum_values float integer string text uuid).freeze
+  FIELD_TYPES = %w(boolean date datetime decimal email entity enum_values float integer string text universal_entity uuid).freeze
 
   def flash_type_to_bootstrap_class(type)
     case type.to_s
