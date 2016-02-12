@@ -15,7 +15,6 @@ gem 'bootstrap_tokenfield_rails', '~> 0.12.1' # For tokenfields
 gem 'global_registry', '1.0.7'
 gem 'global_registry_models', '0.9.1'
 
-
 gem 'roo', '~> 2.0.1'
 gem 'rollbar', '~> 2.1.1'
 gem 'virtus', '~> 1.0.5'
@@ -28,22 +27,22 @@ gem 'simple_form', '~> 3.1.1'
 gem 'kaminari', '~> 0.16.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'sidekiq', '~> 3.5.0'
-gem 'sinatra', :require => nil
+gem 'sinatra', require: nil
 
 group :development, :test do
-  gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'byebug', '~> 8.2.2' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry', '~> 0.10.3'
+  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-stack_explorer', '~> 0.4.9.2'
+  gem 'spring', '~> 1.6.3' # Keeps your application running in the background. Read more: https://github.com/rails/spring
   gem 'dotenv-rails', '~> 2.0.2'
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'pry-stack_explorer'
 end
 
 group :development do
-  gem 'letter_opener'
+  gem 'letter_opener', '~> 1.4.1'
   gem 'rubocop', '~> 0.36.0'
-  gem 'httplog', require: true
+  gem 'httplog', '~> 0.3.0', require: true
+  gem 'web-console', '~> 3.1.1' # Access an IRB console on exception pages or by using <%= console %> in views
 end
 
 group :test do
