@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
 
   root 'dashboard#index'
-
-  mount Sidekiq::Web => '/sidekiq'
+  
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development? 
 end

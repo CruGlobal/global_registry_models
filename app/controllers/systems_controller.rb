@@ -74,6 +74,6 @@ class SystemsController < BaseController
   def systems_params
     params.require(:system)
           .permit(:name, :contact_name, :contact_email,
-                  :permalink, :trusted_ips, :root)
+                  :permalink, :root, trusted_ips: [])
   end
 end
