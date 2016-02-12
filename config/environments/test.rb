@@ -37,6 +37,10 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Logs
+  config.logger = Logger.new(STDOUT)
+  config.log_level = :error
+
   # Setting default host
   config.after_initialize do
     Rails.application.routes.default_url_options[:host] = 'test.host.com'

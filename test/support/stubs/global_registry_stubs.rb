@@ -530,6 +530,10 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
       }
     }))
 
+  stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test_timeout&page=1").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 504, :body => "", :headers => {})
+
   end
 end
 

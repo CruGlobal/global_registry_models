@@ -6,7 +6,7 @@ class ExportCsvJob < ActiveJob::Base
              .safe_constantize, filters: filters, email: email).export! do |file_name, file|
       ExportCsvMailer.send_export(email, file_name, file.path).deliver_now
     end
-  rescue Net::HTTPGatewayTimeOut
-    ExportCsvMailer.send_export(email, entity_class_name).deliver_now
+  rescue RuntimeError
+    ExportCsvMailer.send_error(email, entity_class_name).deliver_now
   end
 end

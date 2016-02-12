@@ -46,6 +46,9 @@ module GlobalRegistryModels
       attribute :phone, String
       attribute :name, String
     end
+    
+    class TestTimeout < GlobalRegistryModels::Entity::Base
+    end
   end
 end
 
