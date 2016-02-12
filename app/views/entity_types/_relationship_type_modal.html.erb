@@ -13,11 +13,11 @@
               <%= f.label "entity_type#{index+1}_id", 'Select an entity type' %>
               <%= f.collection_select("entity_type#{index+1}_id", @entity_types,
                   :id, :name,
-                 {:prompt => 'Please select an entity_type'}, class:"form-control") %>
+                 {:prompt => 'Please select an entity_type'}, class:"form-control", required: true) %>
             </div>
             <div class="form-group">
               <%= f.label "relationship#{index+1}", 'Role in relationship' %>
-              <%= f.text_field "relationship#{index+1}", class:"form-control"  %>
+              <%= f.text_field "relationship#{index+1}", class:"form-control", required: true  %>
             </div>
           <% end %>
           <%=f.submit 'Save', class:'btn btn-primary form-control' %>

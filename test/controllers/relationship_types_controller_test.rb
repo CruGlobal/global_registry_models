@@ -6,6 +6,13 @@ class RelationshipTypesControllerTest < ActionController::TestCase
     sign_in users(:one)
   end
 
+  test "should not post when not signed in" do
+    sign_out
+    post :create
+    assert_response 401
+    assert_not_requested :post, "https://stage-api.global-registry.org/relationship_types"
+  end
+
   test 'POST relationship_types' do
     post(:create, relationship_type: relationship_params)
     assert_request_type

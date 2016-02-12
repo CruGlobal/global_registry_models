@@ -37,6 +37,14 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Setting default host
+  config.default_host = 'www.test.host.com'
+
+  # Setting default host
+  config.after_initialize do
+    Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

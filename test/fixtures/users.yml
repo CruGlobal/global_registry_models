@@ -7,7 +7,13 @@ one:
   last_name: User
 
 two:
-  guid: user-two-guid-5197-11E5-961C-7CAA9D6E46F5
-  email: bill@test.com
-  first_name: Bill
-  last_name: Bright
+  guid: user-two-guid-5197-11E5-B6A3-3087D5902334
+  email:
+  first_name:
+  last_name:
+
+three:
+  guid:
+  email: bob_three@internet.com
+  first_name:
+  last_name:

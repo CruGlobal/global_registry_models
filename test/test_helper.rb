@@ -27,6 +27,10 @@ class ActiveSupport::TestCase
     session['cas']['extra_attributes']['lastName'] = user.last_name
   end
 
+  def sign_out
+    session['cas'] = {}
+  end
+
   def assert_request_type
     assert_redirected_to entity_types_path
     assert_instance_of class_name, assigns[:object_type]

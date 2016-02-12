@@ -1,8 +1,8 @@
 require 'securerandom'
-
+## Services related to entity types
 module EntityTypeServices
+  ## Class that generates a uuid
   class Uuid
-
     def initialize
       @uuid = SecureRandom.uuid
     end
@@ -10,6 +10,5 @@ module EntityTypeServices
     def to_s
       @uuid
     end
-
   end
 end

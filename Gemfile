@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the A
 gem 'bootstrap_tokenfield_rails', '~> 0.12.1' # For tokenfields
 
 gem 'global_registry', '1.0.7'
-gem 'global_registry_models', github: 'dafuga/global_registry_models', ref: 'bb633e167f3cdf9a9345a3e4559939df19873818'
+gem 'global_registry_models', '0.9.1'
 
 
 gem 'roo', '~> 2.0.1'
@@ -28,6 +28,7 @@ gem 'simple_form', '~> 3.1.1'
 gem 'kaminari', '~> 0.16.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'sidekiq', '~> 3.5.0'
+gem 'sinatra', :require => nil
 
 group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +42,8 @@ end
 
 group :development do
   gem 'letter_opener'
+  gem 'rubocop', '~> 0.36.0'
+  gem 'httplog', require: true
 end
 
 group :test do

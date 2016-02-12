@@ -1,6 +1,9 @@
 Turbolinks.enableProgressBar()
 
 $(document).on "ready page:load", ->
+
+  $("input#tokenfield").tokenfield()
+
   $('.accordion_button').click -> 
     if $(this).html()=='+'
       $(this).html('-')

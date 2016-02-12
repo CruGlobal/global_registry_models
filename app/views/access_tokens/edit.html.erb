@@ -1,0 +1,11 @@
+<div class="row">
+  <%= form_for('access_token', url: '/access_tokens', html: {class: "col-sm-6 col-sm-offset-3 well"}) do |f| %>
+    <div class="form-group">
+      <%= f.label :token, "Your access token" %>
+      <%= f.text_field :token, value: cookies[:access_token], class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Update Access Token", class: "form-control btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="panel panel-default col-sm-6 col-sm-offset-3">
+    <div class="panel-body">
+      <h3>System Details</h3>
+      <% relevant_attributes.each_with_index do |attribute, i| %>
+          <b><%= attribute.to_s %></b>
+          <p><%= formatted_value(attribute) %></p>
+      <% end %>
+    </div>
+    <%= link_to 'Edit', edit_system_path(@system.id), class: "btn btn-success form-control" %>
+    <%= link_to 'Back', systems_path, class: "btn btn-info form-control" %>
+  </div>
+</div>
+
+

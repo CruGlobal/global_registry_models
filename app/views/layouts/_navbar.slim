@@ -20,6 +20,10 @@
             span.caret
           ul.dropdown-menu
             li = link_to fa_icon('users', text: 'Users'), users_path
+        li = link_to 'Subscriptions', subscriptions_path
+        li = link_to 'Systems', systems_path
+        li = link_to 'Access Token', access_tokens_edit_path
+
       = nav class: 'navbar-right' do
         = link_to fa_icon(:key, text: current_user), 'https://thekey.me/cas/service/selfservice?target=displayAccountDetails', target: '_blank'
         = link_to fa_icon('sign-out', text: 'Sign Out'), session_path, method: :delete

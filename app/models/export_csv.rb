@@ -1,3 +1,4 @@
+## ExportCsv class
 class ExportCsv
   include Virtus.model
 
@@ -17,8 +18,7 @@ class ExportCsv
 
   private
 
-    def file_name
-      @file_name ||= "nebo_#{ entity_class.name.downcase.pluralize }_export.csv"
-    end
-
+  def file_name
+    @file_name ||= "nebo_#{entity_class.name.downcase.pluralize}_export.csv"
+  end
 end

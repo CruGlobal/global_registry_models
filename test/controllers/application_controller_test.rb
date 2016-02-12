@@ -41,14 +41,30 @@ class ApplicationControllerTest < ActionController::TestCase
     end
   end
 
-  test '#authenticate_user finds existing user after successful sign-in' do
+  test '#authenticate_user finds existing user by guid after successful sign-in' do
     with_test_routing do
-      sign_in users(:one)
+      sign_in users(:two)
+      session['cas']['extra_attributes']['theKeyGuid'] = "user-two-guid-5197-11E5-B6A3-3087D5902334"
+      session['cas']['user'] = "random_email@gmail.com"
       assert_no_difference 'User.count' do
         get :test_authenticate_user_action
       end
       assert_response 200
-      assert_equal users(:one), assigns['current_user']
+      assert_equal users(:two), assigns['current_user']
+      assert assigns['current_user'].persisted?
+    end
+  end
+
+  test '#authenticate_user finds existing user by email after successful sign-in' do
+    with_test_routing do
+      sign_in users(:three)
+      session['cas']['extra_attributes']['theKeyGuid'] = "user-random-guid-5197-11E5-B6A3-3087D5902334"
+      session['cas']['user'] = "bob_three@internet.com"      
+      assert_no_difference 'User.count' do
+        get :test_authenticate_user_action
+      end
+      assert_response 200
+      assert_equal users(:three), assigns['current_user']
       assert assigns['current_user'].persisted?
     end
   end
@@ -80,4 +96,15 @@ class ApplicationControllerTest < ActionController::TestCase
       assert_equal users(:one).last_name, 'Newlastname'
     end
   end
+
+  test 'access_token is changed after cookie is changed when signed-in' do
+    with_test_routing do
+      cookies[:access_token] = "A00AA100321.A00AA100321"
+      sign_in users(:one)
+      get :test_authenticate_user_action
+      assert_equal "A00AA100321.A00AA100321", GlobalRegistry.access_token
+      cookies.delete :access_token
+    end
+  end
+
 end

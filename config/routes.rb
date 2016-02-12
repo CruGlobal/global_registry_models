@@ -1,6 +1,14 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
-
-  resources :export_csvs, only: [:create]
+  resources :systems, except: :delete do
+    post '/reset_token', on: :collection, action: 'reset_token'
+  end
+  namespace :access_tokens do
+    get '/edit', action: 'edit'
+    post '/', action: 'update'
+  end
+  resources :subscriptions, only: [:index, :create, :new, :destroy]
+  resources :export_csvs, only: :create
 
   get 'dashboard/index'
 
@@ -20,16 +28,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :relationship_types, only: [:update, :create] do
+  resources :relationship_types, only: :create do
     post '/:id', on: :collection, action: 'update'
   end
 
-  resources :measurement_types, only: [:update, :create] do
+  resources :measurement_types, only: :create do
     post '/:id', on: :collection, action: 'update'
   end
-
-  
 
   root 'dashboard#index'
 
+  mount Sidekiq::Web => '/sidekiq'
 end
