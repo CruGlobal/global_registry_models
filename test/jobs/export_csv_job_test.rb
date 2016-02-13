@@ -18,9 +18,9 @@ class ExportCsvJobTest < ActiveJob::TestCase
   end
 
   test 'delivery sent when timeout' do
-    ActiveSupport::Deprecation.silence { quietly do
+    silence_stream(STDOUT) do
       ExportCsvJob.new.perform entity_class_name: 'test_timeout', filters: {}, email: 'tester@ballistiq.com'
-    end }
+    end
     delivery = ActionMailer::Base.deliveries.last
     assert_equal ['tester@ballistiq.com'], delivery.to
     assert_equal 'Your requst has too many results', delivery.subject
