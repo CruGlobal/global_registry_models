@@ -38,5 +38,12 @@ Rails.application.routes.draw do
 
   root 'dashboard#index'
 
-  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
+  def user_constraint(request, attribute)
+    user_guid = request.session['cas'].try(:[], 'extra_attributes').try(:[], 'theKeyGuid')
+    User.find_by(guid: user_guid).send(attribute) if user_guid.present?
+  end
+
+  constraints -> (request) { user_constraint(request, :developer) } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

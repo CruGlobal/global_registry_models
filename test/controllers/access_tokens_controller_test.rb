@@ -22,14 +22,14 @@ class AccessTokensControllerTest < ActionController::TestCase
     patch :update, id: 1, access_token: { token: "A00XXSCVSX" }
     assert_equal "A00XXSCVSX", cookies[:access_token]
     assert_redirected_to root_url
-    cookies.delete(:access_token)
+    patch :update, id: 1, access_token: { token: '' }
   end
 
   test "should redirect if bad token" do
     patch :update, id: 1, access_token: { token: "BAD_TOKEN" }
     assert_not_nil flash[:error]
     assert_redirected_to access_tokens_edit_path
-    cookies.delete(:access_token)
+    patch :update, id: 1, access_token: { token: '' }
   end
 
 end
