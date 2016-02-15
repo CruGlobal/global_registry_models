@@ -1,2 +1,2 @@
-
-GlobalRegistry.base_url = Rails.env.production? ? 'https://api.global-registry.org/' : 'https://stage-api.global-registry.org/'
+GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token]
+GlobalRegistry.base_url = ENV['API_URL']

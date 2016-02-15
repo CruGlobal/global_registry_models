@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class ExportCsvJobTest < ActiveJob::TestCase
-  GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token]
-
   test '.perform_later' do
     assert_enqueued_with job: ExportCsvJob do
       ExportCsvJob.perform_later entity_class_name: 'test', filters: {}, email: 'tester@ballistiq.com'
