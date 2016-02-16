@@ -15,7 +15,7 @@ class SystemsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_requested :get, "https://stage-api.global-registry.org/systems"
+    assert_requested :get, "https://stage-api.global-registry.org/systems?limit=11&offset=0"
     assert_not_nil assigns(:systems)
     assert_not_nil assigns(:system_of_user)
   end

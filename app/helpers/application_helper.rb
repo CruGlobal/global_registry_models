@@ -1,5 +1,6 @@
 ## Application helper
 module ApplicationHelper
+  include PaginationHelper
   FIELD_TYPES = %w(boolean date datetime decimal email entity enum_values
                    float integer string text universal_entity uuid).freeze
 

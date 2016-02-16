@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc # bundle exec rake doc:rails generates the A
 gem 'bootstrap_tokenfield_rails', '~> 0.12.1' # For tokenfields
 
 gem 'global_registry', '1.0.7'
-gem 'global_registry_models', '0.9.1'
+gem 'global_registry_models', :git => 'https://github.com/dafuga/global_registry_models.git', :ref => '905dc349a823e500dbe2a882e6fca7ecc4a808d3'
 
 
 gem 'roo', '~> 2.0.1'

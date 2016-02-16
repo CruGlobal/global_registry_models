@@ -379,7 +379,7 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
 
   ## Get all systems
 
-  stub_request(:get, "https://stage-api.global-registry.org/systems").
+  stub_request(:get, "https://stage-api.global-registry.org/systems?limit=11&offset=0").
   with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => %({
     "systems": [
