@@ -5,7 +5,7 @@ class SystemsController < BaseController
   before_action :update_params, only: [:update, :create]
 
   def index
-    @per_page = 25
+    @per_page = 80
     @page = params[:page] ||= 1
     @systems = GlobalRegistryModels::System::System.search(page: @page.to_i , per_page: @per_page).order(:name)
   end

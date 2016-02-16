@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/dafuga/global_registry_models.git
-  revision: dde2c75f63015bedbe8f5d7ddb96f8616fab7ed8
-  ref: dde2c75f63015bedbe8f5d7ddb96f8616fab7ed8
+  revision: f3889cb424eb276485f7c6cd836dc91680cd939a
+  ref: f3889cb424eb276485f7c6cd836dc91680cd939a
   specs:
     global_registry_models (0.10.1)
       activemodel (~> 4.2)
@@ -302,7 +302,7 @@ DEPENDENCIES
   font-awesome-rails (~> 4.4.0.0)
   global_registry (= 1.0.7)
   global_registry_models!
-  httplog
+  httplog (~> 0.3.0)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0.4)
   jquery-turbolinks (~> 2.1.0)
