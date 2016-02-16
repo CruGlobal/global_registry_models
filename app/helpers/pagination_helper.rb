@@ -14,6 +14,6 @@ module PaginationHelper
   end
 
   def go_to_page(type, collection)
-    type == 'previous' ? collection.previous_page : collection.next_page
+    type == 'previous' ? collection.prev_page : collection.next_page
   end
 end

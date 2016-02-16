@@ -3,9 +3,10 @@ require 'sidekiq/testing'
 
 class ExportCsvJobTest < ActiveJob::TestCase
   test '.perform_later' do
-    Sidekiq::Testing.fake!
-    assert_enqueued_with job: ExportCsvJob do
-      ExportCsvJob.perform_later entity_class_name: 'test', filters: {}, email: 'tester@ballistiq.com'
+    Sidekiq::Testing.fake! do
+      assert_enqueued_with job: ExportCsvJob do
+        ExportCsvJob.perform_later entity_class_name: 'test', filters: {}, email: 'tester@ballistiq.com'
+      end
     end
   end
 

@@ -7,7 +7,7 @@ class SystemsController < BaseController
   def index
     @per_page = 25
     @page = params[:page] ||= 1
-    @systems = GlobalRegistryModels::System::System.search(page: @page , per_page: @per_page).order(:name)
+    @systems = GlobalRegistryModels::System::System.search(page: @page.to_i , per_page: @per_page).order(:name)
   end
 
   def show
