@@ -1,4 +1,3 @@
-require 'global_registry_models/system'
 ## Application Controller
 class ApplicationController < ActionController::Base
   before_action :assign_access_token

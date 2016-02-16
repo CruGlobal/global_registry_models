@@ -1,6 +1,5 @@
 ## Systems Helper
 module SystemsHelper
-  include PaginationHelper
 
   def system_class
     GlobalRegistryModels::System::System
