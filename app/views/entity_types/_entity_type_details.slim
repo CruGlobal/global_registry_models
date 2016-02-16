@@ -5,9 +5,9 @@
     b Id: 
     h6 = entity_type.id
     - entity_type_class.identifying_attributes.each do |attribute|
-      - unless entity_type.send(attribute).blank?
+      - if entity_type.send(attribute).present?
         b = "#{titleize_attribute attribute} : "
-        p = entity_type.send attribute
+      p = entity_type.send attribute
     - if entity_type.field_type == "enum_values"
       b = "Enum Values:" if entity_type.enum_values.present?
       p = entity_type.enum_values.join(", ")

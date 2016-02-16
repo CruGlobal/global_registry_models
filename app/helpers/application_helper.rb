@@ -1,6 +1,8 @@
 ## Application helper
 module ApplicationHelper
-  FIELD_TYPES = %w(boolean date datetime decimal email entity enum_values float integer string text universal_entity uuid).freeze
+  include PaginationHelper
+  FIELD_TYPES = %w(boolean date datetime decimal email entity enum_values
+                   float integer string text universal_entity uuid).freeze
 
   def flash_type_to_bootstrap_class(type)
     case type.to_s
@@ -31,7 +33,7 @@ module ApplicationHelper
   end
 
   def form_attribute_to_field(form_name, attribute, object)
-    unless [:id, :access_token].include? attribute
+    unless [:id, :access_token, :permalink].include? attribute
       name = "#{form_name}[#{attribute}]"
       val = object.send(attribute) if object
       val = val.join(', ') if val.is_a?(Array)

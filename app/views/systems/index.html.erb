@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @systems.each do |system| %>
+    <% @systems[0...-1].each do |system| %>
       <tr>
         <td><%= link_to system.name, system_path(system.id) %></td>
         <td><%= system.contact_name %></td>
@@ -23,6 +23,8 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="form-group"><%= paginate_collection @systems %></div>
 
 <br>
 <% if root_user? %>
