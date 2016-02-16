@@ -26,6 +26,6 @@ module SystemsHelper
   end
 
   def can_edit?(system)
-    root_user? || @system_of_user == system
+    root_user? || @system_of_user.id == system.id
   end
 end

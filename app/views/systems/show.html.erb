@@ -7,7 +7,9 @@
           <p><%= formatted_value(attribute) %></p>
       <% end %>
     </div>
-    <%= link_to 'Edit', edit_system_path(@system.id), class: "btn btn-success form-control" %>
+    <% if can_edit?(@system) %>
+      <%= link_to 'Edit', edit_system_path(@system.id), class: "btn btn-success form-control" %>
+    <% end %>
     <%= link_to 'Back', systems_path, class: "btn btn-info form-control" %>
   </div>
 </div>
