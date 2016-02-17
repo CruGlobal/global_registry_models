@@ -44,6 +44,10 @@ class ActiveSupport::TestCase
     assert_instance_of class_name, assigns[:object_type]
   end
 
+  def reset_access_token
+    GlobalRegistry.access_token = Rails.application.secrets[:global_registry_access_token]
+  end
+
 end
 
 # A Test model that we'll use to test entities

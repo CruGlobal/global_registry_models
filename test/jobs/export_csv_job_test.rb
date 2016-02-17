@@ -2,6 +2,10 @@ require 'test_helper'
 require 'sidekiq/testing'
 
 class ExportCsvJobTest < ActiveJob::TestCase
+  def setup
+    reset_access_token
+  end
+
   test '.perform_later' do
     Sidekiq::Testing.fake! do
       assert_enqueued_with job: ExportCsvJob do
