@@ -3,6 +3,7 @@ require 'test_helper'
 class SystemsControllerTest < ActionController::TestCase
   def setup
     sign_in users(:one)
+    add_token
   end
 
   test "should not get index when not signed in" do
@@ -10,6 +11,27 @@ class SystemsControllerTest < ActionController::TestCase
     get :index
     assert_response 401
     assert_not_requested :get, "https://stage-api.global-registry.org/systems"
+  end
+
+  test "should not get index without token" do
+    remove_token
+    get :index
+    assert_response 302
+    assert_not_requested :get, "https://stage-api.global-registry.org/systems"
+  end
+
+  test "should not create without token" do
+    remove_token
+    post :create
+    assert_response 302
+    assert_not_requested :post, "https://stage-api.global-registry.org/systems"
+  end
+
+  test "should not update without token" do
+    remove_token
+    patch :update, id: "0000-0000-0000-0001"
+    assert_response 302
+    assert_not_requested :put, 'https://stage-api.global-registry.org/systems/0000-0000-0000-0001'
   end
 
   test "should get index" do

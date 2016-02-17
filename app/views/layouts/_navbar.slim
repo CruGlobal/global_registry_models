@@ -13,15 +13,16 @@
             - entities.each do |entity_class|
               li = link_to entity_class.title.pluralize, entities_path(entity_class_name: entity_class.name.pluralize)
             hr
-            li = link_to "Entity Types", entity_types_path
+            li = link_to 'Entity Types', entity_types_path
         li.dropdown
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
             = fa_icon 'gear', text: 'Admin'
             span.caret
           ul.dropdown-menu
             li = link_to fa_icon('users', text: 'Users'), users_path
-        li = link_to 'Subscriptions', subscriptions_path
-        li = link_to 'Systems', systems_path
+        - if own_token?
+          li = link_to 'Subscriptions', subscriptions_path
+          li = link_to 'Systems', systems_path
         li = link_to 'Access Token', access_tokens_edit_path
 
       = nav class: 'navbar-right' do

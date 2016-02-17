@@ -80,4 +80,8 @@ class ApplicationController < ActionController::Base
       fail 'No Global Registry access token specified!' unless GlobalRegistry.access_token.present?
     end
   end
+
+  def check_for_token
+    redirect_to access_tokens_edit_path unless cookies[:access_token].present?
+  end
 end

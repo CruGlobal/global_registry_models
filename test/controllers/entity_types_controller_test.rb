@@ -4,12 +4,27 @@ class EntityTypesControllerTest < ActionController::TestCase
 
   def setup
     sign_in users(:one)
+    add_token
   end
 
-  test "should not get index when not signed in" do
+  test "should not be able to get index when not signed in" do
     sign_out
     get :index
     assert_response 401
+    assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
+  end
+
+  test "should not be able to create when there is no token" do
+    remove_token
+    post :create
+    assert_response 302
+    assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
+  end
+
+  test "should not be able to update when there is no token" do
+    remove_token
+    post :update, id: 'a0xxs00a-sx033'
+    assert_response 302
     assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
   end
 

@@ -4,6 +4,7 @@ class AccessTokensControllerTest < ActionController::TestCase
 
   def setup
     sign_in users(:one)
+    add_token
   end
 
   test "should not get edit when not signed in" do

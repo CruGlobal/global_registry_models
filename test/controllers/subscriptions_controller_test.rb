@@ -3,6 +3,7 @@ require 'test_helper'
 class SubscriptionsControllerTest < ActionController::TestCase
   def setup
     sign_in users(:one)
+    add_token
   end
 
   test "should not get index when not signed in" do
@@ -10,6 +11,27 @@ class SubscriptionsControllerTest < ActionController::TestCase
     get :index
     assert_response 401
     assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
+  end
+
+  test "should not get index without token" do
+    remove_token
+    get :index
+    assert_response 302
+    assert_not_requested :get, "https://stage-api.global-registry.org/subscriptions"
+  end
+
+  test "should not create without token" do
+    remove_token
+    post :create
+    assert_response 302
+    assert_not_requested :post, "https://stage-api.global-registry.org/subscriptions"
+  end
+
+  test "should not destroy subscription" do
+    remove_token
+    delete :destroy, id: "0000-0000-0001"
+    assert_response 302
+    assert_not_requested :delete, "https://stage-api.global-registry.org/subscriptions/0000-0000-0001"
   end
 
   test "should get index" do

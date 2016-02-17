@@ -69,4 +69,8 @@ module ApplicationHelper
   def correct_label(attribute)
     label_tag(attribute) unless attribute == :parent_id
   end
+
+  def own_token?
+    cookies[:access_token].present?
+  end
 end

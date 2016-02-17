@@ -1,5 +1,6 @@
 .panel-body style="display:none;" id="description-#{entity_type.id}"
-  a.edit_details.pull-right href="#" Edit
+  - if own_token?
+    a.edit_details.pull-right href="#" Edit
   h3 Entity Type Details 
   .details_container 
     b Id: 
@@ -11,11 +12,13 @@
     - if entity_type.field_type == "enum_values"
       b = "Enum Values:" if entity_type.enum_values.present?
       p = entity_type.enum_values.join(", ")
-  a.pull-right.add_relationship_type href="#" Create New
+  - if own_token?
+    a.pull-right.add_relationship_type href="#" Create New
   h3 Relationship Types
   .relationship_types_container
     = display_relationships(entity_type)
-  a.pull-right.add_measurement_type href="#" Create New
+  - if own_token?
+    a.pull-right.add_measurement_type href="#" Create New
   h3 Measurement Types
   .measurement_types_container
     h4 Loading..

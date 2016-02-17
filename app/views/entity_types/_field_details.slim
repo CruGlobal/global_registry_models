@@ -1,9 +1,10 @@
 .panel-body style="display:none;" id="description-#{field.id unless already_there?(field.id)}"
-  a.edit_details.pull-right href="#" Edit
+  - if own_token?
+    a.edit_details.pull-right href="#" Edit
   h3 Field Details
   b Id: 
   h6 = field.id
   - field_class.identifying_attributes.each do |attribute|
-    unless entity_type.send(attribute).blank?
+    - unless field.send(attribute).blank?
       b = "#{titleize_attribute attribute} : "
       p = field.send attribute

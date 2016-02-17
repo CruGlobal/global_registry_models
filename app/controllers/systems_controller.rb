@@ -1,5 +1,6 @@
 ## Systems Controller
 class SystemsController < BaseController
+  before_action :check_for_token
   before_action :set_system, only: [:show, :edit]
   before_action :set_system_of_user, only: [:index, :show, :new, :edit]
   before_action :update_params, only: [:update, :create]
@@ -7,7 +8,7 @@ class SystemsController < BaseController
   def index
     @per_page = 80
     @page = params[:page] ||= 1
-    @systems = GlobalRegistryModels::System::System.search(page: @page.to_i , per_page: @per_page).order(:name)
+    @systems = GlobalRegistryModels::System::System.search(page: @page.to_i, per_page: @per_page).order(:name)
   end
 
   def show

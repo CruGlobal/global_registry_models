@@ -27,6 +27,14 @@ class ActiveSupport::TestCase
     session['cas']['extra_attributes']['lastName'] = user.last_name
   end
 
+  def add_token
+    cookies[:access_token] = 'test'
+  end
+
+  def remove_token
+    cookies[:access_token] = ''
+  end
+
   def sign_out
     session['cas'] = {}
   end

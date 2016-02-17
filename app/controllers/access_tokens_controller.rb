@@ -7,6 +7,7 @@ class AccessTokensController < BaseController
     if params[:access_token][:token].present?
       update_and_check_token
     else
+      cookies[:access_token] = ''
       flash[:success] = 'Your access token has been successfully removed.'
     end
     redirect_to root_url if flash[:success]

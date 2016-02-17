@@ -15,15 +15,16 @@ h1 Entity Types
 
   .col-md-6
     .panel.panel-default
-      .panel-header.text-center
-        button#create_new.btn.btn-info Create new entity type
-        hr
+      - if own_token?
+        .panel-header.text-center
+          button#create_new.btn.btn-info Create new entity type
+          hr
       .panel-body.text-center
-        h4 Click on an Entity Type to view its description
+        h4.instruction Click on an Entity Type to view its description
       - @entity_types.each do |entity_type|
         = render 'entity_types/entity_type_details', entity_type: entity_type
         = field_descriptions entity_type
-
+- if own_token?
   = render 'entity_type_modal'
   = render 'relationship_type_modal'
   = render 'measurement_type_modal'

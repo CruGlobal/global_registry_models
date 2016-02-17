@@ -1,5 +1,6 @@
 ## Subscriptions Controller
 class SubscriptionsController < BaseController
+  before_action :check_for_token
   before_action :fetch_entity_types, only: [:index, :new]
 
   def index

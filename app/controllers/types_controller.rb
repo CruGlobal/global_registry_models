@@ -2,6 +2,7 @@
 # entity types inherit from.
 class TypesController < BaseController
   before_action :format_enum_values, only: :update
+  before_action :check_for_token, only: [:create, :update]
 
   def create
     begin
