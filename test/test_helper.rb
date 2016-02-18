@@ -62,14 +62,18 @@ module GlobalRegistryModels
     class TestTimeout < GlobalRegistryModels::Entity::Base
     end
   end
+
+  class Retryer
+    def try
+      yield
+    end
+  end
 end
 
 module EntityTypeServices
   class Uuid
-
     def to_s
       "5197-11E5-B6A3-3087D5902334"
     end
-
   end
 end
