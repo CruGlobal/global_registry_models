@@ -24,6 +24,9 @@ module GlobalRegistryModels
       attribute :name, String
       attribute :is_active, Boolean
     end
+
+    class SlowTest < Base
+    end
   end
 end
 

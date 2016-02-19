@@ -13,7 +13,7 @@ module GlobalRegistryModels
           GlobalRegistryModels::Collection.new(meta: {}, list: []).tap do |collection|
             page_num = start_page
             loop do
-              sub_collection = GlobalRegistryModels::Retryer.new([Net::HTTPGatewayTimeOut, RestClient::InternalServerError], max_attempts: max_attempts).try do
+              sub_collection = GlobalRegistryModels::Retryer.new(RuntimeError, RestClient::InternalServerError, max_attempts: max_attempts).try do
                 self.search(filters: filters, page: page_num, per_page: per_page, order: order, fields: fields, ruleset: ruleset)
               end
               collection.concat sub_collection.all

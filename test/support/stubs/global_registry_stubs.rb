@@ -38,6 +38,11 @@ module GlobalRegistryStubs
           "to": 2
         }
       }))
+  
+  # API responds with a 504
+  stub_request(:get, "https://test-api.global-registry.org/entities?entity_type=slow_test").
+  with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
+      to_return(status: 504, headers: {})
 
 
 
