@@ -6,12 +6,12 @@ require 'global_registry_models/version'
 Gem::Specification.new do |spec|
   spec.name          = 'global_registry_models'
   spec.version       = GlobalRegistryModels::VERSION
-  spec.authors       = ['Sheldon Dueck','Daniel Fugere']
+  spec.authors       = ['Sheldon Dueck', 'Daniel Fugere']
   spec.email         = ['sheldon.dueck@gmail.com']
 
   spec.summary       = %q{Data models for the Global Registry.}
   spec.description   = %q{Provides data models for interacting with the Global Registry. Built ontop of the client gem global_registry.}
-  spec.homepage      = 'https://github.com/sheldond/global_registry_models'
+  spec.homepage      = 'https://github.com/CruGlobal/global_registry_models'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
