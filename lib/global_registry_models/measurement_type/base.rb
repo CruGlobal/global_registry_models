@@ -18,10 +18,6 @@ module GlobalRegistryModels
         { 'measurement_type' => attributes }
       end
 
-      def self.has_meta
-        true
-      end
-
     end
   end
 end

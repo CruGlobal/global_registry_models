@@ -16,10 +16,6 @@ module GlobalRegistryModels
         }
       end
 
-      def self.has_meta
-        true
-      end
-
     end
   end
 end

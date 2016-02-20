@@ -26,8 +26,8 @@ module GlobalRegistryModels
         to_s.gsub(/.*::/, '').underscore
       end
 
-      def self.has_meta
-        true
+      def self.default_field
+        '*'
       end
     end
   end

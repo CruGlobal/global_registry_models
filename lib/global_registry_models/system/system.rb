@@ -25,6 +25,10 @@ module GlobalRegistryModels
         find 'deadbeef-dead-beef-dead-beefdeadbeef'
       end
 
+      def self.has_meta
+        false
+      end
+
     end
   end
 end

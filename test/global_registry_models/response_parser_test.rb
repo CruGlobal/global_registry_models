@@ -10,7 +10,7 @@ class GlobalRegistryModelsResponseParserTest < Minitest::Test
   def test_meta
     response = GlobalRegistryModels::ResponseParser.new entity_test_response
     assert_instance_of Hash, response.meta
-    assert_equal true, response.meta['next_page']
+    assert_equal false, response.meta['next_page']
     assert_equal 2, response.meta['to']
     assert_equal 1, response.meta['from']
     assert_equal 1, response.meta['page']
@@ -23,9 +23,9 @@ class GlobalRegistryModelsResponseParserTest < Minitest::Test
     response.objects.each do |entity|
       assert_instance_of GlobalRegistryModels::Entity::Test, entity
     end
-    assert_equal '0000-0000-0000-0001', response.objects.first.id
-    assert_equal '+1234567890', response.objects.first.phone
-    assert_equal 'Mr. Test', response.objects.first.name
+    assert_equal '219A7C20-58B8-11E5-B850-6BAC9D6E46F5', response.objects.first.id
+    assert_equal '+1-234-567-8901', response.objects.first.phone
+    assert_equal 'Institute of Technology', response.objects.first.name
   end
 
   def test_other_objects_types

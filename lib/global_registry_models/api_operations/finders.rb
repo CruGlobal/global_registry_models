@@ -9,7 +9,7 @@ module GlobalRegistryModels
 
       module ClassMethods
 
-        def all!(filters: nil, start_page: 1, per_page: nil, order: nil, fields: nil, ruleset: nil, max_attempts: 1)
+        def all!(filters: nil, start_page: 1, per_page: nil, order: nil, fields: '*', ruleset: nil, max_attempts: 1)
           GlobalRegistryModels::Collection.new(meta: {}, list: []).tap do |collection|
             page_num = start_page
             loop do

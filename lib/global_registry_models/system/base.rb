@@ -16,11 +16,6 @@ module GlobalRegistryModels
           'system' => attributes 
         }
       end
-
-      def self.has_meta
-        false
-      end
-
     end
   end
 end

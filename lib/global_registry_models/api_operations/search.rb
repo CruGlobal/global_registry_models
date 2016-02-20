@@ -4,8 +4,8 @@ module GlobalRegistryModels
       extend ActiveSupport::Concern
 
       module ClassMethods
-
-        def search(filters: nil, page: nil, per_page: nil, order: nil, fields: nil, ruleset: nil)
+        
+        def search(filters: nil, page: nil, per_page: nil, order: nil, fields: default_field, ruleset: nil)
 
           params = params_by_offset_and_limit(page, per_page) if requires_pagination?(page, per_page)
 

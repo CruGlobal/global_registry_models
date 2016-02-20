@@ -39,6 +39,14 @@ module GlobalRegistryModels
       attribute_names - [:id]
     end
 
+    def self.default_field
+      nil
+    end
+
+    def self.has_meta
+      true
+    end
+
     private
 
     def underscore_name
