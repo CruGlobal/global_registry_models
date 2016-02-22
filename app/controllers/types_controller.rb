@@ -7,7 +7,7 @@ class TypesController < BaseController
     begin
       @object_type = type_class.create(type_params)
     rescue RestClient::BadRequest
-      flash[:error] = 'An error has occured.'
+      flash[:error] = "An error has occured and the #{ressource} couldn't be created."
     else
       flash[:success] = "Your #{ressource} has been successfully added!" if @object_type
     end
@@ -18,7 +18,7 @@ class TypesController < BaseController
     begin
       @object_type = type_class.update(params[:id], type_params)
     rescue RuntimeError
-      flash[:error] = 'An error has occured.'
+      flash[:error] = "An error has occured and the #{ressource} couldn't be updated."
     else
       flash[:success] = "The #{ressource} has been successfully updated!" if @object_type
     end

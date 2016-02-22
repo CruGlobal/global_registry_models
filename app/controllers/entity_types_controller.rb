@@ -25,8 +25,10 @@ class EntityTypesController < TypesController
   def create_enum_values
     if params[:entity_type][:enum_values].present?
       enum_values = params[:entity_type][:enum_values].split(', ')
-      puts GlobalRegistryModels::Entity::EnumValueBase.create(params[:entity_type][:name] => enum_values)
+      GlobalRegistryModels::Entity::EnumValueBase.add_enum_value(params[:entity_type][:name], enum_values)
     end
+  rescue RestClient::BadRequest, RuntimeError
+    flash[:error] = 'An error has occured while saving the enum values.'
   end
 
   def type_params

@@ -3,7 +3,7 @@ module GlobalRegistryStubs
     super
 
     # Search test entity
-    stub_request(:get, /https:\/\/stage-api.global-registry.org\/entities\?entity_type=test&.*/).
+    stub_request(:get, /https:\/\/stage-api.global-registry.org\/entities\?entity_type=test/).
       with(headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(status: 200, headers: {}, body: %({
         "entities": [
@@ -87,17 +87,17 @@ module GlobalRegistryStubs
       to_return(:status => 200, :body => %({"entity":{"test":{"id":"0000-0000-0000-0001","phone":"+1234567890","name":"Mr. Test","client_integration_id":"1234"}}}), :headers => {})
 
     # Get page 1 of "test" entities, the first page
-    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&page=1").
+    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&fields=*&page=1").
       with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(:status => 200, :body => %({"entities":[{"test":{"id":"0000-0000-0000-0001","phone":"+1234567890","name":"Mr. Test","client_integration_id":"1234"}},{"test":{"id":"0000-0000-0000-0002","phone":"1800TEST","name":"Count Testalot","client_integration_id":"2222"}}],"meta":{"page":1,"next_page":true,"from":1,"to":2}}), :headers => {})
 
     # Get page 2 of "test" entities, the last page
-    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&page=2").
+    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&fields=*&page=2").
       with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(:status => 200, :body => %({"entities":[{"test":{"id":"0000-0000-0000-0001","phone":"+1234567890","name":"Mr. Test","client_integration_id":"1234"}},{"test":{"id":"0000-0000-0000-0002","phone":"1800TEST","name":"Count Testalot","client_integration_id":"2222"}}],"meta":{"page":2,"next_page":false,"from":3,"to":4}}), :headers => {})
 
     # Get page 3 of "test" entities, this page doesn't exist because page 2 was the last page
-    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&page=3").
+    stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test&fields=*&page=3").
       with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(:status => 200, :body => %({"entities":[],"meta":{"page":3,"next_page":false,"from":4,"to":5}}), :headers => {})
 
@@ -530,9 +530,14 @@ stub_request(:put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-
       }
     }))
 
-  stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test_timeout&page=1").
+  stub_request(:get, "https://stage-api.global-registry.org/entities?entity_type=test_timeout&fields=*&page=1").
   with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
   to_return(:status => 504, :body => "", :headers => {})
+
+  stub_request(:post, "https://stage-api.global-registry.org/entities").
+  with(:body => "{\"entity\":{\"_enum_values\":{\"Entity Type 1\":[\"apple\",\"banana\"]}}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'64', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "", :headers => {})
 
   end
 end
