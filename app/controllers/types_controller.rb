@@ -1,7 +1,6 @@
 ## Types Controller that relationship types, measurement types and
 # entity types inherit from.
 class TypesController < BaseController
-  before_action :format_enum_values, only: :update
   before_action :check_for_token, only: [:create, :update]
 
   def create
@@ -28,21 +27,11 @@ class TypesController < BaseController
 
   private
 
-  def format_enum_values
-    if with_enum_values?
-      params[:entity_type][:enum_values] = params[:entity_type][:enum_values].split(', ')
-    end
-  end
-
   def type_class
     "GlobalRegistryModels::#{stripped_ressource}::#{stripped_ressource}".constantize
   end
 
   def stripped_ressource
     ressource.gsub(/\s+/, '')
-  end
-
-  def with_enum_values?
-    params[:entity_type] && params[:entity_type][:enum_values]
   end
 end

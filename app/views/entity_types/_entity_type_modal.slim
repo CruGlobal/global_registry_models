@@ -10,7 +10,7 @@
             = form_attribute_to_field('entity_type', attribute, nil)
           .form-group
             = f.label :enum_values
-            = f.text_field :enum_values, class:'form-control'
+            = f.text_field :enum_values, class:'form-control', placeholder: 'Add new values..'
           = f.submit 'Save', class:'btn btn-primary form-control'
 
       .modal-footer

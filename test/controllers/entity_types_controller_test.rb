@@ -59,17 +59,22 @@ class EntityTypesControllerTest < ActionController::TestCase
   test 'POST entity_types' do
     post :create, entity_type: entity_type_params
     assert_request_type
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
+    assert_requested :post, "https://stage-api.global-registry.org/entity_types"
   end
 
-  test 'PUT entity_types' do
+  test 'PUT entity_types with enum_values' do
     post :update, id: 'a0xxs00a-sx033', entity_type: entity_type_params
     assert_request_type
+    assert_instance_of GlobalRegistryModels::EntityType::EntityType, assigns[:object_type]
+    assert_requested :put, "https://stage-api.global-registry.org/entity_types/a0xxs00a-sx033"
+    assert_requested :post, "https://stage-api.global-registry.org/entities"
   end
 
   private
 
   def entity_type_params
-    {"name": 'Entity Type 1', "description": 'a great entity type', "field_type": 'string', "client_integration_id": '1'}
+    {"name": 'Entity Type 1', "description": 'a great entity type', "field_type": 'string', "client_integration_id": '1', "enum_values": 'apple, banana'}
   end
 
   def class_name

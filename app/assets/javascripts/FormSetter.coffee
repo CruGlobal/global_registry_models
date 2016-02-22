@@ -31,10 +31,13 @@ class window.FormSetter
         $("#{@form_groups}:first select, #{@form_groups}:first input").val(@parent_id.replace('description-',''))
 
   fix_enum_values: ->
-    if $("#{@form_groups}:nth-of-type(4) input").val() == "enum_values" 
-      $("#{@enum_values_field_location} input").tokenfield('destroy')
+    if $("#{@form_groups}:nth-of-type(4) select").val() == "enum_values"
+      enum_value_field = "#{@enum_values_field_location} input"
+      $(enum_value_field).tokenfield('destroy')
+      $("#{@enum_values_field_location} label").html("Enum Values: #{$(enum_value_field).val()}")
+      $(enum_value_field).val('')
+      $(enum_value_field).tokenfield()
       $(@enum_values_field_location).show()
-      $("#{@enum_values_field_location} input").tokenfield()
     else
       $(@enum_values_field_location).hide()
 
