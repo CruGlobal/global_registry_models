@@ -16,6 +16,7 @@ require 'global_registry_models/api_operations/finders'
 require 'global_registry_models/api_operations/search'
 require 'global_registry_models/api_operations/delete'
 require 'global_registry_models/api_operations/reset_access_token'
+require 'global_registry_models/api_operations/add_enum_value'
 
 
 require 'global_registry_models/common_base'

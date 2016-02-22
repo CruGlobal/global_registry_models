@@ -40,12 +40,12 @@ class GlobalRegistryModelsResponseParserTest < Minitest::Test
 
   private
 
-    def entity_test_response
-      GlobalRegistry::Entity.get entity_type: 'test'
-    end
+  def entity_test_response
+    GlobalRegistry::Entity.get entity_type: 'test'
+  end
 
-    def entity_type_test_response
-      GlobalRegistry::EntityType.get field_type: 'entity'
-    end
+  def entity_type_test_response
+    GlobalRegistry::EntityType.get field_type: 'entity'
+  end
 
 end

@@ -747,6 +747,11 @@ stub_request(:put, "https://test-api.global-registry.org/measurement_types/0000-
       }
     }))
 
+  stub_request(:post, "https://test-api.global-registry.org/entities").
+  with(:body => "{\"entity\":{\"_enum_values\":{\"search_engine\":[\"random_engine\",\"other_random_engine\"]}}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'85', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "", :headers => {})
+
   end
 end
 

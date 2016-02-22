@@ -6,7 +6,6 @@ module GlobalRegistryModels
     class Base < CommonBase
       attribute :client_integration_id, String
       validates_presence_of :client_integration_id
-
       def self.search_params
         {
           entity_type: name
@@ -19,6 +18,10 @@ module GlobalRegistryModels
 
       def self.attributes_hash(attributes)
         {'entity'.to_sym => { name => attributes }}
+      end
+
+      def client_integration_id_required?
+        true
       end
 
       # The name of the entity class. The entity name is required in the api responses and requests, hence the need for this class method.

@@ -1,7 +1,7 @@
 module GlobalRegistryModels
   module Entity
     class EnumValueBase < Base
-
+      include GlobalRegistryModels::APIOperations::AddEnumValue
       attribute :enum_value, String
 
       def initialize(enum_value)
@@ -16,6 +16,9 @@ module GlobalRegistryModels
         enum_value
       end
 
+      def self.name
+        '_enum_values'
+      end
     end
   end
 end
