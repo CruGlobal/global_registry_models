@@ -15,10 +15,6 @@ module GlobalRegistryModels
       def to_s
         enum_value
       end
-
-      def self.name
-        '_enum_values'
-      end
     end
   end
 end

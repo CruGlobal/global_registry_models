@@ -20,10 +20,6 @@ module GlobalRegistryModels
         {'entity'.to_sym => { name => attributes }}
       end
 
-      def client_integration_id_required?
-        true
-      end
-
       # The name of the entity class. The entity name is required in the api responses and requests, hence the need for this class method.
       def self.name
         to_s.gsub(/.*::/, '').underscore
