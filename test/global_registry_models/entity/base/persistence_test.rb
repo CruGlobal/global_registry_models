@@ -118,5 +118,10 @@ class GlobalRegistryModelsEntityBasePersistenceTest < Minitest::Test
     assert_not_requested :put, 'https://test-api.global-registry.org/entities/0000-0000-0000-0001'
   end
 
+  def test_add_enum_value
+    entity = GlobalRegistryModels::Entity::EnumValueBase.add_enum_value('search_engine', ['random_engine','other_random_engine'])
+    assert_requested :post, 'https://test-api.global-registry.org/entities'
+  end
+
 end
 

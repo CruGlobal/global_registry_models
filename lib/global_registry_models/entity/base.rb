@@ -6,7 +6,6 @@ module GlobalRegistryModels
     class Base < CommonBase
       attribute :client_integration_id, String
       validates_presence_of :client_integration_id
-
       def self.search_params
         {
           entity_type: name
@@ -26,8 +25,8 @@ module GlobalRegistryModels
         to_s.gsub(/.*::/, '').underscore
       end
 
-      def self.has_meta
-        true
+      def self.default_field
+        '*'
       end
     end
   end
