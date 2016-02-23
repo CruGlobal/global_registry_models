@@ -48,6 +48,7 @@ module GlobalRegistryModels
       attribute :url_twitter, String
       attribute :url_instagram, String
       attribute :zip, String
+      attribute :is_slm_secure, Boolean
 
       def self.identifying_attributes
         [:name, :country, :city, :min_code]
