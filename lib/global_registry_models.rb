@@ -30,7 +30,6 @@ require 'global_registry_models/entity/ministry'
 require 'global_registry_models/entity/ministry_brand'
 require 'global_registry_models/entity/target_area'
 require 'global_registry_models/entity/person'
-require 'global_registry_models/entity/authentication'
 
 require 'global_registry_models/entity_type/base'
 require 'global_registry_models/entity_type/entity_type'
