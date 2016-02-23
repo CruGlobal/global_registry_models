@@ -8,7 +8,7 @@ module GlobalRegistryModels
 
       def initialize(params)
         super
-        self.key_guid = params['authentication'] && params['authentication']['key_guid']
+        self.key_guid = params['authentication'] && params['authentication']['key_guid'] unless self.key_guid
       end
 
       def to_s

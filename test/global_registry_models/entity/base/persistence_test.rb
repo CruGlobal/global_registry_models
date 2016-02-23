@@ -123,5 +123,10 @@ class GlobalRegistryModelsEntityBasePersistenceTest < Minitest::Test
     assert_requested :post, 'https://test-api.global-registry.org/entities'
   end
 
+  def test_create_with_authentication
+    entity = GlobalRegistryModels::Entity::Person.create(first_name: 'test', last_name:'name', gsw_access: false, key_guid: 'FF223AZCS44XCS', client_integration_id: '1')
+    assert_requested :post, 'https://test-api.global-registry.org/entities', body:'{"entity":{"person":{"first_name":"test","last_name":"name","gsw_access":false,"client_integration_id":"1","authentication":{"key_guid":"FF223AZCS44XCS"}}}}'
+  end
+
 end
 
