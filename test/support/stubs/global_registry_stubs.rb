@@ -752,6 +752,24 @@ stub_request(:put, "https://test-api.global-registry.org/measurement_types/0000-
        :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'85', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
   to_return(:status => 200, :body => "", :headers => {})
 
+  stub_request(:post, "https://test-api.global-registry.org/entities").
+  with(:body => "{\"entity\":{\"person\":{\"first_name\":\"test\",\"last_name\":\"name\",\"gsw_access\":false,\"client_integration_id\":\"1\",\"authentication\":{\"key_guid\":\"FF223AZCS44XCS\"}}}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'156', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+   to_return(status: 200, headers: {}, body: %({
+        "entity": {
+          "test": {
+            "id": "219A7C20-58B8-11E5-B850-6BAC9D6E46F5",
+            "first_name": "test",
+            "last_name": "name",
+             "gsw_access": "false",
+            "client_integration_id": "400BF486-58B8-11E5-9BB3-6BAC9D6E46F5",
+            "authentication": {
+              "key_guid": "FF223AZCS44XCS"
+            }
+          }
+        }
+      }))
+
   end
 end
 
