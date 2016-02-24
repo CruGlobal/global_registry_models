@@ -1,7 +1,8 @@
 ## User model
 class User < ActiveRecord::Base
-  validates :guid, presence: true, unless: -> (user) { user.email.present? }
-  validates :email, presence: true, unless: -> (user) { user.guid.present? }
+  validates :guid, presence: true
+  validates :email, presence: true
+  before_validation :pull_attributes, on: :create
 
   def to_s
     if name.present?
@@ -15,5 +16,17 @@ class User < ActiveRecord::Base
 
   def name
     [first_name, last_name].select(&:present?).join(' ')
+  end
+
+  private
+
+  def pull_attributes
+    cas_attributes = KeyServices::User.new(email: email, guid: guid).cas_attributes 
+    self.guid = cas_attributes['ssoGuid']
+    self.email = cas_attributes['email']
+    self.first_name = cas_attributes['firstName']
+    self.last_name = cas_attributes['lastName']
+  rescue RestClient::ResourceNotFound
+    errors.add(:email, 'is not valid')
   end
 end

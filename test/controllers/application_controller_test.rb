@@ -83,6 +83,10 @@ class ApplicationControllerTest < ActionController::TestCase
 
   test '#update_current_user_from_cas_session after_successful_authentication' do
     with_test_routing do
+      stub_request(:get, 'https://thekey.me/cas/api/test/user/attributes?email=example@email.com')
+        .with(headers: { 'Accept' => 'application/json'})
+        .to_return(status: 200, body: %({"relayGuid":"8F612500-0000-541D-FC38-2AF75974729F","ssoGuid":"8F612500-0000-541D-FC38-2AF75974729F","firstName":"Test","lastName":"User","theKeyGuid":"8F612500-0000-541D-FC38-2AF75974729F","email":"bob@internet.com"}), headers: {})
+
       sign_in users(:one)
       session['cas']['user'] = 'new@email.com'
       session['cas']['extra_attributes']['firstName'] = 'Newfirstname'

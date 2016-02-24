@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  resources :users, except: :show
+  resources :users, except: [:edit, :update, :show]
 
   namespace :entities do
     get ':entity_class_name' => 'entities#index'

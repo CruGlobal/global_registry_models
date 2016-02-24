@@ -4,7 +4,17 @@ class UsersControllerTest < ActionController::TestCase
 
   def setup
     sign_in users(:one)
+
+    stub_request(:get, "https://thekey.me/cas/api/test/user/attributes?theKeyGuid=g-u-i-d")
+      .with(headers: { 'Accept' => 'application/json'})
+      .to_return(status: 200, body: %({"relayGuid":"8F612500-0000-541D-FC38-2AF75974729F","ssoGuid":"8F612500-0000-541D-FC38-2AF75974729F","firstName":"Test","lastName":"User","theKeyGuid":"g-u-i-d","email":"bob@internet.com"}), headers: {})
+
+    stub_request(:get, "https://thekey.me/cas/api/test/user/attributes?email=example@email.com").
+    with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Ruby'}).
+    to_return(status: 200, body: %({"relayGuid":"8F612500-0000-541D-FC38-2AF75974729F","ssoGuid":"8F612500-0000-541D-FC38-2AF75974729F","firstName":"Test","lastName":"User","theKeyGuid":"g-u-i-d","email":"bob@internet.com"}), headers: {})
+
   end
+
 
   test "should not get index when not signed in" do
     sign_out
@@ -36,19 +46,6 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { email: 'example@email.com' }
     end
     assert_redirected_to users_path
-  end
-
-  test 'GET :edit' do
-    get :edit, id: users(:one)
-    assert_response :success
-  end
-
-  test 'PUT :update' do
-    assert_no_difference 'User.count' do
-      put :update, id: users(:one).id, user: { guid: 'new-guid' }
-    end
-    assert_redirected_to users_path
-    assert_equal 'new-guid', users(:one).reload.guid
   end
 
   test 'DELETE :destroy' do
