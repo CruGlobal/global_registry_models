@@ -1,5 +1,6 @@
 require 'active_support/all'
 
+require 'global_registry/base'
 require 'global_registry/subscription'
 require 'global_registry/system_methods'
 
