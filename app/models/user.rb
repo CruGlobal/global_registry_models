@@ -21,12 +21,13 @@ class User < ActiveRecord::Base
   private
 
   def pull_attributes
-    cas_attributes = KeyServices::User.new(email: email, guid: guid).cas_attributes 
+    cas_attributes = KeyServices::User.new(email: email, guid: guid).cas_attributes
     self.guid = cas_attributes['ssoGuid']
     self.email = cas_attributes['email']
     self.first_name = cas_attributes['firstName']
     self.last_name = cas_attributes['lastName']
   rescue RestClient::ResourceNotFound
-    errors.add(:email, 'is not valid')
+    errors.add(:email, 'is not valid') if email
+    errors.add(:guid, 'is not valid') if guid
   end
 end

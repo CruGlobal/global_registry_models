@@ -20,6 +20,6 @@ p = link_to fa_icon('user-plus', text: 'Add User'), new_user_path, class: 'btn b
               td = user.guid
               td = user.email
               td = user.name
-              td = link_to fa_icon('pencil', text: 'Delete'), user, method: :delete
+              td = link_to fa_icon('pencil', text: 'Delete'), user, method: :delete, data: {confirm:"Are you sure?"}
 
 = paginate @users

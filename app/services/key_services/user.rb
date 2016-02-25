@@ -23,7 +23,7 @@ module KeyServices
     private
 
     def format_present_attribute
-      @email ? "email=#{@email}" : "theKeyGuid=#{@guid}"
+      @email.present? ? "email=#{@email}" : "theKeyGuid=#{@guid}"
     end
   end
 end
