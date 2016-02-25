@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.first_name = cas_attributes['firstName']
     self.last_name = cas_attributes['lastName']
   rescue RestClient::ResourceNotFound
+    assign_error
+  end
+
+  def assign_error
     errors.add(:email, 'is not valid') if email
     errors.add(:guid, 'is not valid') if guid
   end
