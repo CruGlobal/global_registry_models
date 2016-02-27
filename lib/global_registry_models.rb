@@ -34,6 +34,7 @@ require 'global_registry_models/entity/indigitous_event_classic'
 require 'global_registry_models/entity/indigitous_event_hash'
 require 'global_registry_models/entity/indigitous_event_session'
 require 'global_registry_models/entity/indigitous_event_session_attendee'
+require 'global_registry_models/entity/relationship'
 
 require 'global_registry_models/entity_type/base'
 require 'global_registry_models/entity_type/entity_type'

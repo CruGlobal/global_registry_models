@@ -8,6 +8,7 @@ module GlobalRegistryModels
       attribute :email_address, String
       attribute :registration_date, Date
       attribute :time_in_session, String
+      attribute :indigitous_event_session, Hash
       
       def self.identifying_attributes
         [:attended, :first_name, :last_name]

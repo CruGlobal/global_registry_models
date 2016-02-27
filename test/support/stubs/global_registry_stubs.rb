@@ -770,6 +770,11 @@ stub_request(:put, "https://test-api.global-registry.org/measurement_types/0000-
         }
       }))
 
+  stub_request(:post, "https://test-api.global-registry.org/entities").
+  with(:body => "{\"entity\":{\"test\":{\"name\":\"Mr. Test\",\"phone\":\"1-800-TEST-MEYO\",\"client_integration_id\":\"12121\",\"wife:relationship\":{\"person\":\"77d483f4-508c-11e4-b8da-1fd48c4c6c72\",\"client_integration_id\":\"44\"}}}}",
+       :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'196', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
+  to_return(:status => 200, :body => "", :headers => {})
+
   end
 end
 

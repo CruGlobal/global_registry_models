@@ -51,7 +51,11 @@ module GlobalRegistryModels
 
     def underscore_name
       self.name = self.name.downcase.tr(' ','_') if self.name
-    end   
+    end
+
+    def self.specific_attributes_preparations(object, attributes)
+      attributes
+    end
 
   end
 
