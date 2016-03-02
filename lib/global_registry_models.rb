@@ -19,7 +19,6 @@ require 'global_registry_models/api_operations/delete'
 require 'global_registry_models/api_operations/reset_access_token'
 require 'global_registry_models/api_operations/add_enum_value'
 
-
 require 'global_registry_models/common_base'
 
 require 'global_registry_models/entity/base'
@@ -31,6 +30,11 @@ require 'global_registry_models/entity/ministry'
 require 'global_registry_models/entity/ministry_brand'
 require 'global_registry_models/entity/target_area'
 require 'global_registry_models/entity/person'
+require 'global_registry_models/entity/indigitous_event_classic'
+require 'global_registry_models/entity/indigitous_event_hash'
+require 'global_registry_models/entity/indigitous_event_session'
+require 'global_registry_models/entity/indigitous_event_session_attendee'
+require 'global_registry_models/entity/relationship'
 
 require 'global_registry_models/entity_type/base'
 require 'global_registry_models/entity_type/entity_type'

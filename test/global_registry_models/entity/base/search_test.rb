@@ -35,5 +35,4 @@ class GlobalRegistryModelsEntityBaseSearchTest < Minitest::Test
     assert_instance_of GlobalRegistryModels::Entity::Test, found.first
     assert_requested :get, 'https://test-api.global-registry.org/entities?entity_type=test&fields=*&page=45&per_page=76'
   end
-
 end

@@ -50,4 +50,23 @@ class GlobalRegistryModelsEntityBaseTest < Minitest::Test
     assert_equal 'test', GlobalRegistryModels::Entity::Test.name
   end
 
+  def test_with_relationship
+    tester = GlobalRegistryModels::Entity::Test.new name: 'Mr. Test', phone: '1-800-TEST-MEYO', "wife:relationship": {
+                "person": "77d483f4-508c-11e4-b8da-1fd48c4c6c72",
+                "relationship_entity_id": "43d74164-554f-11e4-9093-4a5703049b5d",
+                "client_integration_id": "44"
+            }
+    assert_instance_of GlobalRegistryModels::Entity::Relationship, tester.relationships.first
+    assert_equal '77d483f4-508c-11e4-b8da-1fd48c4c6c72', tester.relationships.first.related_entity_id
+  end
+
+  def test_create_with_relationship
+    tester = GlobalRegistryModels::Entity::Test.create name: 'Mr. Test', phone: '1-800-TEST-MEYO', client_integration_id: '12121', "wife:relationship": {
+                "person": "77d483f4-508c-11e4-b8da-1fd48c4c6c72",
+                "relationship_entity_id": "43d74164-554f-11e4-9093-4a5703049b5d",
+                "client_integration_id": "44"
+            }
+    assert_requested :post, 'https://test-api.global-registry.org/entities', body: '{"entity":{"test":{"name":"Mr. Test","phone":"1-800-TEST-MEYO","client_integration_id":"12121","wife:relationship":{"person":"77d483f4-508c-11e4-b8da-1fd48c4c6c72","client_integration_id":"44"}}}}'
+  end
+
 end
