@@ -33,6 +33,8 @@ module GlobalRegistryModels
       attribute :type, String
       attribute :url, String
       attribute :zip, String
+      attribute :google_place_id, String
+      attribute :google_map_url, String
 
       def self.identifying_attributes
         [:name, :country, :state]
