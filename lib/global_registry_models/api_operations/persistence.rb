@@ -8,8 +8,7 @@ module GlobalRegistryModels
         def prepare_parameters(object, attributes)
           attribute_keys = attributes.keys.collect(&:to_sym) & writeable_attributes
           prepared_attributes = object.attributes.with_indifferent_access.slice(*attribute_keys)
-          prepared_attributes['authentication'] = {'key_guid' => prepared_attributes['key_guid']} if prepared_attributes['key_guid']
-          prepared_attributes.delete('key_guid')
+          prepared_attributes = specific_attributes_preparations(object, prepared_attributes)
           prepared_attributes
         end
 

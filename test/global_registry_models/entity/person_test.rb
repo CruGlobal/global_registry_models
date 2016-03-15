@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GlobalRegistryModelsEntityPersonBaseTest < Minitest::Test
+class GlobalRegistryModelsEntityPersonTest < Minitest::Test
 
   def test_initialize
     person = GlobalRegistryModels::Entity::Person.new({'first_name' => 'test', 'gsw_access'=> true, 'authentication' => {'key_guid' => 'FF44131FFCXZ-11212ASAAS'}})
