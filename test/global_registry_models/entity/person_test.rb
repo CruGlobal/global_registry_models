@@ -3,7 +3,7 @@ require 'test_helper'
 class GlobalRegistryModelsEntityPersonTest < Minitest::Test
 
   def test_initialize
-    person = GlobalRegistryModels::Entity::Person.new({'first_name' => 'test', 'gsw_access'=> true, 'authentication' => {'key_guid' => 'FF44131FFCXZ-11212ASAAS'}})
+    person = GlobalRegistryModels::Entity::Person.new({'first_name' => 'test', 'gsw_access'=> true, 'global_leader'=> false, 'authentication' => {'key_guid' => 'FF44131FFCXZ-11212ASAAS'}})
     assert_instance_of GlobalRegistryModels::Entity::Person, person
     assert_equal 'FF44131FFCXZ-11212ASAAS', person.key_guid
   end
