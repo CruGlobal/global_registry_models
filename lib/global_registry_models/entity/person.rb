@@ -5,6 +5,7 @@ module GlobalRegistryModels
       attribute :last_name, String
       attribute :gsw_access, Boolean
       attribute :key_guid, String
+      attribute :global_leader, Boolean
 
       def initialize(params)
         super
