@@ -43,11 +43,11 @@ class GlobalRegistryModelsCollectionTest < Minitest::Test
 
   def test_next_page
     assert_equal 2, test_collection_first_page.next_page
-    assert_equal nil, test_collection_last_page.next_page
+    assert_nil test_collection_last_page.next_page
   end
 
   def test_prev_page
-    assert_equal nil, test_collection_first_page.prev_page
+    assert_nil test_collection_first_page.prev_page
     assert_equal 1, test_collection_last_page.prev_page
   end
 
