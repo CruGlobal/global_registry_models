@@ -38,7 +38,7 @@ module GlobalRegistryStubs
           "to": 2
         }
       }))
-  
+
   # API responds with a 504
   stub_request(:get, "https://test-api.global-registry.org/entities?entity_type=slow_test").
   with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
@@ -106,7 +106,7 @@ module GlobalRegistryStubs
       with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'User-Agent'=>'Ruby'}).
       to_return(:status => 200, :body => %({"entities":[{"test":{"id":"0000-0000-0000-0001","phone":"+1234567890","name":"Mr. Test","client_integration_id":"1234","is_active":true}},{"test":{"id":"0000-0000-0000-0002","phone":"1800TEST","name":"Count Testalot","client_integration_id":"2222","is_active":true}}],"meta":{"page":2,"next_page":false,"from":3,"to":4}}), :headers => {})
 
-    
+
 
     # Delete a "test" entity
     stub_request(:delete, "https://test-api.global-registry.org/entities/0000-0000-0000-0001").
@@ -753,7 +753,7 @@ stub_request(:put, "https://test-api.global-registry.org/measurement_types/0000-
   to_return(:status => 200, :body => "", :headers => {})
 
   stub_request(:post, "https://test-api.global-registry.org/entities").
-  with(:body => "{\"entity\":{\"person\":{\"first_name\":\"test\",\"last_name\":\"name\",\"gsw_access\":false,\"client_integration_id\":\"1\",\"authentication\":{\"key_guid\":\"FF223AZCS44XCS\"}}}}",
+  with(:body => "{\"entity\":{\"person\":{\"first_name\":\"test\",\"last_name\":\"name\",\"gsw_access\":false,\"global_leader\":false,\"client_integration_id\":\"1\",\"authentication\":{\"key_guid\":\"FF223AZCS44XCS\"}}}}",
        :headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer test', 'Content-Length'=>'156', 'Content-Type'=>'application/json', 'Timeout'=>'-1', 'User-Agent'=>'Ruby'}).
    to_return(status: 200, headers: {}, body: %({
         "entity": {
@@ -762,6 +762,7 @@ stub_request(:put, "https://test-api.global-registry.org/measurement_types/0000-
             "first_name": "test",
             "last_name": "name",
              "gsw_access": "false",
+            "global_leader": "false",
             "client_integration_id": "400BF486-58B8-11E5-9BB3-6BAC9D6E46F5",
             "authentication": {
               "key_guid": "FF223AZCS44XCS"
