@@ -6,7 +6,7 @@ require 'global_registry_models/version'
 Gem::Specification.new do |spec|
   spec.name          = 'global_registry_models'
   spec.version       = GlobalRegistryModels::VERSION
-  spec.authors       = ['Sheldon Dueck', 'Daniel Fugere']
+  spec.authors       = ['Sheldon Dueck', 'Daniel Fugere', 'Josh Starcher', 'Bill Randall']
   spec.email         = ['sheldon.dueck@gmail.com']
 
   spec.summary       = %q{Data models for the Global Registry.}
