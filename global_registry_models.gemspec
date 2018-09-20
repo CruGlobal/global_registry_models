@@ -6,7 +6,7 @@ require 'global_registry_models/version'
 Gem::Specification.new do |spec|
   spec.name          = 'global_registry_models'
   spec.version       = GlobalRegistryModels::VERSION
-  spec.authors       = ['Sheldon Dueck', 'Daniel Fugere']
+  spec.authors       = ['Sheldon Dueck', 'Daniel Fugere', 'Josh Starcher', 'Bill Randall']
   spec.email         = ['sheldon.dueck@gmail.com']
 
   spec.summary       = %q{Data models for the Global Registry.}
@@ -26,6 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest', '~> 5.8'
-  spec.add_development_dependency 'webmock', '~> 1.20'
+  spec.add_development_dependency 'webmock', '~> 3.4'
   spec.add_development_dependency 'pry', '~> 0.10'
 end
