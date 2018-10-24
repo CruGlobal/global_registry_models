@@ -9,10 +9,8 @@ class GlobalRegistryModelsRetryerTest < Minitest::Test
   end
 
   def test_try
-    silence_stream(STDOUT) do
-      response = GlobalRegistryModels::Retryer.new(RuntimeError, RestClient::InternalServerError, max_attempts: 2).try do
-        slow_entity_test_response
-      end
+    response = GlobalRegistryModels::Retryer.new(RuntimeError, RestClient::InternalServerError, max_attempts: 2).try do
+      slow_entity_test_response
     end
   rescue RuntimeError
     assert_requested :get, 'https://test-api.global-registry.org/entities?entity_type=slow_test', times: 2
