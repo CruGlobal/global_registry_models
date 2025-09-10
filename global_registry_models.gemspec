@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activemodel', '>= 4.2'
   spec.add_dependency 'virtus', '~> 1.0'
   spec.add_dependency 'global_registry', '~> 1.0'
+  spec.add_dependency 'csv', '~> 3.3'
 
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
